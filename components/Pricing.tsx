@@ -58,12 +58,12 @@ export const Pricing: React.FC = () => {
 
             <ul className="space-y-5 mb-10 flex-grow">
               {[
-                "100% Local Intelligence",
-                "100% Offline Usage",
+                "100% Local intelligence",
+                "100% Offline usage",
                 "No tracking or analytics",
                 "Optimised for any laptop CPU",
-                "Anti-Subscription Forever",
-                "0ms Cloud Latency"
+                "Anti-subscription forever",
+                "0ms cloudl latency"
               ].map((feat, j) => (
                 <li key={j} className="flex items-start gap-3 text-slate-700 font-medium">
                   <div className="mt-1 p-0.5 rounded-full bg-yellow-400">

@@ -3,13 +3,23 @@ import React from 'react';
 import { Terminal } from './components/Terminal';
 import { Features } from './components/Features';
 import { Pricing } from './components/Pricing';
-import { Download, Menu, X, ArrowRight, ShieldCheck, Cpu, Apple, Citrus, Flame, Zap } from 'lucide-react';
+import { Download, Menu, X, ShieldCheck, Cpu, Citrus, Flame, Zap } from 'lucide-react';
 
 const App: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const scrollToPricing = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const pricingElement = document.getElementById('pricing');
+    if (pricingElement) {
+      const elementPosition = pricingElement.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = elementPosition - 120;
+      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+    }
   };
 
   return (
@@ -25,16 +35,16 @@ const App: React.FC = () => {
               <Citrus className="w-6 h-6 text-white" />
             </div>
             <div className="flex flex-col">
-               <span className="text-xl font-black tracking-tight text-slate-900">Zest CLI</span>
-               <span className="text-[10px] font-black text-red-500 uppercase tracking-widest leading-none">Spicy Lemonade</span>
+              <span className="text-xl font-black tracking-tight text-slate-900">Zest CLI</span>
+              <span className="text-[10px] font-black text-red-500 uppercase tracking-widest leading-none">Spicy Lemonade</span>
             </div>
           </div>
           
           <div className="hidden md:flex items-center gap-10">
             <a href="#features" className="text-slate-500 hover:text-red-500 transition-colors text-sm font-bold uppercase tracking-wider">Features</a>
-            <a href="#pricing" className="text-slate-500 hover:text-red-500 transition-colors text-sm font-bold uppercase tracking-wider">Pricing</a>
+            <a href="#pricing" onClick={scrollToPricing} className="text-slate-500 hover:text-red-500 transition-colors text-sm font-bold uppercase tracking-wider">Pricing</a>
             <a href="#docs" className="text-slate-500 hover:text-red-500 transition-colors text-sm font-bold uppercase tracking-wider">Docs</a>
-            <a href="#pricing" className="zest-gradient-bg text-white px-6 py-3 rounded-full text-sm font-black transition-all shadow-lg shadow-red-500/20 hover:scale-105 active:scale-95">
+            <a href="#pricing" onClick={scrollToPricing} className="zest-gradient-bg text-white px-6 py-3 rounded-full text-sm font-black transition-all shadow-lg shadow-red-500/20 hover:scale-105 active:scale-95">
               Get Started
             </a>
           </div>
@@ -50,9 +60,9 @@ const App: React.FC = () => {
         <div className="fixed inset-0 z-40 bg-white pt-24 px-6 md:hidden animate-in slide-in-from-top duration-300">
           <div className="flex flex-col gap-8 text-2xl font-black">
             <a href="#features" onClick={() => setIsMenuOpen(false)}>Features</a>
-            <a href="#pricing" onClick={() => setIsMenuOpen(false)}>Pricing</a>
+            <a href="#pricing" onClick={(e) => { scrollToPricing(e); setIsMenuOpen(false); }}>Pricing</a>
             <a href="#docs" onClick={() => setIsMenuOpen(false)}>Docs</a>
-            <a href="#pricing" className="zest-gradient-bg text-center text-white py-5 rounded-3xl shadow-xl" onClick={() => setIsMenuOpen(false)}>Get Started</a>
+            <a href="#pricing" className="zest-gradient-bg text-center text-white py-5 rounded-3xl shadow-xl" onClick={(e) => { scrollToPricing(e); setIsMenuOpen(false); }}>Get Started</a>
           </div>
         </div>
       )}
@@ -79,11 +89,14 @@ const App: React.FC = () => {
             100% private. 100% offline.
           </p>
 
-          <div className="flex flex-col items-center justify-center gap-6 mb-24 w-full">
-            <a href="#pricing" className="w-full sm:w-auto px-12 py-5 zest-gradient-bg text-white font-black text-lg rounded-3xl flex items-center justify-center gap-3 hover:scale-105 active:scale-95 transition-all shadow-2xl shadow-red-500/20">
+          <div className="flex flex-col items-center justify-center gap-4 mb-24 w-full">
+            <a href="#pricing" onClick={scrollToPricing} className="w-full sm:w-auto px-12 py-5 zest-gradient-bg text-white font-black text-lg rounded-3xl flex items-center justify-center gap-3 hover:scale-105 active:scale-95 transition-all shadow-2xl shadow-red-500/20">
               <Download className="w-6 h-6" />
               Download for Mac
             </a>
+            <p className="text-sm font-bold text-slate-400 tracking-wide">
+              Coming soon for Windows
+            </p>
           </div>
 
           {/* Terminal Demo */}
@@ -129,8 +142,8 @@ const App: React.FC = () => {
                 <Citrus className="w-6 h-6 text-white" />
               </div>
               <div className="flex flex-col">
-                 <span className="text-2xl font-black tracking-tight text-slate-900">Zest CLI</span>
-                 <span className="text-xs font-black text-red-500 uppercase tracking-widest leading-none">Spicy Lemonade</span>
+                <span className="text-2xl font-black tracking-tight text-slate-900">Zest CLI</span>
+                <span className="text-xs font-black text-red-500 uppercase tracking-widest leading-none">Spicy Lemonade</span>
               </div>
             </div>
             <p className="text-slate-500 font-medium leading-relaxed">
@@ -143,15 +156,13 @@ const App: React.FC = () => {
               <h5 className="font-black text-slate-900 mb-6 uppercase tracking-wider text-sm">Product</h5>
               <ul className="space-y-4 font-bold text-slate-500">
                 <li><a href="#" className="hover:text-red-500 transition-colors">Changelog</a></li>
-                <li><a href="#" className="text-xs hover:text-red-500 transition-colors">Privacy Policy</a></li>
+                <li><a href="#" className="hover:text-red-500 transition-colors">Privacy Policy</a></li>
               </ul>
             </div>
             <div>
               <h5 className="font-black text-slate-900 mb-6 uppercase tracking-wider text-sm">Docs</h5>
               <ul className="space-y-4 font-bold text-slate-500">
                 <li><a href="#" className="hover:text-red-500 transition-colors">Getting Started</a></li>
-                <li><a href="#" className="hover:text-red-500 transition-colors">Shell Setup</a></li>
-                <li><a href="#" className="hover:text-red-500 transition-colors">Architecture</a></li>
               </ul>
             </div>
             <div>
