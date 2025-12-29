@@ -2,7 +2,5 @@
 {
   "name": "Zest CLI - Privacy-First Local Assistant by Spicy Lemonade",
   "description": "Zest CLI is an anti-subscription, cloud-free local language model for Mac. Convert natural language to commands with 0ms cloud latency, 100% locally.",
-  "requestFramePermissions": [
-    "geolocation"
-  ]
+  "requestFramePermissions": []
 }

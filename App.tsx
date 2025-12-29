@@ -7,7 +7,8 @@ import {
   Download, Menu, X, ArrowRight, ShieldCheck, 
   Cpu, Apple, Citrus, Flame, Zap, Users, 
   BookOpen, Globe, ArrowLeft, Mail, Github,
-  History, Shield, FileText, Info, AlertTriangle, Lightbulb, BarChart3
+  History, Shield, FileText, Info, AlertTriangle, Lightbulb, BarChart3,
+  Layers, CheckCircle2, Boxes
 } from 'lucide-react';
 
 type View = 'landing' | 'about' | 'tos' | 'changelog' | 'privacy' | 'docs';
@@ -42,7 +43,7 @@ const DocsPage: React.FC<{ onBack: () => void }> = ({ onBack }) => (
   <section className="pt-32 pb-24 px-6 max-w-4xl mx-auto animate-in fade-in duration-500">
     <PageHeader onBack={onBack} title="Getting Started" subtitle="User Guide & Best Practices" icon={<Info className="w-10 h-10 text-white" />} />
     
-    <div className="prose prose-slate lg:prose-xl font-medium text-slate-600 space-y-16">
+    <div className="prose prose-slate lg:prose-xl font-medium text-slate-600 space-y-10">
       
       <div className="bg-yellow-50 border-l-4 border-yellow-400 p-8 rounded-r-[2rem]">
         <h3 className="text-slate-900 font-black flex items-center gap-3 mt-0">
@@ -50,13 +51,19 @@ const DocsPage: React.FC<{ onBack: () => void }> = ({ onBack }) => (
           The SLM Mindset
         </h3>
         <p className="mb-0">
-          Zest is powered by a <strong>Small Language Model (SLM)</strong>. Unlike massive cloud LLMs, it is designed for efficiency and specific utility. It excels at direct command translation but isn't a conversational partner. Treat it like a precise tool, not a chat bot.
+          Zest is powered by a <strong>Small Language Model (SLM)</strong>. Unlike massive cloud LLMs, it is designed for efficiency and specific utility. Our CLI Assistant is built on the industry leading <strong>Qwen 3 model</strong>, one of the most capable small language models, fine-tuned specifically using real world examples.
         </p>
       </div>
 
       <section>
         <h3 className="text-slate-900 font-black">1. Basic Usage</h3>
-        <p>Once installed, simply prefix your natural language request with <code>zest</code> in your terminal:</p>
+        <p className="mb-6">
+          On first usage, you will be prompted to enter the <strong>email address</strong> you used to purchase your license. You will then receive a <strong>One-Time Password (OTP)</strong> via email to enter in your terminal. This process activates your license and registers your machine.
+        </p>
+        <p className="mb-6">
+          You can repeat this process on one other machine (up to <strong>2 devices total</strong>). In order to deactivate a machine and free up a license slot, simply run <code>zest --logout</code> or <code>zest --uninstall</code>.
+        </p>
+        <p className="mb-6">After activation, simply prefix any natural language request with <code>zest</code>:</p>
         <div className="bg-slate-900 rounded-2xl p-6 text-yellow-400 font-mono text-sm mb-4">
           $ zest show me my ip address
         </div>
@@ -64,18 +71,79 @@ const DocsPage: React.FC<{ onBack: () => void }> = ({ onBack }) => (
       </section>
 
       <section>
-        <h3 className="text-slate-900 font-black">2. Admin Commands</h3>
-        <p>Manage your local installation and license using these flags:</p>
-        <ul className="list-none pl-0 space-y-4">
-          <li className="flex gap-4">
-            <code className="text-red-500 bg-red-50 px-3 py-1 rounded-lg h-fit">--logout</code>
-            <span>De-authorizes the current machine, freeing up a slot on your license.</span>
-          </li>
-          <li className="flex gap-4">
-            <code className="text-red-500 bg-red-50 px-3 py-1 rounded-lg h-fit">--uninstall</code>
-            <span>Completely removes the local model and binaries from your system.</span>
-          </li>
-        </ul>
+        <h3 className="text-slate-900 font-black">2. Performance & Accuracy</h3>
+        
+        <div className="space-y-12">
+          <div className="bg-slate-50 p-8 rounded-[2rem] border border-slate-100">
+            <h4 className="text-xl font-black text-slate-900 mb-2">Zest Extra Spicy (Full Precision)</h4>
+            <p className="text-red-500 font-black mb-4">96% accuracy on production CLI workflows.</p>
+            <p className="font-bold text-slate-900 mb-2 underline decoration-red-200">Strengths:</p>
+            <ul className="list-disc pl-6 space-y-1 mb-6 text-base">
+              <li>100% accurate on Docker, Cloud tools, and common commands</li>
+              <li>100% accurate on intermediate tasks (systemctl, package management)</li>
+              <li>87.5% accurate on advanced Kubernetes & system administration workflows</li>
+              <li>75% accurate on advanced text processing (vs 25% in Lite)</li>
+              <li>Excels at regex patterns, log analysis, text processing, command pipelines</li>
+            </ul>
+            <p className="text-xs font-black text-slate-400 uppercase tracking-widest bg-white py-2 px-4 rounded-xl border border-slate-200 inline-block">
+              Model Details: 8GB | Full precision FP16 | Requires Apple Silicon (M1/M2/M3)
+            </p>
+          </div>
+
+          <div className="bg-slate-50 p-8 rounded-[2rem] border border-slate-100">
+            <h4 className="text-xl font-black text-slate-900 mb-2">Zest Lite (CPU-Optimized)</h4>
+            <p className="text-yellow-600 font-black mb-4">92% accuracy on production CLI workflows.</p>
+            <p className="font-bold text-slate-900 mb-2 underline decoration-yellow-200">Strengths:</p>
+            <ul className="list-disc pl-6 space-y-1 mb-4 text-base">
+              <li>100% accurate on Docker, Cloud tools, and common commands</li>
+              <li>100% accurate on intermediate tasks (systemctl, package management)</li>
+              <li>87.5% accurate on Kubernetes & system administration</li>
+              <li>Optimized Q5_K_M quantization for fast CPU results</li>
+            </ul>
+            <p className="font-bold text-slate-900 mb-2 underline decoration-slate-200">Trade-offs:</p>
+            <ul className="list-disc pl-6 space-y-1 mb-6 text-base">
+              <li>4% lower overall accuracy (92% vs 96%)</li>
+              <li>Reduced text processing accuracy (25% vs 75%)</li>
+              <li>3x smaller download (2.6GB vs 8GB)</li>
+              <li>Runs on any Mac (Intel or Apple Silicon)</li>
+            </ul>
+            <p className="text-xs font-black text-slate-400 uppercase tracking-widest bg-white py-2 px-4 rounded-xl border border-slate-200 inline-block">
+              Model Details: 2.6GB | Q5_K_M quantization | Universal compatibility
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h3 className="text-slate-900 font-black">Choosing Your Model</h3>
+        <div className="overflow-x-auto">
+          <table className="w-full text-left border-collapse mt-4">
+            <thead>
+              <tr className="border-b-2 border-slate-200">
+                <th className="py-4 font-black text-slate-900">Need</th>
+                <th className="py-4 font-black text-slate-900">Recommendation</th>
+              </tr>
+            </thead>
+            <tbody className="text-base">
+              <tr className="border-b border-slate-100">
+                <td className="py-4">Maximum accuracy</td>
+                <td className="py-4 font-black text-red-500">Extra Spicy</td>
+              </tr>
+              <tr className="border-b border-slate-100">
+                <td className="py-4">Regex, log analysis, text processing</td>
+                <td className="py-4 font-black text-red-500">Extra Spicy</td>
+              </tr>
+              <tr className="border-b border-slate-100">
+                <td className="py-4">Simple Docker/Git/AWS/Kubernetes commands</td>
+                <td className="py-4 font-bold">Either</td>
+              </tr>
+              <tr className="border-b border-slate-100">
+                <td className="py-4">Smaller download, any Mac, day to day use</td>
+                <td className="py-4 font-black text-yellow-600">Lite</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </section>
 
       <section>
@@ -121,7 +189,7 @@ const DocsPage: React.FC<{ onBack: () => void }> = ({ onBack }) => (
         <p>
           We evaluated Zest on the <a href="https://intercode-benchmark.github.io/" target="_blank" rel="noopener noreferrer" className="text-red-500 hover:underline">intercode nl2bash benchmark</a>. Using an LLM judge (Opus 4.5), our local model completed <strong>34% of tasks with zero-shot prompting</strong>. This performance puts Zest in line with <strong>ChatGPT 4 (34% in 2023)</strong> and significantly ahead of older models like <strong>Llama-2-70B-Chat (31.5% in 2023)</strong> and <strong>Vicuna-13B (24.5% in 2023)</strong>.
         </p>
-        <div className="mt-32 bg-slate-50 border border-slate-200 p-4 rounded-xl text-xs italic w-full leading-relaxed">
+        <div className="mt-12 bg-slate-50 border border-slate-200 p-4 rounded-xl text-xs italic w-full leading-relaxed">
           We built this tool to handle most everyday tasks, but it won’t get everything right all the time. If something doesn’t work as expected, let us know using the contact form. We really don’t collect or store your prompts or outputs, so we can’t see issues unless you tell us about them. We’re always working to improve, and your feedback really helps.
         </div>
       </section>
@@ -156,33 +224,6 @@ const AboutPage: React.FC<{ onBack: () => void }> = ({ onBack }) => (
           </p>
         </div>
       </div>
-      <div className="bg-slate-50 rounded-[2.5rem] p-12 border border-slate-100 mb-16">
-        <h3 className="text-2xl font-black text-slate-900 mb-8">The Philosophy</h3>
-        <div className="space-y-10">
-          <div className="flex gap-6">
-            <div className="w-10 h-10 rounded-2xl bg-yellow-400/20 flex items-center justify-center shrink-0">
-              <span className="text-yellow-700 font-black text-sm">01</span>
-            </div>
-            <div>
-              <h4 className="font-bold text-slate-900 mb-2 text-lg">Radical Privacy</h4>
-              <p className="text-slate-500 font-medium leading-relaxed">
-                We believe in absolute data privacy. We design for privacy by default, not as an afterthought.
-              </p>
-            </div>
-          </div>
-          <div className="flex gap-6">
-            <div className="w-10 h-10 rounded-2xl bg-red-400/20 flex items-center justify-center shrink-0">
-              <span className="text-red-700 font-black text-sm">02</span>
-            </div>
-            <div>
-              <h4 className="font-bold text-slate-900 mb-2 text-lg">Anti-Subscription</h4>
-              <p className="text-slate-500 font-medium leading-relaxed">
-                Tools should be owned, not rented. We are strictly anti-monthly and anti-yearly subscriptions. Our desktop tools are pay-once. You buy it. You own it.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 );
@@ -196,11 +237,8 @@ const ChangelogPage: React.FC<{ onBack: () => void }> = ({ onBack }) => (
         <p className="text-slate-400 font-bold mb-4">January 20, 2026</p>
         <ul className="space-y-4 text-slate-600 font-medium">
           <li>• Initial public launch of Zest CLI for macOS.</li>
-          <li>• Optimized local model for 0ms cloud latency on Apple.</li>
-          <li>• CPU capable if no GPU is detected.</li>
+          <li>• Optimized local models for 0ms cloud latency.</li>
           <li>• Integrated shell support for Zsh and Bash.</li>
-          <li>• Offline mode activated by default.</li>
-          <li>• Compact ~2.9GB footprint for modern systems.</li>
         </ul>
       </div>
     </div>
@@ -215,18 +253,6 @@ const PrivacyPolicyPage: React.FC<{ onBack: () => void }> = ({ onBack }) => (
         <h3 className="text-slate-900 font-black">1. Local Processing</h3>
         <p>Zest CLI processes all language tasks locally on your device. We do not transmit your terminal commands or prompts to our servers.</p>
       </div>
-      <div>
-        <h3 className="text-slate-900 font-black">2. Data Collection</h3>
-        <p>We do not collect usage analytics, patterns, or shell history. Your interaction with Zest is completely private.</p>
-      </div>
-      <div>
-        <h3 className="text-slate-900 font-black">3. Functional Telemetry</h3>
-        <p>The only telemetry that happens is registering a machine ID to your user i.d. to respect our 2 device limit. This is strictly for functional reasons such as license verification, machine authorization (e.g., via <code>zest --logout</code>), and proper cleanup during <code>zest --uninstall</code>.</p>
-      </div>
-      <div>
-        <h3 className="text-slate-900 font-black">4. Third Party Services</h3>
-        <p>Payments are handled by Polar.sh. We do not see or store your credit card details. Refer to Polar.sh for their specific privacy terms regarding billing.</p>
-      </div>
     </div>
   </section>
 );
@@ -238,14 +264,6 @@ const TermsOfServicePage: React.FC<{ onBack: () => void }> = ({ onBack }) => (
       <div>
         <h3 className="text-slate-900 font-black">1. License</h3>
         <p>A purchase of Zest CLI grants you a non-exclusive, perpetual license for individual use on up to 2 personal devices owned by you.</p>
-      </div>
-      <div>
-        <h3 className="text-slate-900 font-black">2. Usage</h3>
-        <p>You may not reverse engineer, decompile, or redistribute the Zest CLI binary. The software is provided "as is" without warranty of any kind.</p>
-      </div>
-      <div>
-        <h3 className="text-slate-900 font-black">3. Refund Policy</h3>
-        <p>Due to the nature of downloadable software, all sales are final. Please review the documentation before purchase.</p>
       </div>
     </div>
   </section>
@@ -261,7 +279,7 @@ const App: React.FC = () => {
     if (sectionId && view === 'landing') {
       setTimeout(() => {
         const el = document.getElementById(sectionId);
-        el?.scrollIntoView({ behavior: 'smooth' });
+        el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 100);
     } else {
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -277,13 +295,15 @@ const App: React.FC = () => {
       case 'docs': return <DocsPage onBack={() => handleNav('landing')} />;
       default: return (
         <>
-          <section className="pt-48 pb-32 px-6 relative overflow-hidden">
+          <section className="pt-48 pb-32 px-6 relative overflow-hidden" id="hero">
             <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-yellow-100/50 blur-[120px] rounded-full -z-10" />
             <div className="absolute bottom-[20%] right-[-10%] w-[40%] h-[40%] bg-red-50/50 blur-[100px] rounded-full -z-10" />
             <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
-              <div className="inline-flex items-center gap-2 bg-yellow-400/10 text-yellow-700 px-4 py-2 rounded-full border border-yellow-400/20 mb-10 animate-in fade-in slide-in-from-bottom-4 duration-700 font-bold text-sm">
-                <Flame className="w-4 h-4 text-red-500" />
-                New: Zest v1.0
+              <div className="flex flex-wrap items-center justify-center gap-4 mb-10 animate-in fade-in slide-in-from-bottom-4 duration-700">
+                <div className="inline-flex items-center gap-2 bg-yellow-400/10 text-yellow-700 px-4 py-2 rounded-full border border-yellow-400/20 font-bold text-sm">
+                  <Flame className="w-4 h-4 text-red-500" />
+                  New: Zest v1.0 (Qwen3 Engine)
+                </div>
               </div>
               <h1 className="text-6xl md:text-8xl font-black mb-8 tracking-tighter text-slate-900 max-w-5xl leading-[1.05]">
                 Give your shell a <br />
@@ -293,41 +313,100 @@ const App: React.FC = () => {
                 Natural language to CLI commands. <br className="hidden md:block" />
                 100% private. 100% offline.
               </p>
-              <div className="flex flex-col items-center justify-center gap-4 mb-24 w-full">
-                <a href="#pricing" className="w-full sm:w-auto px-12 py-5 zest-gradient-bg text-white font-black text-lg rounded-3xl flex items-center justify-center gap-3 hover:scale-105 active:scale-95 transition-all shadow-2xl shadow-red-500/20">
+              <div className="flex flex-col items-center justify-center mb-24 w-full">
+                <button 
+                  onClick={() => handleNav('landing', 'pricing')}
+                  className="w-full sm:w-auto px-12 py-5 zest-gradient-bg text-white font-black text-lg rounded-3xl flex items-center justify-center gap-3 hover:scale-105 active:scale-95 transition-all shadow-2xl shadow-red-500/20"
+                >
                   <Download className="w-6 h-6" />
-                  Download for Mac
-                </a>
-                <p className="text-sm font-bold text-slate-400 tracking-wide">Coming soon for Windows</p>
+                  Get Zest CLI (macOS)
+                </button>
+                <p className="mt-4 text-slate-400 font-bold text-sm">Coming soon for Windows</p>
               </div>
-              <Terminal />
+              
+              <div id="playground" className="w-full scroll-mt-32">
+                <Terminal />
+              </div>
+
+              {/* Performance & Model Info Section */}
+              <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-16 w-full max-w-6xl text-left">
+                <div className="p-10 rounded-[3rem] bg-slate-50 border border-slate-100 relative overflow-hidden group flex flex-col">
+                  <div className="absolute top-6 right-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                    <Layers className="w-12 h-12 text-slate-900" />
+                  </div>
+                  <h3 className="text-3xl font-black text-slate-900 mb-4 relative z-10">Powered by Qwen3</h3>
+                  <p className="text-slate-600 font-medium mb-6 leading-relaxed relative z-10 flex-grow">
+                    Built on fully open-source, commercial-friendly foundations. Fine-tuned specifically on millions of real-world CLI examples.
+                  </p>
+                  <div className="flex flex-wrap gap-4 relative z-10">
+                    <span className="px-4 py-2 rounded-xl bg-white border border-slate-200 text-slate-700 font-bold text-xs uppercase tracking-wider">Local Inference</span>
+                    <span className="px-4 py-2 rounded-xl bg-white border border-slate-200 text-slate-700 font-bold text-xs uppercase tracking-wider">Zero Tracking</span>
+                  </div>
+                </div>
+
+                <div className="p-10 rounded-[3rem] bg-slate-50 border border-slate-100 relative overflow-hidden group flex flex-col">
+                  <div className="absolute top-6 right-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                    <CheckCircle2 className="w-12 h-12 text-red-500" />
+                  </div>
+                  <h3 className="text-3xl font-black text-slate-900 mb-4 relative z-10">96%+ Accuracy</h3>
+                  <p className="text-slate-600 font-medium mb-6 leading-relaxed relative z-10 flex-grow">
+                    Verified performance on internal benchmarks covering real-world workloads. Designed for reliable command translation across a wide range of technical use cases. <span className="text-[8px] text-slate-400 font-black inline tracking-widest uppercase ml-1 opacity-80">(Zest Extra Spicy)</span>
+                  </p>
+                  <div className="flex flex-wrap gap-4 relative z-10">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-slate-200 text-slate-700 font-bold text-xs uppercase tracking-wider">
+                      <CheckCircle2 className="w-4 h-4 text-slate-500" />
+                      <span>Enterprise-Grade Reliability</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="md:col-span-2 p-12 rounded-[3rem] zest-gradient-bg relative overflow-hidden text-white shadow-2xl shadow-yellow-500/20">
+                   <div className="relative z-10">
+                      <h3 className="text-4xl font-black mb-6">Built for the modern stack.</h3>
+                      <p className="text-xl font-bold mb-10 opacity-90 max-w-2xl">
+                        Supports <strong>Docker, Kubernetes, Git, AWS</strong>, and 100+ standard Unix tools out of the box.
+                      </p>
+                      <div className="flex flex-wrap gap-3">
+                         {['Docker', 'Kubernetes', 'Git', 'AWS', 'npm', 'brew', 'ssh', 'curl'].map((tool) => (
+                           <span key={tool} className="px-6 py-2 rounded-full bg-white/20 backdrop-blur-md font-black text-sm">{tool}</span>
+                         ))}
+                         <span className="px-6 py-2 rounded-full bg-white text-slate-900 font-black text-sm">100+ more</span>
+                      </div>
+                   </div>
+                   {/* Lemon slice brand icon in background */}
+                   <Citrus className="absolute -bottom-16 -right-16 w-80 h-80 text-white/10 rotate-12" />
+                </div>
+              </div>
+
               <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mt-32 w-full max-w-5xl">
                 <div className="flex flex-col items-center">
                   <div className="w-16 h-16 bg-yellow-50 rounded-3xl flex items-center justify-center mb-4 border border-yellow-100 shadow-sm">
                     <Zap className="w-8 h-8 text-yellow-600" />
                   </div>
-                  <h4 className="text-3xl font-black text-slate-900 mb-1">No API Keys</h4>
-                  <p className="text-slate-500 font-bold uppercase tracking-widest text-xs">0ms Cloud latency</p>
+                  <h4 className="text-3xl font-black text-slate-900 mb-1 text-center">100% offline</h4>
+                  <p className="text-slate-500 font-bold uppercase tracking-widest text-xs text-center">0ms Network latency</p>
                 </div>
                 <div className="flex flex-col items-center">
                   <div className="w-16 h-16 bg-red-50 rounded-3xl flex items-center justify-center mb-4 border border-red-100 shadow-sm">
                     <ShieldCheck className="w-8 h-8 text-red-500" />
                   </div>
-                  <h4 className="text-3xl font-black text-slate-900 mb-1">100% Private</h4>
-                  <p className="text-slate-500 font-bold uppercase tracking-widest text-xs">Local intelligence</p>
+                  <h4 className="text-3xl font-black text-slate-900 mb-1 text-center">100% Private</h4>
+                  <p className="text-slate-500 font-bold uppercase tracking-widest text-xs text-center">local data only</p>
                 </div>
                 <div className="flex flex-col items-center">
                   <div className="w-16 h-16 bg-slate-50 rounded-3xl flex items-center justify-center mb-4 border border-slate-100 shadow-sm">
                     <Cpu className="w-8 h-8 text-slate-600" />
                   </div>
-                  <h4 className="text-3xl font-black text-slate-900 mb-1 leading-tight uppercase">CPU Capable</h4>
-                  <p className="text-slate-500 font-bold uppercase tracking-widest text-xs">High performance</p>
+                  <h4 className="text-3xl font-black text-slate-900 mb-1 text-center">Low Impact</h4>
+                  <p className="text-slate-500 font-bold uppercase tracking-widest text-xs text-center">optimised for CPU</p>
                 </div>
               </div>
             </div>
           </section>
-          <Features />
+          
           <Pricing />
+          
+          <Features />
         </>
       );
     }
@@ -354,9 +433,9 @@ const App: React.FC = () => {
           <div className="hidden md:flex items-center gap-10">
             <button onClick={() => handleNav('landing', 'features')} className="text-slate-500 hover:text-red-500 transition-colors text-sm font-bold uppercase tracking-wider">Features</button>
             <button onClick={() => handleNav('landing', 'pricing')} className="text-slate-500 hover:text-red-500 transition-colors text-sm font-bold uppercase tracking-wider">Pricing</button>
-            <button onClick={() => handleNav('about')} className="text-slate-500 hover:text-red-500 transition-colors text-sm font-bold uppercase tracking-wider">About</button>
-            <button onClick={() => handleNav('docs')} className="zest-gradient-bg text-white px-6 py-3 rounded-full text-sm font-black transition-all shadow-lg shadow-red-500/20 hover:scale-105 active:scale-95">
-              Get Started
+            <button onClick={() => handleNav('docs')} className="text-slate-500 hover:text-red-500 transition-colors text-sm font-bold uppercase tracking-wider">Docs</button>
+            <button onClick={() => handleNav('landing', 'pricing')} className="zest-gradient-bg text-white px-8 py-3 rounded-full text-sm font-black transition-all shadow-lg shadow-red-500/20 hover:scale-105 active:scale-95">
+              Get Zest
             </button>
           </div>
 
@@ -372,18 +451,18 @@ const App: React.FC = () => {
           <div className="flex flex-col gap-8 text-2xl font-black">
             <button onClick={() => handleNav('landing', 'features')} className="text-left">Features</button>
             <button onClick={() => handleNav('landing', 'pricing')} className="text-left">Pricing</button>
-            <button onClick={() => handleNav('about')} className="text-left">About</button>
-            <button onClick={() => handleNav('docs')} className="zest-gradient-bg text-center text-white py-5 rounded-3xl shadow-xl">Get Started</button>
+            <button onClick={() => handleNav('docs')} className="text-left">Docs</button>
+            <button onClick={() => handleNav('landing', 'pricing')} className="zest-gradient-bg text-center text-white py-5 rounded-3xl shadow-xl">Get Zest</button>
           </div>
         </div>
       )}
 
       {renderView()}
 
-      {/* Simplified Footer */}
-      <footer className="bg-slate-50 py-24 px-6 border-t border-slate-100">
+      {/* Footer */}
+      <footer className="bg-slate-50 py-16 px-6 border-t border-slate-100">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-16">
-          <div className="max-w-xs">
+          <div className="max-w-sm">
             <div className="flex items-center gap-3 mb-8 cursor-pointer" onClick={() => handleNav('landing')}>
               <div className="w-10 h-10 zest-gradient-bg rounded-2xl flex items-center justify-center shadow-lg shadow-yellow-500/20">
                 <Citrus className="w-6 h-6 text-white" />
@@ -394,7 +473,8 @@ const App: React.FC = () => {
               </div>
             </div>
             <p className="text-slate-500 font-medium leading-relaxed">
-              The privacy-focused companion for the modern engineer. Cloud free, subscription free, and 100% offline. Works where you work.
+              Anti-subscription. Anti-cloud. 100% local.<br />
+              The smarter way to talk to your shell.
             </p>
           </div>
 
@@ -403,26 +483,24 @@ const App: React.FC = () => {
               <h5 className="font-black text-slate-900 mb-6 uppercase tracking-wider text-sm">Product</h5>
               <ul className="space-y-4 font-bold text-slate-500">
                 <li><button onClick={() => handleNav('changelog')} className="hover:text-red-500 transition-colors text-left">Changelog</button></li>
-                <li><button onClick={() => handleNav('privacy')} className="hover:text-red-500 transition-colors text-left">Privacy Policy</button></li>
+                <li><button onClick={() => handleNav('privacy')} className="hover:text-red-500 transition-colors text-left">Privacy</button></li>
               </ul>
             </div>
             <div>
-              <h5 className="font-black text-slate-900 mb-6 uppercase tracking-wider text-sm">Docs</h5>
+              <h5 className="font-black text-slate-900 mb-6 uppercase tracking-wider text-sm">Help</h5>
               <ul className="space-y-4 font-bold text-slate-500">
-                <li><button onClick={() => handleNav('docs')} className="hover:text-red-500 transition-colors text-left">Getting Started</button></li>
+                <li><button onClick={() => handleNav('docs')} className="hover:text-red-500 transition-colors text-left">Docs</button></li>
               </ul>
             </div>
             <div>
-              <h5 className="font-black text-slate-900 mb-6 uppercase tracking-wider text-sm">Company</h5>
+              <h5 className="font-black text-slate-900 mb-6 uppercase tracking-wider text-sm">Collective</h5>
               <ul className="space-y-4 font-bold text-slate-500">
-                <li><button onClick={() => handleNav('about')} className="hover:text-red-500 transition-colors text-left">Spicy Lemonade</button></li>
-                <li><button onClick={() => handleNav('tos')} className="hover:text-red-500 transition-colors text-left">Terms of Service</button></li>
-                <li><button className="hover:text-red-500 transition-colors text-left">Contact Us</button></li>
+                <li><button onClick={() => handleNav('about')} className="hover:text-red-500 transition-colors text-left">About</button></li>
               </ul>
             </div>
           </div>
         </div>
-        <div className="max-w-7xl mx-auto mt-24 pt-10 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="max-w-7xl mx-auto mt-8 pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-sm font-bold text-slate-400">© 2026 Spicy Lemonade. All rights reserved.</p>
         </div>
       </footer>

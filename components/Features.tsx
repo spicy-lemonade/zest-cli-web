@@ -1,43 +1,43 @@
 
 import React from 'react';
-import { Shield, Cpu, Zap, Lock, Plane, Terminal, Package, Ban } from 'lucide-react';
+import { Shield, Cpu, Zap, Lock, Plane, Terminal, Package, Ban, CheckCircle2 } from 'lucide-react';
 
 const features = [
   {
-    icon: <Shield className="w-6 h-6 text-red-500" />,
-    title: "Privacy First",
-    description: "Your prompts never leave your disk. Zest is cloud-free by design, ensuring your shell history is yours alone."
+    icon: <CheckCircle2 className="w-6 h-6 text-red-500" />,
+    title: "96%+ Accuracy",
+    description: "Powered by Qwen3. Achieves 96%+ accuracy on real-world CLI commands including complex Docker and Kubernetes orchestration."
   },
   {
-    icon: <Ban className="w-6 h-6 text-yellow-600" />,
+    icon: <Shield className="w-6 h-6 text-yellow-600" />,
+    title: "Privacy First",
+    description: "Runs locally - your data stays private. Built on fully open-source, commercial-friendly foundations."
+  },
+  {
+    icon: <Ban className="w-6 h-6 text-red-500" />,
     title: "Anti-Subscription",
     description: "Zero monthly fees. Buy once, use forever. No API bills, no rate limits, no recurring costs."
   },
   {
-    icon: <Plane className="w-6 h-6 text-red-500" />,
-    title: "Works on an Airplane",
-    description: "Works where you work. No internet required. Perfect for high-security environments and remote travel."
-  },
-  {
-    icon: <Zap className="w-6 h-6 text-yellow-600" />,
-    title: "No API Keys Needed",
-    description: "Suggestions appear with 0ms cloud latency. No cloud LLM overhead and no API configurations required."
-  },
-  {
-    icon: <Package className="w-6 h-6 text-red-500" />,
-    title: "Compact Binary",
-    description: "A single native Mac binary. Efficiently optimized to run in the background with minimal RAM overhead."
-  },
-  {
     icon: <Terminal className="w-6 h-6 text-yellow-600" />,
-    title: "Broad Tool Support",
-    description: "Seamlessly integrates with Zsh and Bash. Supports all major CLI tools including Git, Docker, and Kubernetes."
+    title: "100+ Tools Supported",
+    description: "Native support for Docker, Kubernetes, AWS CLI, Git, and over 100 standard Unix administration tools."
+  },
+  {
+    icon: <Zap className="w-6 h-6 text-red-500" />,
+    title: "0ms Cloud Latency",
+    description: "Instant suggestions without internet round-trips. Suggestions appear at the speed of your local CPU."
+  },
+  {
+    icon: <Plane className="w-6 h-6 text-yellow-600" />,
+    title: "Fully Offline",
+    description: "Works on airplanes, in remote locations, or during outages. The model lives inside the app, not the cloud."
   }
 ];
 
 export const Features: React.FC = () => {
   return (
-    <section className="py-24 px-6 bg-white scroll-mt-24" id="features">
+    <section className="pt-12 pb-24 px-6 bg-white scroll-mt-24" id="features">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-extrabold mb-4 text-slate-900">Works where you work. <span className="zest-gradient-text">Spiced up.</span></h2>
