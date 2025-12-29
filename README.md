@@ -83,21 +83,8 @@ The site uses a **"Spicy Lemonade" brand identity** with:
 
 ## 🔗 Related Repositories
 
-* **[natural-language-cli-infra](https://github.com/your-org/natural-language-cli-infra):** Terraform infrastructure for ML training pipeline (GCS buckets, IAM, billing).
-* **[natural-language-cli-eng](https://github.com/your-org/natural-language-cli-eng):** Core CLI tool and model training code.
-
----
-
-## 📦 Deployment
-
-The site is a static React SPA that can be deployed to:
-
-* **Vercel** (recommended for Vite projects)
-* **Netlify**
-* **GitHub Pages**
-* **Firebase Hosting**
-
-Simply run `npm run build` and deploy the `dist/` folder.
+* **[natural-language-cli-infra](https://github.com/spicy-lemonade/natural-language-cli-infra):** Terraform infrastructure for ML training pipeline (GCS buckets, IAM, billing).
+* **[natural-language-cli-eng](https://github.com/spicy-lemonade/natural-language-cli-eng):** Core CLI tool and model training code.
 
 ---
 
