@@ -21,7 +21,7 @@ const features = [
   {
     icon: <Zap className="w-6 h-6 text-yellow-600" />,
     title: "No API Keys Needed",
-    description: "Suggestions appear instantly with 0ms latency. No cloud LLM overhead and no API configurations required."
+    description: "Suggestions appear with 0ms cloud latency. No cloud LLM overhead and no API configurations required."
   },
   {
     icon: <Package className="w-6 h-6 text-red-500" />,
@@ -42,7 +42,7 @@ export const Features: React.FC = () => {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-extrabold mb-4 text-slate-900">Works where you work. <span className="zest-gradient-text">Spiced up.</span></h2>
           <p className="text-slate-500 max-w-5xl mx-auto text-lg font-medium">
-            Zest CLI is a local-first AI tool for the privacy-conscious Mac power user.
+            Zest CLI is a local, command line AI tool for the privacy-conscious power user.
           </p>
         </div>
         
