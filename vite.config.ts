@@ -4,8 +4,8 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig(() => {
     return {
-      // For GitHub Pages - change to '/' when using custom domain
-      base: '/zest-cli-web/',
+      // Custom domain configured (zestcli.com)
+      base: '/',
       server: {
         port: 3000,
         host: '0.0.0.0',
