@@ -8,10 +8,10 @@ import {
   Cpu, Apple, Citrus, Flame, Zap, Users, 
   BookOpen, Globe, ArrowLeft, Mail, Github,
   History, Shield, FileText, Info, AlertTriangle, Lightbulb, BarChart3,
-  Layers, CheckCircle2, Boxes
+  Layers, CheckCircle2, Boxes, MessageSquare, Send
 } from 'lucide-react';
 
-type View = 'landing' | 'about' | 'tos' | 'changelog' | 'privacy' | 'docs';
+type View = 'landing' | 'about' | 'tos' | 'changelog' | 'privacy' | 'docs' | 'report';
 
 const PageHeader: React.FC<{ onBack: () => void; title: string; subtitle?: string; icon: React.ReactNode }> = ({ onBack, title, subtitle, icon }) => (
   <div className="mb-16">
@@ -39,163 +39,289 @@ const PageHeader: React.FC<{ onBack: () => void; title: string; subtitle?: strin
   </div>
 );
 
-const DocsPage: React.FC<{ onBack: () => void }> = ({ onBack }) => (
-  <section className="pt-32 pb-24 px-6 max-w-4xl mx-auto animate-in fade-in duration-500">
-    <PageHeader onBack={onBack} title="Getting Started" subtitle="User Guide & Best Practices" icon={<Info className="w-10 h-10 text-white" />} />
-    
-    <div className="prose prose-slate lg:prose-xl font-medium text-slate-600 space-y-10">
+const ReportIssuesPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitted(true);
+  };
+
+  if (submitted) {
+    return (
+      <section className="pt-32 pb-24 px-6 max-w-4xl mx-auto animate-in fade-in duration-500">
+        <PageHeader onBack={onBack} title="Thank You" subtitle="Feedback Received" icon={<CheckCircle2 className="w-10 h-10 text-white" />} />
+        <div className="bg-slate-50 p-12 rounded-[3rem] border border-slate-100 text-center">
+          <h3 className="text-2xl font-black text-slate-900 mb-4">We've got it!</h3>
+          <p className="text-slate-600 font-medium mb-8 max-w-lg mx-auto leading-relaxed">
+            Thank you for helping us improve Zest. We'll use your report to refine our Small Language Model in future releases.
+          </p>
+          <button 
+            onClick={onBack}
+            className="px-8 py-4 bg-slate-900 text-white font-black rounded-2xl hover:bg-slate-800 transition-all"
+          >
+            Return to Landing
+          </button>
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <section className="pt-32 pb-24 px-6 max-w-4xl mx-auto animate-in fade-in duration-500">
+      <PageHeader onBack={onBack} title="Report Issues" subtitle="Help us refine the engine" icon={<MessageSquare className="w-10 h-10 text-white" />} />
       
-      <div className="bg-yellow-50 border-l-4 border-yellow-400 p-8 rounded-r-[2rem]">
-        <h3 className="text-slate-900 font-black flex items-center gap-3 mt-0">
-          <Lightbulb className="w-6 h-6 text-yellow-600" />
-          The SLM Mindset
-        </h3>
-        <p className="mb-0">
-          Zest is powered by a <strong>Small Language Model (SLM)</strong>. Unlike massive cloud LLMs, it is designed for efficiency and specific utility. Our CLI Assistant is built on the industry leading <strong>Qwen 3 model</strong>, one of the most capable small language models, fine-tuned specifically using real world examples.
-        </p>
-      </div>
-
-      <section>
-        <h3 className="text-slate-900 font-black">1. Basic Usage</h3>
-        <p className="mb-6">
-          On first usage, you will be prompted to enter the <strong>email address</strong> you used to purchase your license. You will then receive a <strong>One-Time Password (OTP)</strong> via email to enter in your terminal. This process activates your license and registers your machine.
-        </p>
-        <p className="mb-6">
-          You can repeat this process on one other machine (up to <strong>2 devices total</strong>). In order to deactivate a machine and free up a license slot, simply run <code>zest --logout</code> or <code>zest --uninstall</code>.
-        </p>
-        <p className="mb-6">After activation, simply prefix any natural language request with <code>zest</code>:</p>
-        <div className="bg-slate-900 rounded-2xl p-6 text-yellow-400 font-mono text-sm mb-4">
-          $ zest show me my ip address
+      <div className="prose prose-slate lg:prose-xl font-medium text-slate-600 space-y-10">
+        <div className="bg-slate-50 border-l-4 border-slate-900 p-8 rounded-r-[2rem]">
+          <h3 className="text-slate-900 font-black flex items-center gap-3 mt-0">
+            <ShieldCheck className="w-6 h-6 text-slate-900" />
+            Privacy First
+          </h3>
+          <p className="mb-0">
+            Zest is built on a foundation of absolute privacy. Because we <strong>never</strong> collect or track your prompts or outputs, we rely entirely on your manual feedback to identify and fix <strong>your</strong> edge cases.
+          </p>
         </div>
-        <p>Zest will suggest a command. Press <kbd className="bg-slate-100 px-2 py-1 rounded border">y</kbd> to execute it or <kbd className="bg-slate-100 px-2 py-1 rounded border">n</kbd> to cancel.</p>
-      </section>
 
-      <section>
-        <h3 className="text-slate-900 font-black">2. Performance & Accuracy</h3>
-        
-        <div className="space-y-12">
-          <div className="bg-slate-50 p-8 rounded-[2rem] border border-slate-100">
-            <h4 className="text-xl font-black text-slate-900 mb-2">Zest Extra Spicy (Full Precision)</h4>
-            <p className="text-red-500 font-black mb-4">96% accuracy on production CLI workflows.</p>
-            <p className="font-bold text-slate-900 mb-2 underline decoration-red-200">Strengths:</p>
-            <ul className="list-disc pl-6 space-y-1 mb-6 text-base">
-              <li>100% accurate on Docker, Cloud tools, and common commands</li>
-              <li>100% accurate on intermediate tasks (systemctl, package management)</li>
-              <li>87.5% accurate on advanced Kubernetes & system administration workflows</li>
-              <li>75% accurate on advanced text processing (vs 25% in Lite)</li>
-              <li>Excels at regex patterns, log analysis, text processing, command pipelines</li>
-            </ul>
-            <p className="text-xs font-black text-slate-400 uppercase tracking-widest bg-white py-2 px-4 rounded-xl border border-slate-200 inline-block">
-              Model Details: 8GB | Full precision FP16 | Requires Apple Silicon (M1/M2/M3)
-            </p>
-          </div>
-
-          <div className="bg-slate-50 p-8 rounded-[2rem] border border-slate-100">
-            <h4 className="text-xl font-black text-slate-900 mb-2">Zest Lite (CPU-Optimized)</h4>
-            <p className="text-yellow-600 font-black mb-4">92% accuracy on production CLI workflows.</p>
-            <p className="font-bold text-slate-900 mb-2 underline decoration-yellow-200">Strengths:</p>
-            <ul className="list-disc pl-6 space-y-1 mb-4 text-base">
-              <li>100% accurate on Docker, Cloud tools, and common commands</li>
-              <li>100% accurate on intermediate tasks (systemctl, package management)</li>
-              <li>87.5% accurate on Kubernetes & system administration</li>
-              <li>Optimized Q5_K_M quantization for fast CPU results</li>
-            </ul>
-            <p className="font-bold text-slate-900 mb-2 underline decoration-slate-200">Trade-offs:</p>
-            <ul className="list-disc pl-6 space-y-1 mb-6 text-base">
-              <li>4% lower overall accuracy (92% vs 96%)</li>
-              <li>Reduced text processing accuracy (25% vs 75%)</li>
-              <li>3x smaller download (2.6GB vs 8GB)</li>
-              <li>Runs on any Mac (Intel or Apple Silicon)</li>
-            </ul>
-            <p className="text-xs font-black text-slate-400 uppercase tracking-widest bg-white py-2 px-4 rounded-xl border border-slate-200 inline-block">
-              Model Details: 2.6GB | Q5_K_M quantization | Universal compatibility
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <h3 className="text-slate-900 font-black">Choosing Your Model</h3>
-        <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse mt-4">
-            <thead>
-              <tr className="border-b-2 border-slate-200">
-                <th className="py-4 font-black text-slate-900">Need</th>
-                <th className="py-4 font-black text-slate-900">Recommendation</th>
-              </tr>
-            </thead>
-            <tbody className="text-base">
-              <tr className="border-b border-slate-100">
-                <td className="py-4">Maximum accuracy</td>
-                <td className="py-4 font-black text-red-500">Extra Spicy</td>
-              </tr>
-              <tr className="border-b border-slate-100">
-                <td className="py-4">Regex, log analysis, text processing</td>
-                <td className="py-4 font-black text-red-500">Extra Spicy</td>
-              </tr>
-              <tr className="border-b border-slate-100">
-                <td className="py-4">Simple Docker/Git/AWS/Kubernetes commands</td>
-                <td className="py-4 font-bold">Either</td>
-              </tr>
-              <tr className="border-b border-slate-100">
-                <td className="py-4">Smaller download, any Mac, day to day use</td>
-                <td className="py-4 font-black text-yellow-600">Lite</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <section>
-        <h3 className="text-slate-900 font-black">3. Licensing (2 Device Limit)</h3>
-        <p>Each Zest license allows for <strong>2 active personal devices</strong>. If you reach this limit, use <code>zest --logout</code> on one machine to free space for a new one. This registration is the only piece of functional data we capture to protect your privacy while managing seat counts.</p>
-      </section>
-
-      <section className="bg-slate-50 p-10 rounded-[2.5rem] border border-slate-100">
-        <h3 className="text-slate-900 font-black flex items-center gap-3 mt-0">
-          <AlertTriangle className="w-6 h-6 text-yellow-500" />
-          Prompting Tips
-        </h3>
-        <p className="text-sm uppercase tracking-widest font-black text-slate-400 mb-6">Maximize Zest's Accuracy</p>
-        <div className="space-y-6">
-          <div className="flex gap-4">
-            <div className="w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center shrink-0 font-black text-xs">1</div>
-            <p className="m-0"><strong>Keep it simple:</strong> Use direct verbs. Instead of "I would like to see my files," use "list files."</p>
-          </div>
-          <div className="flex gap-4">
-            <div className="w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center shrink-0 font-black text-xs">2</div>
-            <p className="m-0"><strong>Avoid emotion:</strong> Zest doesn't understand "please," "thank you," or "urgently." Strip prompts of politeness or stress.</p>
-          </div>
-          <div className="flex gap-4">
-            <div className="w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center shrink-0 font-black text-xs">3</div>
-            <p className="m-0"><strong>Use single tasks:</strong> While Zest can handle chained commands, direct and single commands are better.</p>
-          </div>
-          <div className="flex gap-4">
-            <div className="w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center shrink-0 font-black text-xs">4</div>
-            <p className="m-0"><strong>Avoid ambiguity:</strong> Be specific about tools. For example, specify if you are targeting a <strong>Kubernetes</strong> pod vs a <strong>Docker</strong> container.</p>
-          </div>
-          <div className="flex gap-4">
-            <div className="w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center shrink-0 font-black text-xs">5</div>
-            <p className="m-0"><strong>Zero Memory:</strong> In order to efficiently run on CPU the model has no memory and each zest command is independent. Follow the style guide/prompting tips each time.</p>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <h3 className="text-slate-900 font-black flex items-center gap-3">
-          <BarChart3 className="w-6 h-6 text-red-500" />
-          Benchmark
-        </h3>
         <p>
-          We evaluated Zest on the <a href="https://intercode-benchmark.github.io/" target="_blank" rel="noopener noreferrer" className="text-red-500 hover:underline">intercode nl2bash benchmark</a>. Using an LLM judge (Opus 4.5), our local model completed <strong>34% of tasks with zero-shot prompting</strong>. This performance puts Zest in line with <strong>ChatGPT 4 (34% in 2023)</strong> and significantly ahead of older models like <strong>Llama-2-70B-Chat (31.5% in 2023)</strong> and <strong>Vicuna-13B (24.5% in 2023)</strong>.
+          We truly appreciate you being an early adopter. While we've optimized Zest to meet high-quality internal and external benchmarks and our own production-grade needs, we understand that every developer's workflow is unique. If the model failed to generate a correct command, please share the details below.
         </p>
-        <div className="mt-12 bg-slate-50 border border-slate-200 p-4 rounded-xl text-xs italic w-full leading-relaxed">
-          We built this tool to handle most everyday tasks, but it won’t get everything right all the time. If something doesn’t work as expected, let us know using the contact form. We really don’t collect or store your prompts or outputs, so we can’t see issues unless you tell us about them. We’re always working to improve, and your feedback really helps.
+
+        <p>
+          This feedback is critical for our research lab to refine the model for future updates. While we are also improving the model ourselves through research, we rely on your help to locate your specific edge cases that our internal benchmarks might miss.
+        </p>
+
+        <form onSubmit={handleSubmit} className="space-y-8 mt-12 not-prose">
+          <div className="space-y-2">
+            <label className="text-xs font-black uppercase tracking-widest text-slate-400 ml-4">Natural Language Prompt</label>
+            <textarea 
+              required
+              placeholder="e.g. 'show me all docker images created last week'"
+              className="w-full p-6 bg-white border-2 border-slate-100 rounded-3xl focus:border-red-500 focus:outline-none transition-all font-mono text-sm min-h-[100px]"
+            />
+          </div>
+
+          <div className="space-y-2">
+            <label className="text-xs font-black uppercase tracking-widest text-slate-400 ml-4">Failed Model Output</label>
+            <textarea 
+              required
+              placeholder="The incorrect command Zest suggested..."
+              className="w-full p-6 bg-white border-2 border-slate-100 rounded-3xl focus:border-red-500 focus:outline-none transition-all font-mono text-sm min-h-[100px]"
+            />
+          </div>
+
+          <button 
+            type="submit"
+            className="w-full py-5 zest-gradient-bg text-white font-black text-lg rounded-3xl flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-red-500/20"
+          >
+            <Send className="w-5 h-5" />
+            Send Feedback
+          </button>
+        </form>
+      </div>
+    </section>
+  );
+};
+
+const DocsPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
+  const scrollTo = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      const offset = 100; // Account for fixed header
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = el.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  const navItems = [
+    { label: 'Basic Usage', id: 'basic-usage' },
+    { label: 'Performance & Accuracy', id: 'performance' },
+    { label: 'Licensing', id: 'licensing' },
+    { label: 'Benchmark', id: 'benchmark' },
+    { label: 'Prompting Tips', id: 'prompting-tips' },
+  ];
+
+  return (
+    <section className="pt-32 pb-24 px-6 max-w-7xl mx-auto animate-in fade-in duration-500">
+      <PageHeader onBack={onBack} title="Getting Started" subtitle="User Guide & Best Practices" icon={<Info className="w-10 h-10 text-white" />} />
+      
+      <div className="flex flex-col lg:flex-row gap-16">
+        {/* Sidebar */}
+        <aside className="lg:w-64 shrink-0">
+          <nav className="sticky top-32 space-y-1">
+            <p className="text-[10px] font-black uppercase tracking-[0.25em] text-slate-400 mb-6 pl-4">On this page</p>
+            {navItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => scrollTo(item.id)}
+                className="w-full text-left px-4 py-3 rounded-2xl text-sm font-bold text-slate-500 hover:text-red-500 hover:bg-slate-50 transition-all border border-transparent hover:border-slate-100"
+              >
+                {item.label}
+              </button>
+            ))}
+          </nav>
+        </aside>
+
+        {/* Content */}
+        <div className="flex-grow prose prose-slate lg:prose-xl font-medium text-slate-600 space-y-24 max-w-4xl">
+          
+          <div className="bg-yellow-50 border-l-4 border-yellow-400 p-8 rounded-r-[2rem] !mt-0">
+            <h3 className="text-slate-900 font-black flex items-center gap-3 mt-0">
+              <Lightbulb className="w-6 h-6 text-yellow-600" />
+              The SLM Mindset
+            </h3>
+            <p className="mb-0">
+              Zest is powered by a <strong>Small Language Model (SLM)</strong>. Unlike massive cloud LLMs, it is designed for efficiency and specific utility. Our CLI Assistant is built on the industry leading <strong>Qwen 3 model</strong>, one of the most capable small language models, fine-tuned specifically using real world examples.
+            </p>
+          </div>
+
+          <section id="basic-usage" className="scroll-mt-32">
+            <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-8 border-b-2 border-slate-100 pb-4">1. Basic Usage</h2>
+            <p className="mb-6">
+              On first install, you will be prompted to enter the <strong>email address</strong> you used to purchase your license. You will then receive a <strong>One-Time Password (OTP)</strong> via email to enter in your terminal. This process activates your license and registers your machine.
+            </p>
+            <p className="mb-6">
+              You can repeat this process on one other machine (up to <strong>2 devices total</strong>). In order to deactivate a machine and free up a license slot, simply run <code>zest --logout</code> or <code>zest --uninstall</code>.
+            </p>
+            <p className="mb-6">After activation, simply prefix any natural language request with <code>zest</code>:</p>
+            <div className="bg-slate-900 rounded-2xl p-6 text-yellow-400 font-mono text-sm mb-4">
+              $ zest show me my ip address
+            </div>
+            <p>Zest will suggest a command. Press <kbd className="bg-slate-100 px-2 py-1 rounded border">y</kbd> to execute it or <kbd className="bg-slate-100 px-2 py-1 rounded border">n</kbd> to cancel.</p>
+          </section>
+
+          <section id="performance" className="scroll-mt-32">
+            <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-8 border-b-2 border-slate-100 pb-4">2. Performance & Accuracy</h2>
+            
+            <div className="space-y-12">
+              <div className="bg-slate-50 p-8 rounded-[2rem] border border-slate-100">
+                <h4 className="text-xl font-black text-slate-900 mb-2">Zest Extra Spicy (Full Precision)</h4>
+                <p className="text-red-500 font-black mb-4">96% accuracy on production CLI workflows.</p>
+                <p className="font-bold text-slate-900 mb-2 underline decoration-red-200">Strengths:</p>
+                <ul className="list-disc pl-6 space-y-1 mb-6 text-base">
+                  <li>100% accurate on Docker, Cloud tools, and common commands</li>
+                  <li>100% accurate on intermediate tasks (systemctl, package management)</li>
+                  <li>87.5% accurate on advanced Kubernetes & system administration workflows</li>
+                  <li>75% accurate on advanced text processing (vs 25% in Lite)</li>
+                  <li>Excels at regex patterns, log analysis, text processing, command pipelines</li>
+                </ul>
+                <p className="text-xs font-black text-slate-400 uppercase tracking-widest bg-white py-2 px-4 rounded-xl border border-slate-200 inline-block">
+                  Model Details: 8GB | Full precision FP16 | Requires Apple Silicon (M1/M2/M3)
+                </p>
+              </div>
+
+              <div className="bg-slate-50 p-8 rounded-[2rem] border border-slate-100">
+                <h4 className="text-xl font-black text-slate-900 mb-2">Zest Lite (CPU-Optimized)</h4>
+                <p className="text-yellow-600 font-black mb-4">92% accuracy on production CLI workflows.</p>
+                <p className="font-bold text-slate-900 mb-2 underline decoration-yellow-200">Strengths:</p>
+                <ul className="list-disc pl-6 space-y-1 mb-4 text-base">
+                  <li>100% accurate on Docker, Cloud tools, and common commands</li>
+                  <li>100% accurate on intermediate tasks (systemctl, package management)</li>
+                  <li>87.5% accurate on Kubernetes & system administration</li>
+                  <li>Optimized Q5_K_M quantization for fast CPU results</li>
+                </ul>
+                <p className="font-bold text-slate-900 mb-2 underline decoration-slate-200">Trade-offs:</p>
+                <ul className="list-disc pl-6 space-y-1 mb-6 text-base">
+                  <li>4% lower overall accuracy (92% vs 96%)</li>
+                  <li>Reduced text processing accuracy (25% vs 75%)</li>
+                  <li>3x smaller download (2.6GB vs 8GB)</li>
+                  <li>Runs on any Mac (Intel or Apple Silicon)</li>
+                </ul>
+                <p className="text-xs font-black text-slate-400 uppercase tracking-widest bg-white py-2 px-4 rounded-xl border border-slate-200 inline-block">
+                  Model Details: 2.6GB | Q5_K_M quantization | Universal compatibility
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-12">
+              <h3 className="text-slate-900 font-black mb-4">Choosing Your Model</h3>
+              <div className="overflow-x-auto">
+                <table className="w-full text-left border-collapse mt-4">
+                  <thead>
+                    <tr className="border-b-2 border-slate-200">
+                      <th className="py-2 font-black text-slate-900">Need</th>
+                      <th className="py-2 font-black text-slate-900">Recommendation</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-base">
+                    <tr className="border-b border-slate-100">
+                      <td className="py-2">Maximum accuracy</td>
+                      <td className="py-2 font-black text-red-500">Extra Spicy</td>
+                    </tr>
+                    <tr className="border-b border-slate-100">
+                      <td className="py-2">Regex, log analysis, text processing</td>
+                      <td className="py-2 font-black text-red-500">Extra Spicy</td>
+                    </tr>
+                    <tr className="border-b border-slate-100">
+                      <td className="py-2">Simple Docker/Git/AWS/Kubernetes commands</td>
+                      <td className="py-2 font-bold">Either</td>
+                    </tr>
+                    <tr className="border-b border-slate-100">
+                      <td className="py-2">Smaller download, day to day use</td>
+                      <td className="py-2 font-black text-yellow-600">Lite</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+
+          <section id="licensing" className="scroll-mt-32">
+            <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-8 border-b-2 border-slate-100 pb-4">3. Licensing (2 Device Limit)</h2>
+            <p>Each Zest license allows for <strong>2 active personal devices</strong>. If you reach this limit, use <code>zest --logout</code> on one machine to free space for a new one. This registration is the only piece of functional data we capture to protect your privacy while managing seat counts.</p>
+          </section>
+
+          <section id="benchmark" className="scroll-mt-32">
+            <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-8 border-b-2 border-slate-100 pb-4">4. Benchmark</h2>
+            <p>
+              We evaluated Zest on the <a href="https://intercode-benchmark.github.io/" target="_blank" rel="noopener noreferrer" className="text-red-500 hover:underline">intercode nl2bash benchmark</a>. Using an LLM judge (Opus 4.5), our local model completed <strong>34% of tasks with zero-shot prompting</strong>. This performance puts Zest in line with <strong>ChatGPT 4 (34% in 2023)</strong> and significantly ahead of older models like <strong>Llama-2-70B-Chat (31.5% in 2023)</strong> and <strong>Vicuna-13B (24.5% in 2023)</strong>.
+            </p>
+            <div className="mt-12 bg-slate-50 border border-slate-200 p-4 rounded-xl text-xs italic w-full leading-relaxed">
+              We built this tool to handle most everyday tasks, but it won’t get everything right all the time. If something doesn’t work as expected, let us know using the contact form. We really don’t collect or store your prompts or outputs, so we can’t see issues unless you tell us about them. We’re always working to improve, and your feedback really helps.
+            </div>
+          </section>
+
+          <section id="prompting-tips" className="bg-slate-50 p-10 rounded-[2.5rem] border border-slate-100 scroll-mt-32">
+            <h3 className="text-slate-900 font-black flex items-center gap-3 mt-0">
+              <AlertTriangle className="w-6 h-6 text-yellow-500" />
+              Prompting Tips
+            </h3>
+            <p className="text-sm uppercase tracking-widest font-black text-slate-400 mb-6">Maximize Zest's Accuracy</p>
+            <div className="space-y-6">
+              <div className="flex gap-4">
+                <div className="w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center shrink-0 font-black text-xs">1</div>
+                <p className="m-0"><strong>Keep it simple:</strong> Use direct verbs. Instead of "I would like to see my files," use "list files."</p>
+              </div>
+              <div className="flex gap-4">
+                <div className="w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center shrink-0 font-black text-xs">2</div>
+                <p className="m-0"><strong>Avoid emotion:</strong> Zest doesn't understand "please," "thank you," or "urgently." Strip prompts of politeness or stress.</p>
+              </div>
+              <div className="flex gap-4">
+                <div className="w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center shrink-0 font-black text-xs">3</div>
+                <p className="m-0"><strong>Use single tasks:</strong> While Zest can handle chained commands, direct and single commands are better.</p>
+              </div>
+              <div className="flex gap-4">
+                <div className="w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center shrink-0 font-black text-xs">4</div>
+                <p className="m-0"><strong>Avoid ambiguity:</strong> Be specific about tools. For example, specify if you are targeting a <strong>Kubernetes</strong> pod vs a <strong>Docker</strong> container.</p>
+              </div>
+              <div className="flex gap-4">
+                <div className="w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center shrink-0 font-black text-xs">5</div>
+                <p className="m-0"><strong>Zero Memory:</strong> In order to efficiently run on CPU the model has no memory and each zest command is independent. Follow the style guide/prompting tips each time.</p>
+              </div>
+            </div>
+          </section>
+
         </div>
-      </section>
-    </div>
-  </section>
-);
+      </div>
+    </section>
+  );
+};
 
 const AboutPage: React.FC<{ onBack: () => void }> = ({ onBack }) => (
   <section className="pt-32 pb-24 px-6 max-w-4xl mx-auto animate-in fade-in duration-500">
@@ -272,6 +398,7 @@ const TermsOfServicePage: React.FC<{ onBack: () => void }> = ({ onBack }) => (
 const App: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [currentView, setCurrentView] = useState<View>('landing');
+  const [isStackExpanded, setIsStackExpanded] = useState(false);
 
   const handleNav = (view: View, sectionId?: string) => {
     setCurrentView(view);
@@ -293,6 +420,7 @@ const App: React.FC = () => {
       case 'privacy': return <PrivacyPolicyPage onBack={() => handleNav('landing')} />;
       case 'tos': return <TermsOfServicePage onBack={() => handleNav('landing')} />;
       case 'docs': return <DocsPage onBack={() => handleNav('landing')} />;
+      case 'report': return <ReportIssuesPage onBack={() => handleNav('landing')} />;
       default: return (
         <>
           <section className="pt-48 pb-32 px-6 relative overflow-hidden" id="hero">
@@ -364,14 +492,50 @@ const App: React.FC = () => {
                    <div className="relative z-10">
                       <h3 className="text-4xl font-black mb-6">Built for the modern stack.</h3>
                       <p className="text-xl font-bold mb-10 opacity-90 max-w-2xl">
-                        Supports <strong>Docker, Kubernetes, Git, AWS</strong>, and 100+ standard Unix tools out of the box.
+                        Supports <strong>Docker, Kubernetes, Git, AWS, Bash</strong> and 100+ standard Unix tools out of the box.
                       </p>
                       <div className="flex flex-wrap gap-3">
-                         {['Docker', 'Kubernetes', 'Git', 'AWS', 'npm', 'brew', 'ssh', 'curl'].map((tool) => (
+                         {['Docker', 'Kubernetes', 'Git', 'AWS', 'Bash'].map((tool) => (
                            <span key={tool} className="px-6 py-2 rounded-full bg-white/20 backdrop-blur-md font-black text-sm">{tool}</span>
                          ))}
-                         <span className="px-6 py-2 rounded-full bg-white text-slate-900 font-black text-sm">100+ more</span>
+                         <button 
+                           onClick={() => setIsStackExpanded(!isStackExpanded)}
+                           className={`px-6 py-2 rounded-full font-black text-sm transition-all hover:scale-105 active:scale-95 flex items-center gap-2 ${isStackExpanded ? 'bg-white/40' : 'bg-white text-slate-900'}`}
+                         >
+                           {isStackExpanded ? 'Show less' : '100+ more'}
+                         </button>
                       </div>
+
+                      {isStackExpanded && (
+                        <div className="mt-10 pt-10 border-t border-white/20 animate-in fade-in slide-in-from-top-4 duration-500">
+                           <div className="grid grid-cols-[auto_20px_auto_20px_auto_20px_auto] gap-y-2 font-bold text-base items-center w-fit">
+                             {/* Row 1 */}
+                             <span>gcloud</span><span className="opacity-40 text-center">·</span>
+                             <span>Azure</span><span className="opacity-40 text-center">·</span>
+                             <span>Terraform</span><span className="opacity-40 text-center">·</span>
+                             <span>Ansible</span>
+
+                             {/* Row 2 */}
+                             <span>ssh</span><span className="opacity-40 text-center">·</span>
+                             <span>curl</span><span className="opacity-40 text-center">·</span>
+                             <span>wget</span><span className="opacity-40 text-center">·</span>
+                             <span>brew</span>
+
+                             {/* Row 3 */}
+                             <span>apt</span><span className="opacity-40 text-center">·</span>
+                             <span>yum</span><span className="opacity-40 text-center">·</span>
+                             <span>yarn</span><span className="opacity-40 text-center">·</span>
+                             <span>awk</span>
+
+                             {/* Row 4 */}
+                             <span>tar</span><span className="opacity-40 text-center">·</span>
+                             <span>gzip</span><span className="opacity-40 text-center">·</span>
+                             <span>jq</span><span className="opacity-40 text-center">·</span>
+                             <span>ffmpeg</span>
+                           </div>
+                           <div className="text-sm font-black opacity-60 uppercase tracking-widest pt-6">and many more</div>
+                        </div>
+                      )}
                    </div>
                    {/* Lemon slice brand icon in background */}
                    <Citrus className="absolute -bottom-16 -right-16 w-80 h-80 text-white/10 rotate-12" />
@@ -462,7 +626,7 @@ const App: React.FC = () => {
       {/* Footer */}
       <footer className="bg-slate-50 py-16 px-6 border-t border-slate-100">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-16">
-          <div className="max-w-sm">
+          <div className="max-w-md">
             <div className="flex items-center gap-3 mb-8 cursor-pointer" onClick={() => handleNav('landing')}>
               <div className="w-10 h-10 zest-gradient-bg rounded-2xl flex items-center justify-center shadow-lg shadow-yellow-500/20">
                 <Citrus className="w-6 h-6 text-white" />
@@ -490,6 +654,7 @@ const App: React.FC = () => {
               <h5 className="font-black text-slate-900 mb-6 uppercase tracking-wider text-sm">Help</h5>
               <ul className="space-y-4 font-bold text-slate-500">
                 <li><button onClick={() => handleNav('docs')} className="hover:text-red-500 transition-colors text-left">Docs</button></li>
+                <li><button onClick={() => handleNav('report')} className="hover:text-red-500 transition-colors text-left">Report Issues</button></li>
               </ul>
             </div>
             <div>
@@ -500,7 +665,7 @@ const App: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="max-w-7xl mx-auto mt-8 pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="max-w-7xl mx-auto mt-6 pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-sm font-bold text-slate-400">© 2026 Spicy Lemonade. All rights reserved.</p>
         </div>
       </footer>
