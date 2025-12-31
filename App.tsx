@@ -8,10 +8,11 @@ import {
   Cpu, Apple, Citrus, Flame, Zap, Users, 
   BookOpen, Globe, ArrowLeft, Mail, Github,
   History, Shield, FileText, Info, AlertTriangle, Lightbulb, BarChart3,
-  Layers, CheckCircle2, Boxes, MessageSquare, Send
+  Layers, CheckCircle2, Boxes, MessageSquare, Send, HelpCircle,
+  Search, ExternalLink, Trash2
 } from 'lucide-react';
 
-type View = 'landing' | 'about' | 'tos' | 'changelog' | 'privacy' | 'docs' | 'report';
+type View = 'landing' | 'about' | 'tos' | 'changelog' | 'privacy' | 'docs' | 'report' | 'faq';
 
 const PageHeader: React.FC<{ onBack: () => void; title: string; subtitle?: string; icon: React.ReactNode }> = ({ onBack, title, subtitle, icon }) => (
   <div className="mb-16">
@@ -38,6 +39,121 @@ const PageHeader: React.FC<{ onBack: () => void; title: string; subtitle?: strin
     </div>
   </div>
 );
+
+const FAQPage: React.FC<{ onBack: () => void; onNavigate: (view: View) => void }> = ({ onBack, onNavigate }) => {
+  const [showDmgModal, setShowDmgModal] = useState(false);
+  const [email, setEmail] = useState('');
+  const [sent, setSent] = useState(false);
+
+  const handleRequestLink = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSent(true);
+    setTimeout(() => {
+      setShowDmgModal(false);
+      setSent(false);
+      setEmail('');
+    }, 3000);
+  };
+
+  const faqs = [
+    {
+      q: "The command generated isn't working as expected. What should I do?",
+      a: (
+        <>
+          Zest is currently in its early version, and we truly appreciate your confidence in being an early adopter. While we strive for accuracy, edge cases occur. Please head over to our <button onClick={() => onNavigate('report')} className="text-red-500 underline font-bold hover:text-red-600">Report Issues</button> page to share the details. We are constantly improving the engine based on research and your valuable feedback helps us prioritize the most common failures. Thank you for helping us grow.
+        </>
+      )
+    },
+    {
+      q: "I lost my download file (DMG). How can I reinstall Zest on another device?",
+      a: (
+        <div className="space-y-4">
+          <p>If you've accidentally deleted your DMG and need a fresh link to install the model on another device, we've got you covered. Provide the email used for your purchase below, and if it matches our database, you'll receive a new download link instantly.</p>
+          <button 
+            onClick={() => setShowDmgModal(true)}
+            className="px-6 py-3 bg-slate-900 text-white font-black rounded-2xl hover:bg-slate-800 transition-all text-sm flex items-center gap-2"
+          >
+            <Download className="w-4 h-4" />
+            Recover Download Link
+          </button>
+        </div>
+      )
+    },
+    {
+      q: "How do I completely remove Zest and free up a license slot?",
+      a: (
+        <>
+          <p className="mb-4">You have three main ways to manage your device slots:</p>
+          <ul className="list-disc pl-5 space-y-2">
+            <li><strong>zest --logout:</strong> Deregisters your machine while keeping the model files on disk. Perfect for temporary transfers.</li>
+            <li><strong>zest --uninstall:</strong> Fully removes the model files and deregisters the device to free up disk space.</li>
+            <li><strong>Drag and Drop:</strong> Dragging the Zest app to the Trash from your Applications folder is functionally identical to running <code>zest --uninstall</code>; it will automatically deregister your slot.</li>
+          </ul>
+          <p className="mt-4">Any of these method will free up one of your 2 available device slots per product.</p>
+        </>
+      )
+    }
+  ];
+
+  return (
+    <section className="pt-32 pb-24 px-6 max-w-4xl mx-auto animate-in fade-in duration-500">
+      <PageHeader onBack={onBack} title="FAQ" subtitle="Common Questions & Answers" icon={<HelpCircle className="w-10 h-10 text-white" />} />
+      
+      <div className="space-y-12">
+        {faqs.map((faq, i) => (
+          <div key={i} className="bg-slate-50 p-10 rounded-[2.5rem] border border-slate-100 group hover:border-yellow-200 transition-all">
+            <h3 className="text-xl font-black text-slate-900 mb-6 flex items-start gap-4">
+              <span className="text-red-500 shrink-0">Q.</span>
+              {faq.q}
+            </h3>
+            <div className="text-slate-600 font-medium leading-relaxed pl-10 border-l-2 border-slate-200">
+              {faq.a}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {showDmgModal && (
+        <div className="fixed inset-0 z-[60] flex items-center justify-center px-6">
+          <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onClick={() => setShowDmgModal(false)} />
+          <div className="bg-white p-10 rounded-[3rem] shadow-2xl relative z-10 max-w-md w-full animate-in zoom-in-95 duration-200">
+            <button 
+              onClick={() => setShowDmgModal(false)}
+              className="absolute top-6 right-6 p-2 hover:bg-slate-100 rounded-full transition-colors"
+            >
+              <X className="w-5 h-5 text-slate-400" />
+            </button>
+            <h3 className="text-2xl font-black text-slate-900 mb-2">Recover DMG</h3>
+            <p className="text-slate-500 font-medium mb-8">Enter the email associated with your purchase.</p>
+            
+            {sent ? (
+              <div className="bg-green-50 text-green-700 p-6 rounded-3xl border border-green-100 font-bold text-center">
+                Email found! A new download link has been sent to your inbox.
+              </div>
+            ) : (
+              <form onSubmit={handleRequestLink} className="space-y-4">
+                <input 
+                  type="email" 
+                  required
+                  placeholder="name@company.com"
+                  className="w-full p-5 bg-slate-50 border-2 border-slate-100 rounded-2xl focus:border-red-500 focus:outline-none transition-all font-bold"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                <button 
+                  type="submit"
+                  className="w-full py-5 zest-gradient-bg text-white font-black rounded-2xl shadow-xl shadow-red-500/20 hover:scale-[1.02] active:scale-95 transition-all"
+                >
+                  Request Download Link
+                </button>
+              </form>
+            )}
+          </div>
+        </div>
+      )}
+    </section>
+  );
+};
 
 const ReportIssuesPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
   const [submitted, setSubmitted] = useState(false);
@@ -83,11 +199,11 @@ const ReportIssuesPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
         </div>
 
         <p>
-          We truly appreciate you being an early adopter. While we've optimized Zest to meet high-quality internal and external benchmarks and our own production-grade needs, we understand that every developer's workflow is unique. If the model failed to generate a correct command, please share the details below.
+          We truly appreciate your confidence in being an early adopter. While we've optimized Zest to meet high-quality internal and external benchmarks and our own production-grade needs, we understand that every developer's workflow is unique. If the model failed to generate a correct command, please share the details below.
         </p>
 
         <p>
-          This feedback is critical for our research lab to refine the model for future updates. While we are also improving the model ourselves through research, we rely on your help to locate your specific edge cases that our internal benchmarks might miss.
+          This feedback is critical for our research lab to refine the model for future updates. While we are also improving the model ourselves through research, we rely on your help to locate your specific issues and edge cases that our internal benchmarks might miss.
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-8 mt-12 not-prose">
@@ -113,8 +229,10 @@ const ReportIssuesPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
             type="submit"
             className="w-full py-5 zest-gradient-bg text-white font-black text-lg rounded-3xl flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-red-500/20"
           >
-            <Send className="w-5 h-5" />
-            Send Feedback
+            <span className="flex items-center gap-2">
+              <Send className="w-5 h-5" />
+              Send Feedback
+            </span>
           </button>
         </form>
       </div>
@@ -141,6 +259,7 @@ const DocsPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
 
   const navItems = [
     { label: 'Basic Usage', id: 'basic-usage' },
+    { label: 'Using Both Models', id: 'both-models' },
     { label: 'Performance & Accuracy', id: 'performance' },
     { label: 'Licensing', id: 'licensing' },
     { label: 'Benchmark', id: 'benchmark' },
@@ -194,6 +313,74 @@ const DocsPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
               $ zest show me my ip address
             </div>
             <p>Zest will suggest a command. Press <kbd className="bg-slate-100 px-2 py-1 rounded border">y</kbd> to execute it or <kbd className="bg-slate-100 px-2 py-1 rounded border">n</kbd> to cancel.</p>
+          </section>
+
+          <section id="both-models" className="scroll-mt-32">
+            <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-8 border-b-2 border-slate-100 pb-4">1.1 Using Both Models</h2>
+            <p className="mb-6">If you've purchased both FP16 (Extra Spicy) and Q5 (Lite) models:</p>
+            <div className="space-y-6">
+              <div className="flex gap-4">
+                <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center shrink-0 font-black text-xs">1</div>
+                <p className="m-0">Install both apps to <code>/Applications</code></p>
+              </div>
+              <div className="flex gap-4">
+                <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center shrink-0 font-black text-xs">2</div>
+                <div className="m-0">
+                  <p className="m-0">Check your current status:</p>
+                  <code className="block bg-slate-900 text-yellow-400 p-4 rounded-xl mt-2 font-mono text-sm">zest --status</code>
+                </div>
+              </div>
+              <div className="flex gap-4">
+                <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center shrink-0 font-black text-xs">3</div>
+                <div className="m-0">
+                  <p className="m-0">Switch between models:</p>
+                  <code className="block bg-slate-900 text-yellow-400 p-4 rounded-xl mt-2 font-mono text-sm">
+                    zest --model --fp      # Use FP16 model<br />
+                    zest --model --q5      # Use Q5 model
+                  </code>
+                </div>
+              </div>
+            </div>
+            <div className="mt-8 bg-blue-50 p-6 rounded-3xl border border-blue-100 text-sm">
+              <p className="m-0"><strong>Note:</strong> If both models are installed, Zest defaults to FP16 (higher quality). You can override this with <code>--model --q5</code>.</p>
+            </div>
+
+            <div className="mt-12 space-y-12">
+              <div>
+                <h4 className="text-xl font-black text-slate-900 mb-4">Licensing</h4>
+                <p>Your license allows installation on up to <strong>2 devices per product</strong>. If you bought both FP16 and Q5, you have:</p>
+                <ul className="list-disc pl-6 space-y-1 font-bold text-slate-700">
+                  <li>2 device slots for FP16</li>
+                  <li>2 device slots for Q5</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-xl font-black text-slate-900 mb-4">Logout (Frees device slot)</h4>
+                <p className="mb-4 text-sm">Use <code>--logout</code> to free a device slot while keeping the model on disk. You can re-activate later without re-downloading.</p>
+                <code className="block bg-slate-900 text-yellow-400 p-4 rounded-xl font-mono text-sm">
+                  zest --logout           # Log out from ALL products<br />
+                  zest --logout --fp      # Log out from FP16 only<br />
+                  zest --logout --q5      # Log out from Q5 only
+                </code>
+              </div>
+
+              <div>
+                <h4 className="text-xl font-black text-slate-900 mb-4">Uninstall (Removes everything)</h4>
+                <p className="mb-4 text-sm">Use <code>--uninstall</code> to completely remove the model file, license, and deregister the device. This frees disk space.</p>
+                <code className="block bg-slate-900 text-yellow-400 p-4 rounded-xl font-mono text-sm">
+                  zest --uninstall        # Full uninstall of ALL products<br />
+                  zest --uninstall --fp   # Uninstall FP16 only<br />
+                  zest --uninstall --q5   # Uninstall Q5 only
+                </code>
+              </div>
+
+              <div>
+                <h4 className="text-xl font-black text-slate-900 mb-4">Reinstalling & Updates</h4>
+                <p className="mb-4">If you try to install a model that's already on your device, you'll be prompted to either continue (re-activate license) or cancel.</p>
+                <p>Zest checks for updates automatically and notifies you in your terminal when a new version is available.</p>
+              </div>
+            </div>
           </section>
 
           <section id="performance" className="scroll-mt-32">
@@ -274,13 +461,18 @@ const DocsPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
 
           <section id="licensing" className="scroll-mt-32">
             <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-8 border-b-2 border-slate-100 pb-4">3. Licensing (2 Device Limit)</h2>
-            <p>Each Zest license allows for <strong>2 active personal devices</strong>. If you reach this limit, use <code>zest --logout</code> on one machine to free space for a new one. This registration is the only piece of functional data we capture to protect your privacy while managing seat counts.</p>
+            <p>Each Zest license allows for <strong>2 active personal devices per product</strong>. If you reach this limit, use <code>zest --logout</code> (to keep files) or <code>zest --uninstall</code> (to free disk space) on one machine to free a slot for a new one. <strong>Note: Dragging the application to the Trash from your Applications folder is functionally identical to running <code>zest --uninstall</code>; it will automatically deregister your slot.</strong> This registration is the only piece of functional data we capture to protect your privacy while managing seat counts.</p>
           </section>
 
           <section id="benchmark" className="scroll-mt-32">
             <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-8 border-b-2 border-slate-100 pb-4">4. Benchmark</h2>
             <p>
               We evaluated Zest on the <a href="https://intercode-benchmark.github.io/" target="_blank" rel="noopener noreferrer" className="text-red-500 hover:underline">intercode nl2bash benchmark</a>. Using an LLM judge (Opus 4.5), our local model completed <strong>34% of tasks with zero-shot prompting</strong>. This performance puts Zest in line with <strong>ChatGPT 4 (34% in 2023)</strong> and significantly ahead of older models like <strong>Llama-2-70B-Chat (31.5% in 2023)</strong> and <strong>Vicuna-13B (24.5% in 2023)</strong>.
+            </p>
+            <p>
+              Our 96% accuracy rate is based on internal testing against 50 hand-selected, unseen Unix tasks.
+              <br /><br />
+              Zest CLI produced syntactically correct commands that achieved the intended outcome in a zero-shot environment. The remaining 4% typically involved hallucinated flags or selecting a sub-optimal command for the specific shell environment.
             </p>
             <div className="mt-12 bg-slate-50 border border-slate-200 p-4 rounded-xl text-xs italic w-full leading-relaxed">
               We built this tool to handle most everyday tasks, but it won’t get everything right all the time. If something doesn’t work as expected, let us know using the contact form. We really don’t collect or store your prompts or outputs, so we can’t see issues unless you tell us about them. We’re always working to improve, and your feedback really helps.
@@ -421,6 +613,7 @@ const App: React.FC = () => {
       case 'tos': return <TermsOfServicePage onBack={() => handleNav('landing')} />;
       case 'docs': return <DocsPage onBack={() => handleNav('landing')} />;
       case 'report': return <ReportIssuesPage onBack={() => handleNav('landing')} />;
+      case 'faq': return <FAQPage onBack={() => handleNav('landing')} onNavigate={handleNav} />;
       default: return (
         <>
           <section className="pt-48 pb-32 px-6 relative overflow-hidden" id="hero">
@@ -642,7 +835,7 @@ const App: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-16">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-8">
             <div>
               <h5 className="font-black text-slate-900 mb-6 uppercase tracking-wider text-sm">Product</h5>
               <ul className="space-y-4 font-bold text-slate-500">
@@ -654,11 +847,12 @@ const App: React.FC = () => {
               <h5 className="font-black text-slate-900 mb-6 uppercase tracking-wider text-sm">Help</h5>
               <ul className="space-y-4 font-bold text-slate-500">
                 <li><button onClick={() => handleNav('docs')} className="hover:text-red-500 transition-colors text-left">Docs</button></li>
+                <li><button onClick={() => handleNav('faq')} className="hover:text-red-500 transition-colors text-left">FAQ</button></li>
                 <li><button onClick={() => handleNav('report')} className="hover:text-red-500 transition-colors text-left">Report Issues</button></li>
               </ul>
             </div>
             <div>
-              <h5 className="font-black text-slate-900 mb-6 uppercase tracking-wider text-sm">Collective</h5>
+              <h5 className="font-black text-slate-900 mb-6 uppercase tracking-wider text-sm">Spicy Lemonade</h5>
               <ul className="space-y-4 font-bold text-slate-500">
                 <li><button onClick={() => handleNav('about')} className="hover:text-red-500 transition-colors text-left">About</button></li>
               </ul>

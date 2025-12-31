@@ -6,12 +6,12 @@ const features = [
   {
     icon: <CheckCircle2 className="w-6 h-6 text-red-500" />,
     title: "96%+ Accuracy",
-    description: "Powered by Qwen3. Achieves 96%+ accuracy on real-world CLI commands including complex Docker and Kubernetes orchestration."
+    description: "Powered by Qwen3. Achieves 96%+ accuracy on internal benchmarks on real-world CLI commands ranging from daily shell operations to complex Docker and Kubernetes orchestration."
   },
   {
     icon: <Shield className="w-6 h-6 text-yellow-600" />,
     title: "Privacy First",
-    description: "Runs locally - your data stays private. Built on fully open-source, commercial-friendly foundations."
+    description: "Runs locally. Your data stays private. Built on fully open-source, industry approved, commercial-friendly foundations."
   },
   {
     icon: <Ban className="w-6 h-6 text-red-500" />,
@@ -21,7 +21,7 @@ const features = [
   {
     icon: <Terminal className="w-6 h-6 text-yellow-600" />,
     title: "100+ Tools Supported",
-    description: "Native support for Docker, Kubernetes, AWS CLI, Git, and over 100 standard Unix administration tools."
+    description: "Native support for Docker, Kubernetes, AWS, Git, and over 100 standard Unix administration tools."
   },
   {
     icon: <Zap className="w-6 h-6 text-red-500" />,

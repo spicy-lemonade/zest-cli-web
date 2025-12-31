@@ -1,0 +1,17 @@
+name = "zest-feedback-handler"
+main = "feedback-handler.js"
+compatibility_date = "2024-12-30"
+
+# KV namespace for rate limiting
+kv_namespaces = [
+  { binding = "RATE_LIMIT_KV", id = "YOUR_KV_NAMESPACE_ID" }
+]
+
+# Environment variables (non-sensitive)
+# Secrets should be added via: wrangler secret put <KEY_NAME>
+[vars]
+TO_EMAIL = "info@zestcli.com"
+FROM_EMAIL = "feedback@zestcli.com"
+
+# Add these secrets via command line:
+# wrangler secret put RESEND_API_KEY
