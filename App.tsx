@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Terminal } from './components/Terminal';
 import { Features } from './components/Features';
@@ -9,7 +8,7 @@ import {
   BookOpen, Globe, ArrowLeft, Mail, Github,
   History, Shield, FileText, Info, AlertTriangle, Lightbulb, BarChart3,
   Layers, CheckCircle2, Boxes, MessageSquare, Send, HelpCircle,
-  Search, ExternalLink, Trash2
+  Search, ExternalLink, Trash2, ChevronDown
 } from 'lucide-react';
 
 type View = 'landing' | 'about' | 'tos' | 'changelog' | 'privacy' | 'docs' | 'report' | 'faq';
@@ -40,7 +39,34 @@ const PageHeader: React.FC<{ onBack: () => void; title: string; subtitle?: strin
   </div>
 );
 
+const FAQItem: React.FC<{ q: string; a: React.ReactNode; isOpen: boolean; onToggle: () => void }> = ({ q, a, isOpen, onToggle }) => (
+  <div className="bg-slate-50 rounded-[2.5rem] border border-slate-100 overflow-hidden transition-all duration-300">
+    <button 
+      onClick={onToggle}
+      className="w-full p-10 flex items-center justify-between text-left hover:bg-slate-100/50 transition-colors"
+    >
+      <h3 className="text-xl font-black text-slate-900 flex items-start gap-4">
+        <span className="text-red-500 shrink-0">Q.</span>
+        {q}
+      </h3>
+      <div className={`shrink-0 ml-4 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>
+        <ChevronDown className="w-6 h-6 text-slate-400" />
+      </div>
+    </button>
+    <div 
+      className={`transition-all duration-300 ease-in-out ${isOpen ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}
+    >
+      <div className="px-10 pb-10">
+        <div className="text-slate-600 font-medium leading-relaxed pl-10 border-l-2 border-slate-200">
+          {a}
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
 const FAQPage: React.FC<{ onBack: () => void; onNavigate: (view: View) => void }> = ({ onBack, onNavigate }) => {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [showDmgModal, setShowDmgModal] = useState(false);
   const [email, setEmail] = useState('');
   const [sent, setSent] = useState(false);
@@ -80,7 +106,7 @@ const FAQPage: React.FC<{ onBack: () => void; onNavigate: (view: View) => void }
       )
     },
     {
-      q: "How do I completely remove Zest and free up a license slot?",
+      q: "How do I remove Zest and free up a license slot?",
       a: (
         <>
           <p className="mb-4">You have three main ways to manage your device slots:</p>
@@ -89,8 +115,22 @@ const FAQPage: React.FC<{ onBack: () => void; onNavigate: (view: View) => void }
             <li><strong>zest --uninstall:</strong> Fully removes the model files and deregisters the device to free up disk space.</li>
             <li><strong>Drag and Drop:</strong> Dragging the Zest app to the Trash from your Applications folder is functionally identical to running <code>zest --uninstall</code>; it will automatically deregister your slot.</li>
           </ul>
-          <p className="mt-4">Any of these method will free up one of your 2 available device slots per product.</p>
+          <p className="mt-4">Any of these methods will free up one of your 2 available device slots per product.</p>
         </>
+      )
+    },
+    {
+      q: "How do I completely remove Zest from my computer?",
+      a: (
+        <div className="space-y-4">
+          <p>Running <code>zest --uninstall</code> removes your license, model files, and the app from Applications, but keeps the CLI installed so you can check status or reinstall later.</p>
+          <p>To completely remove all Zest files from your system, run the following commands in Terminal after uninstalling:</p>
+          <div className="bg-slate-900 rounded-2xl p-6 text-yellow-400 font-mono text-sm space-y-1">
+            <div>rm -rf ~/.zest</div>
+            <div>rm -rf ~/Library/Application\ Support/Zest</div>
+            <div>sudo rm /usr/local/bin/zest</div>
+          </div>
+        </div>
       )
     }
   ];
@@ -99,17 +139,15 @@ const FAQPage: React.FC<{ onBack: () => void; onNavigate: (view: View) => void }
     <section className="pt-32 pb-24 px-6 max-w-4xl mx-auto animate-in fade-in duration-500">
       <PageHeader onBack={onBack} title="FAQ" subtitle="Common Questions & Answers" icon={<HelpCircle className="w-10 h-10 text-white" />} />
       
-      <div className="space-y-12">
+      <div className="space-y-6">
         {faqs.map((faq, i) => (
-          <div key={i} className="bg-slate-50 p-10 rounded-[2.5rem] border border-slate-100 group hover:border-yellow-200 transition-all">
-            <h3 className="text-xl font-black text-slate-900 mb-6 flex items-start gap-4">
-              <span className="text-red-500 shrink-0">Q.</span>
-              {faq.q}
-            </h3>
-            <div className="text-slate-600 font-medium leading-relaxed pl-10 border-l-2 border-slate-200">
-              {faq.a}
-            </div>
-          </div>
+          <FAQItem 
+            key={i} 
+            q={faq.q} 
+            a={faq.a} 
+            isOpen={openIndex === i} 
+            onToggle={() => setOpenIndex(openIndex === i ? null : i)} 
+          />
         ))}
       </div>
 
