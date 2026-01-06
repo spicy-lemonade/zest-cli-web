@@ -177,7 +177,7 @@ export const Pricing: React.FC = () => {
 
         <div className="mb-20 text-center">
           <p className="text-slate-400 text-xs font-bold uppercase tracking-widest">
-            Securely processed via Polar.sh — We never see your card details.
+            Securely processed with Stripe — We never see your card details.
           </p>
         </div>
 
