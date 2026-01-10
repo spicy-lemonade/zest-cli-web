@@ -5,7 +5,7 @@ import { Check, ExternalLink, Flame, Zap, ShieldCheck, Laptop, MonitorSmartphone
 const CHECKOUT_API_URL = import.meta.env.VITE_CHECKOUT_API_URL || "https://europe-west1-nl-cli-dev.cloudfunctions.net/create_checkout";
 
 export const Pricing: React.FC = () => {
-  const [currency, setCurrency] = useState("$");
+  const [setCurrency] = useState("$");
   const [symbol, setSymbol] = useState("$");
   const [loadingProduct, setLoadingProduct] = useState<string | null>(null);
 
