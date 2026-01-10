@@ -1,50 +1,91 @@
 
-import React, { useState, useEffect } from 'react';
-import { Check, ExternalLink, Flame, Zap, ShieldCheck, Laptop, MonitorSmartphone, Cpu, HardDrive, SquareAsterisk } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import { Check, ExternalLink, Flame, Zap, ShieldCheck, Laptop, MonitorSmartphone, Cpu, HardDrive, SquareAsterisk, Loader2 } from "lucide-react";
+
+const CHECKOUT_API_URL = import.meta.env.VITE_CHECKOUT_API_URL || "https://europe-west1-nl-cli-dev.cloudfunctions.net/create_checkout";
 
 export const Pricing: React.FC = () => {
-  const [currency, setCurrency] = useState('$');
-  const [symbol, setSymbol] = useState('$');
+  const [currency, setCurrency] = useState("$");
+  const [symbol, setSymbol] = useState("$");
+  const [loadingProduct, setLoadingProduct] = useState<string | null>(null);
 
   useEffect(() => {
     try {
       const locale = navigator.language;
-      const euroLocales = ['de', 'fr', 'it', 'es', 'nl', 'be', 'at', 'pt', 'fi', 'ie', 'gr', 'sk', 'si', 'ee', 'lv', 'lt', 'mt', 'cy'];
+      const euroLocales = ["de", "fr", "it", "es", "nl", "be", "at", "pt", "fi", "ie", "gr", "sk", "si", "ee", "lv", "lt", "mt", "cy"];
       const isEuroZone = euroLocales.some(lang => locale.startsWith(lang));
-      
+
       if (isEuroZone) {
-        setCurrency('EUR');
-        setSymbol('€');
+        setCurrency("EUR");
+        setSymbol("€");
       } else {
-        setCurrency('USD');
-        setSymbol('$');
+        setCurrency("USD");
+        setSymbol("$");
       }
     } catch (e) {
-      setCurrency('USD');
-      setSymbol('$');
+      setCurrency("USD");
+      setSymbol("$");
     }
   }, []);
 
-  const PricingCard = ({ 
-    name, 
-    price, 
-    originalPrice, 
+  const handleCheckout = async (productType: string) => {
+    if (loadingProduct) return;
+
+    setLoadingProduct(productType);
+
+    try {
+      const response = await fetch(CHECKOUT_API_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ product: productType }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to create checkout");
+      }
+
+      if (data.checkout_url) {
+        window.location.href = data.checkout_url;
+      } else {
+        throw new Error("No checkout URL received");
+      }
+    } catch (error) {
+      console.error("Checkout error:", error);
+      alert("Unable to start checkout. Please try again.");
+    } finally {
+      setLoadingProduct(null);
+    }
+  };
+
+  const PricingCard = ({
+    name,
+    price,
+    originalPrice,
     discountPercent,
-    description, 
-    tagline, 
-    features, 
-    highlight = false 
-  }: { 
-    name: string; 
-    price: number; 
-    originalPrice: number; 
+    description,
+    tagline,
+    features,
+    productType,
+    highlight = false,
+    disabled = false
+  }: {
+    name: string;
+    price: number;
+    originalPrice: number;
     discountPercent: number;
-    description: string; 
-    tagline: string; 
-    features: string[]; 
+    description: string;
+    tagline: string;
+    features: string[];
+    productType: string;
     highlight?: boolean;
+    disabled?: boolean;
   }) => {
-    const buttonLabel = name.includes('Lite') ? 'Get Lite (macOS)' : 'Get Extra Spicy (macOS)';
+    const buttonLabel = name.includes("Lite") ? "Get Lite (macOS)" : "Get Extra Spicy (macOS)";
+    const isLoading = loadingProduct === productType;
 
     return (
       <div className={`flex flex-col p-10 rounded-[3rem] border-2 transition-all duration-500 bg-white relative overflow-hidden h-full ${
@@ -98,13 +139,28 @@ export const Pricing: React.FC = () => {
           ))}
         </ul>
 
-        <button className={`w-full py-5 px-6 rounded-3xl font-black text-base md:text-lg flex items-center justify-center gap-3 transition-all ${
-          highlight 
-            ? 'zest-gradient-bg text-white shadow-2xl shadow-red-500/20 hover:scale-[1.01]' 
-            : 'bg-slate-900 text-white hover:bg-slate-800'
-        } active:scale-95`}>
-          {buttonLabel}
-          <ExternalLink className="w-5 h-5" />
+        <button
+          onClick={() => !disabled && !isLoading && handleCheckout(productType)}
+          disabled={disabled || isLoading}
+          className={`w-full py-5 px-6 rounded-3xl font-black text-base md:text-lg flex items-center justify-center gap-3 transition-all ${
+            highlight
+              ? "zest-gradient-bg text-white shadow-2xl shadow-red-500/20 hover:scale-[1.01]"
+              : "bg-slate-900 text-white hover:bg-slate-800"
+          } ${disabled ? "opacity-50 cursor-not-allowed" : ""} ${isLoading ? "opacity-75" : ""} active:scale-95`}
+        >
+          {isLoading ? (
+            <>
+              <Loader2 className="w-5 h-5 animate-spin" />
+              Processing...
+            </>
+          ) : disabled ? (
+            "Coming Soon"
+          ) : (
+            <>
+              {buttonLabel}
+              <ExternalLink className="w-5 h-5" />
+            </>
+          )}
         </button>
         
         <p className="text-center mt-6 text-[8px] text-slate-400 font-bold uppercase tracking-widest leading-relaxed px-4">
@@ -139,13 +195,14 @@ export const Pricing: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch max-w-5xl mx-auto mb-16">
-          <PricingCard 
+          <PricingCard
             name="Zest Lite"
             price={39}
             originalPrice={55}
             discountPercent={29}
             tagline="CPU Optimized"
             description="Our core recipe optimized for speed. This 2.9GB lightweight model is designed to run perfectly on CPUs and standard laptops without sacrificing privacy or performance."
+            productType="q5"
             features={[
               "100% Offline usage",
               "No tracking of prompts or outputs",
@@ -156,7 +213,7 @@ export const Pricing: React.FC = () => {
             ]}
           />
 
-          <PricingCard 
+          <PricingCard
             highlight
             name="Zest Extra Spicy"
             price={49}
@@ -164,6 +221,8 @@ export const Pricing: React.FC = () => {
             discountPercent={34}
             tagline="Full Precision"
             description="The full-bodied 8GB experience for power users. This high-precision model delivers superior accuracy for complex scripting and edge cases on machines with 16GB+ of RAM."
+            productType="fp16"
+            disabled
             features={[
               "100% Offline usage",
               "No tracking of prompts or outputs",
@@ -177,7 +236,7 @@ export const Pricing: React.FC = () => {
 
         <div className="mb-20 text-center">
           <p className="text-slate-400 text-xs font-bold uppercase tracking-widest">
-            Securely processed with Stripe — We never see your card details.
+            Securely processed with Polar — We never see your card details.
           </p>
         </div>
 
