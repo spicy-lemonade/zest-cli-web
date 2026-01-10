@@ -222,7 +222,6 @@ export const Pricing: React.FC = () => {
             tagline="Full Precision"
             description="The full-bodied 8GB experience for power users. This high-precision model delivers superior accuracy for complex scripting and edge cases on machines with 16GB+ of RAM."
             productType="fp16"
-            disabled
             features={[
               "100% Offline usage",
               "No tracking of prompts or outputs",
