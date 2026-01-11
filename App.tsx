@@ -83,6 +83,30 @@ const FAQPage: React.FC<{ onBack: () => void; onNavigate: (view: View) => void }
 
   const faqs = [
     {
+      q: "How does the free trial work?",
+      a: (
+        <>
+          <p className="mb-4">Our 5-day free trial lets you experience Zest with full functionality before purchasing:</p>
+          <ol className="list-decimal pl-5 space-y-2">
+            <li><strong>Download:</strong> Click "Download Free Trial" on any product above.</li>
+            <li><strong>Install:</strong> Open the DMG and drag Zest to your Applications folder.</li>
+            <li><strong>Activate:</strong> Run <code>zest</code> in Terminal and choose "Start free trial".</li>
+            <li><strong>Verify:</strong> Enter your email and the 6-digit code sent to you.</li>
+            <li><strong>Use:</strong> You have 5 days to try all features on any device.</li>
+          </ol>
+          <p className="mt-4">After the trial expires, you'll be prompted to purchase. Your email is already saved, so checkout is seamless.</p>
+        </>
+      )
+    },
+    {
+      q: "Can I try both Zest Lite and Extra Spicy?",
+      a: (
+        <>
+          <p>Yes! Each product has its own independent 5-day trial. You can try Zest Lite on one machine and Zest Extra Spicy on another (or both on the same machine) to see which fits your workflow best.</p>
+        </>
+      )
+    },
+    {
       q: "The command generated isn't working as expected. What should I do?",
       a: (
         <>

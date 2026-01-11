@@ -1,64 +1,28 @@
 
 import React, { useState, useEffect } from "react";
-import { Check, ExternalLink, Flame, Zap, ShieldCheck, Laptop, MonitorSmartphone, Cpu, HardDrive, SquareAsterisk, Loader2 } from "lucide-react";
+import { Check, Download, Flame, Zap, ShieldCheck, Laptop, MonitorSmartphone, Cpu, HardDrive, SquareAsterisk } from "lucide-react";
 
-const CHECKOUT_API_URL = import.meta.env.VITE_CHECKOUT_API_URL || "https://europe-west1-nl-cli-dev.cloudfunctions.net/create_checkout";
+const DOWNLOAD_URLS = {
+  q5: "https://storage.googleapis.com/nlcli-models/Zest-Q5-1.0.0.dmg",
+  fp16: "https://storage.googleapis.com/nlcli-models/Zest-FP16-1.0.0.dmg"
+};
 
 export const Pricing: React.FC = () => {
-  const [setCurrency] = useState("$");
   const [symbol, setSymbol] = useState("$");
-  const [loadingProduct, setLoadingProduct] = useState<string | null>(null);
 
   useEffect(() => {
     try {
       const locale = navigator.language;
       const euroLocales = ["de", "fr", "it", "es", "nl", "be", "at", "pt", "fi", "ie", "gr", "sk", "si", "ee", "lv", "lt", "mt", "cy"];
       const isEuroZone = euroLocales.some(lang => locale.startsWith(lang));
-
-      if (isEuroZone) {
-        setCurrency("EUR");
-        setSymbol("€");
-      } else {
-        setCurrency("USD");
-        setSymbol("$");
-      }
-    } catch (e) {
-      setCurrency("USD");
+      setSymbol(isEuroZone ? "€" : "$");
+    } catch {
       setSymbol("$");
     }
   }, []);
 
-  const handleCheckout = async (productType: string) => {
-    if (loadingProduct) return;
-
-    setLoadingProduct(productType);
-
-    try {
-      const response = await fetch(CHECKOUT_API_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ product: productType }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || "Failed to create checkout");
-      }
-
-      if (data.checkout_url) {
-        window.location.href = data.checkout_url;
-      } else {
-        throw new Error("No checkout URL received");
-      }
-    } catch (error) {
-      console.error("Checkout error:", error);
-      alert("Unable to start checkout. Please try again.");
-    } finally {
-      setLoadingProduct(null);
-    }
+  const handleDownload = (productType: "q5" | "fp16") => {
+    window.location.href = DOWNLOAD_URLS[productType];
   };
 
   const PricingCard = ({
@@ -80,12 +44,10 @@ export const Pricing: React.FC = () => {
     description: string;
     tagline: string;
     features: string[];
-    productType: string;
+    productType: "q5" | "fp16";
     highlight?: boolean;
     disabled?: boolean;
   }) => {
-    const buttonLabel = name.includes("Lite") ? "Get Lite (macOS)" : "Get Extra Spicy (macOS)";
-    const isLoading = loadingProduct === productType;
 
     return (
       <div className={`flex flex-col p-10 rounded-[3rem] border-2 transition-all duration-500 bg-white relative overflow-hidden h-full ${
@@ -140,31 +102,29 @@ export const Pricing: React.FC = () => {
         </ul>
 
         <button
-          onClick={() => !disabled && !isLoading && handleCheckout(productType)}
-          disabled={disabled || isLoading}
+          onClick={() => !disabled && handleDownload(productType)}
+          disabled={disabled}
           className={`w-full py-5 px-6 rounded-3xl font-black text-base md:text-lg flex items-center justify-center gap-3 transition-all ${
             highlight
               ? "zest-gradient-bg text-white shadow-2xl shadow-red-500/20 hover:scale-[1.01]"
               : "bg-slate-900 text-white hover:bg-slate-800"
-          } ${disabled ? "opacity-50 cursor-not-allowed" : ""} ${isLoading ? "opacity-75" : ""} active:scale-95`}
+          } ${disabled ? "opacity-50 cursor-not-allowed" : ""} active:scale-95`}
         >
-          {isLoading ? (
-            <>
-              <Loader2 className="w-5 h-5 animate-spin" />
-              Processing...
-            </>
-          ) : disabled ? (
+          {disabled ? (
             "Coming Soon"
           ) : (
             <>
-              {buttonLabel}
-              <ExternalLink className="w-5 h-5" />
+              <Download className="w-5 h-5" />
+              Download Free Trial
             </>
           )}
         </button>
-        
-        <p className="text-center mt-6 text-[8px] text-slate-400 font-bold uppercase tracking-widest leading-relaxed px-4">
-          One-time purchase. Lifetime License.
+
+        <p className="text-center mt-4 text-xs text-slate-500 font-medium leading-relaxed px-4">
+          5-day free trial. {symbol}{price} after.
+        </p>
+        <p className="text-center mt-2 text-[10px] text-slate-400 font-medium">
+          Already paid? Activate in the app.
         </p>
       </div>
     );
