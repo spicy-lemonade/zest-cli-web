@@ -1,0 +1,8 @@
+export { FAQPage } from "./FAQPage";
+export { ReportIssuesPage } from "./ReportIssuesPage";
+export { DocsPage } from "./DocsPage";
+export { AboutPage } from "./AboutPage";
+export { ChangelogPage } from "./ChangelogPage";
+export { PrivacyPolicyPage } from "./PrivacyPolicyPage";
+export { TermsOfServicePage } from "./TermsOfServicePage";
+export { LandingPage } from "./LandingPage";
