@@ -151,7 +151,7 @@ export const Pricing: React.FC = () => {
           </div>
           <h2 className="text-5xl md:text-6xl font-black mb-6 text-slate-900 tracking-tight">Pick your <span className="zest-gradient-text">spice level.</span></h2>
           <p className="text-slate-500 text-xl font-medium max-w-2xl mx-auto">
-            Choose the model that fits your hardware. All are 100% private and run entirely on your machine.
+            Choose the model that fits your hardware. All models are 100% private and run entirely on your machine.
           </p>
         </div>
 
@@ -170,7 +170,7 @@ export const Pricing: React.FC = () => {
               "No GPU required (CPU Optimized)",
               "Instant 0ms network latency",
               "Fine-tuned for everyday CLI tasks",
-              "One-time purchase. Buy it, own it"
+              "Buy once, keep forever"
             ]}
           />
 
@@ -188,7 +188,7 @@ export const Pricing: React.FC = () => {
               "No GPU required (Balanced Power)",
               "Instant 0ms network latency",
               "Enhanced accuracy for complex logic",
-              "One-time purchase. Buy it, own it"
+              "Buy once, keep forever"
             ]}
           />
 
@@ -207,7 +207,7 @@ export const Pricing: React.FC = () => {
               "No GPU required (High-Precision)",
               "Instant 0ms network latency",
               "Maximum logic for multi-step scripts",
-              "One-time purchase. Buy it, own it"
+              "Buy once, keep forever"
             ]}
           />
         </div>
