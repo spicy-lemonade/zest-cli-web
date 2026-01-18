@@ -3,8 +3,9 @@ import React, { useState, useEffect } from "react";
 import { Check, Download, Flame, Zap, ShieldCheck, Laptop, MonitorSmartphone, Cpu, HardDrive, SquareAsterisk } from "lucide-react";
 
 const DOWNLOAD_URLS = {
-  q5: "https://storage.googleapis.com/nlcli-models/Zest-Q5-1.0.0.dmg",
-  fp16: "https://storage.googleapis.com/nlcli-models/Zest-FP16-1.0.0.dmg"
+  lite: "https://storage.googleapis.com/nlcli-models/Zest-Lite-1.0.0.dmg",
+  hot: "https://storage.googleapis.com/nlcli-models/Zest-Hot-1.0.0.dmg",
+  extra_spicy: "https://storage.googleapis.com/nlcli-models/Zest-Extra-Spicy-1.0.0.dmg"
 };
 
 export const Pricing: React.FC = () => {
@@ -21,7 +22,7 @@ export const Pricing: React.FC = () => {
     }
   }, []);
 
-  const handleDownload = (productType: "q5" | "fp16") => {
+  const handleDownload = (productType: "lite" | "hot" | "extra_spicy") => {
     window.location.href = DOWNLOAD_URLS[productType];
   };
 
@@ -44,7 +45,7 @@ export const Pricing: React.FC = () => {
     description: string;
     tagline: string;
     features: string[];
-    productType: "q5" | "fp16";
+    productType: "lite" | "hot" | "extra_spicy";
     highlight?: boolean;
     disabled?: boolean;
   }) => {
@@ -150,24 +151,42 @@ export const Pricing: React.FC = () => {
           </div>
           <h2 className="text-5xl md:text-6xl font-black mb-6 text-slate-900 tracking-tight">Pick your <span className="zest-gradient-text">spice level.</span></h2>
           <p className="text-slate-500 text-xl font-medium max-w-2xl mx-auto">
-            Choose the model that fits your hardware. Both are 100% private and run entirely on your machine.
+            Choose the model that fits your hardware. All are 100% private and run entirely on your machine.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch max-w-5xl mx-auto mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch max-w-7xl mx-auto mb-16">
           <PricingCard
             name="Zest Lite"
             price={39}
-            originalPrice={55}
-            discountPercent={29}
+            originalPrice={59}
+            discountPercent={20}
             tagline="CPU Optimized"
-            description="Our core recipe optimized for speed. This 2.9GB lightweight model is designed to run perfectly on CPUs and standard laptops without sacrificing privacy or performance."
-            productType="q5"
+            description="Built on Qwen3 4B with Q5_K_M quantization and fine-tuned on bespoke command-line data. Fast response times with a compact 2.7GB footprint, suitable for everyday CLI tasks and lower resource usage."
+            productType="lite"
             features={[
               "100% Offline usage",
               "No tracking of prompts or outputs",
               "No GPU required",
-              "Lightweight 2.9GB footprint",
+              "Lightweight 2.7GB footprint",
+              "Instant 0ms network latency",
+              "One-time purchase. Buy it, own it"
+            ]}
+          />
+
+          <PricingCard
+            name="Zest Hot"
+            price={49}
+            originalPrice={69}
+            discountPercent={29}
+            tagline="Balanced Performance"
+            description="Powered by Qwen2.5 Coder 7B with Q5_K_M quantization, fine-tuned on proprietary CLI datasets. Provides enhanced accuracy for complex shell operations at 5.1GB, balancing performance with resource efficiency."
+            productType="hot"
+            features={[
+              "100% Offline usage",
+              "No tracking of prompts or outputs",
+              "Enhanced accuracy for complex operations",
+              "Balanced 5.1GB footprint",
               "Instant 0ms network latency",
               "One-time purchase. Buy it, own it"
             ]}
@@ -176,18 +195,18 @@ export const Pricing: React.FC = () => {
           <PricingCard
             highlight
             name="Zest Extra Spicy"
-            price={49}
-            originalPrice={75}
+            price={59}
+            originalPrice={89}
             discountPercent={34}
-            tagline="Full Precision"
-            description="The full-bodied 8GB experience for power users. This high-precision model delivers superior accuracy for complex scripting and edge cases on machines with 16GB+ of RAM."
-            productType="fp16"
+            tagline="Maximum Precision"
+            description="Uses the full Qwen2.5 Coder 7B model in FP16 format with no quantization, preserving complete model precision. Fine-tuned on bespoke CLI command data for maximum accuracy in command generation and understanding of complex multi-step operations. 11GB download size."
+            productType="extra_spicy"
             features={[
               "100% Offline usage",
               "No tracking of prompts or outputs",
-              "Full-bodied 8GB model (Greater accuracy for complex scripts)",
-              "Optimized for modern RAM (Smooth performance on 16GB+ machines)",
-              "Instant 0ms network latency",
+              "Full precision FP16 model (11GB)",
+              "Maximum accuracy for complex scripts",
+              "Optimized for 16GB+ RAM machines",
               "One-time purchase. Buy it, own it"
             ]}
           />
@@ -205,99 +224,142 @@ export const Pricing: React.FC = () => {
             <h3 className="text-2xl md:text-3xl font-black text-slate-900 uppercase tracking-tight mx-auto inline-block">Technical Requirements</h3>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-4">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-12 gap-y-4">
             {/* Column Headers */}
-            <div className="flex items-center gap-5 pb-6 border-b border-slate-200 mb-4">
-              <div className="w-16 h-16 bg-slate-900 rounded-2xl flex items-center justify-center shadow-xl">
-                <Laptop className="w-8 h-8 text-white" />
+            <div className="flex items-center gap-4 pb-6 border-b border-slate-200 mb-4">
+              <div className="w-14 h-14 bg-slate-900 rounded-2xl flex items-center justify-center shadow-xl">
+                <Laptop className="w-7 h-7 text-white" />
               </div>
               <div>
-                <h4 className="text-2xl font-black text-slate-900">Zest Lite</h4>
-                <p className="text-slate-500 font-bold text-xs uppercase tracking-widest">Fast & Light</p>
+                <h4 className="text-xl font-black text-slate-900">Zest Lite</h4>
+                <p className="text-slate-500 font-bold text-[10px] uppercase tracking-widest">Fast & Light</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-5 pb-6 border-b border-slate-200 mb-4">
-              <div className="w-16 h-16 zest-gradient-bg rounded-2xl flex items-center justify-center shadow-xl shadow-red-500/20">
-                <MonitorSmartphone className="w-8 h-8 text-white" />
+            <div className="flex items-center gap-4 pb-6 border-b border-slate-200 mb-4">
+              <div className="w-14 h-14 bg-yellow-500 rounded-2xl flex items-center justify-center shadow-xl">
+                <Flame className="w-7 h-7 text-white" />
               </div>
               <div>
-                <h4 className="text-2xl font-black text-slate-900">Zest Extra Spicy</h4>
-                <p className="text-red-600 font-bold text-xs uppercase tracking-widest">Maximum Accuracy</p>
+                <h4 className="text-xl font-black text-slate-900">Zest Hot</h4>
+                <p className="text-yellow-700 font-bold text-[10px] uppercase tracking-widest">Balanced Power</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-4 pb-6 border-b border-slate-200 mb-4">
+              <div className="w-14 h-14 zest-gradient-bg rounded-2xl flex items-center justify-center shadow-xl shadow-red-500/20">
+                <MonitorSmartphone className="w-7 h-7 text-white" />
+              </div>
+              <div>
+                <h4 className="text-xl font-black text-slate-900">Zest Extra Spicy</h4>
+                <p className="text-red-600 font-bold text-[10px] uppercase tracking-widest">Maximum Accuracy</p>
               </div>
             </div>
 
             {/* Recommendation Blurbs */}
-            <p className="text-slate-600 font-bold text-base leading-relaxed border-l-4 border-yellow-400 pl-4 lg:min-h-[64px] flex items-center mb-4">
-              A MacBook Air, Mac Mini, or greater — Optimized for speed on everyday hardware.
+            <p className="text-slate-600 font-bold text-sm leading-relaxed border-l-4 border-slate-400 pl-4 lg:min-h-[64px] flex items-center mb-4">
+              MacBook Air, Mac Mini, or greater — Optimized for everyday hardware.
             </p>
-            <p className="text-slate-600 font-bold text-base leading-relaxed border-l-4 border-red-500 pl-4 lg:min-h-[64px] flex items-center mb-4">
-              A MacBook Pro or Mac Studio with 16GB+ RAM, or greater — Designed for power users and high-fidelity reasoning.
+            <p className="text-slate-600 font-bold text-sm leading-relaxed border-l-4 border-yellow-500 pl-4 lg:min-h-[64px] flex items-center mb-4">
+              MacBook Pro with 12GB+ RAM — Balanced performance for developers.
+            </p>
+            <p className="text-slate-600 font-bold text-sm leading-relaxed border-l-4 border-red-500 pl-4 lg:min-h-[64px] flex items-center mb-4">
+              MacBook Pro or Mac Studio with 16GB+ RAM — Maximum precision.
             </p>
 
             {/* Spec Rows */}
-            <SpecItem 
-              icon={<Cpu className="w-5 h-5" />} 
-              label="Processor" 
-              value="All modern Apple Silicon and Intel-based Macs"
+            <SpecItem
+              icon={<Cpu className="w-5 h-5" />}
+              label="Processor"
+              value="All modern Apple Silicon and Intel Macs"
               iconColor="text-slate-900"
             />
-            <SpecItem 
-              icon={<Cpu className="w-5 h-5" />} 
-              label="Processor" 
-              value="Optimized for Apple Silicon for the best experience"
+            <SpecItem
+              icon={<Cpu className="w-5 h-5" />}
+              label="Processor"
+              value="Apple Silicon or Intel (M-series recommended)"
+              iconColor="text-yellow-700"
+            />
+            <SpecItem
+              icon={<Cpu className="w-5 h-5" />}
+              label="Processor"
+              value="Apple Silicon optimized for best experience"
               iconColor="text-red-600"
             />
 
-            <SpecItem 
-              icon={<SquareAsterisk className="w-5 h-5" />} 
-              label="Memory (RAM)" 
+            <SpecItem
+              icon={<SquareAsterisk className="w-5 h-5" />}
+              label="Memory (RAM)"
               value="8GB RAM minimum"
               iconColor="text-slate-900"
             />
-            <SpecItem 
-              icon={<SquareAsterisk className="w-5 h-5" />} 
-              label="Memory (RAM)" 
+            <SpecItem
+              icon={<SquareAsterisk className="w-5 h-5" />}
+              label="Memory (RAM)"
+              value="12GB RAM recommended"
+              iconColor="text-yellow-700"
+            />
+            <SpecItem
+              icon={<SquareAsterisk className="w-5 h-5" />}
+              label="Memory (RAM)"
               value="16GB RAM recommended"
               iconColor="text-red-600"
             />
 
-            <SpecItem 
-              icon={<HardDrive className="w-5 h-5" />} 
-              label="Storage" 
-              value="2.9GB of available space"
+            <SpecItem
+              icon={<HardDrive className="w-5 h-5" />}
+              label="Storage"
+              value="2.7GB of available space"
               iconColor="text-slate-900"
             />
-            <SpecItem 
-              icon={<HardDrive className="w-5 h-5" />} 
-              label="Storage" 
-              value="8.5GB of available space"
+            <SpecItem
+              icon={<HardDrive className="w-5 h-5" />}
+              label="Storage"
+              value="5.1GB of available space"
+              iconColor="text-yellow-700"
+            />
+            <SpecItem
+              icon={<HardDrive className="w-5 h-5" />}
+              label="Storage"
+              value="11GB of available space"
               iconColor="text-red-600"
             />
 
-            <SpecItem 
-              icon={<Zap className="w-5 h-5" />} 
-              label="Graphics" 
-              value="No dedicated GPU required; runs efficiently on standard CPUs"
+            <SpecItem
+              icon={<Zap className="w-5 h-5" />}
+              label="Graphics"
+              value="No dedicated GPU required; runs on CPU"
               iconColor="text-slate-900"
             />
-            <SpecItem 
-              icon={<Zap className="w-5 h-5" />} 
-              label="Graphics" 
+            <SpecItem
+              icon={<Zap className="w-5 h-5" />}
+              label="Graphics"
+              value="Unified Memory for optimized performance"
+              iconColor="text-yellow-700"
+            />
+            <SpecItem
+              icon={<Zap className="w-5 h-5" />}
+              label="Graphics"
               value="Uses Unified Memory for 0ms local latency"
               iconColor="text-red-600"
             />
 
-            <SpecItem 
-              icon={<ShieldCheck className="w-5 h-5" />} 
-              label="OS Version" 
-              value="macOS 12.0 (Monterey) or later recommended"
+            <SpecItem
+              icon={<ShieldCheck className="w-5 h-5" />}
+              label="OS Version"
+              value="macOS 12.0 (Monterey) or later"
               iconColor="text-slate-900"
             />
-            <SpecItem 
-              icon={<ShieldCheck className="w-5 h-5" />} 
-              label="OS Version" 
-              value="macOS 13.0 (Ventura) or later recommended"
+            <SpecItem
+              icon={<ShieldCheck className="w-5 h-5" />}
+              label="OS Version"
+              value="macOS 12.0 (Monterey) or later"
+              iconColor="text-yellow-700"
+            />
+            <SpecItem
+              icon={<ShieldCheck className="w-5 h-5" />}
+              label="OS Version"
+              value="macOS 13.0 (Ventura) or later"
               iconColor="text-red-600"
             />
           </div>

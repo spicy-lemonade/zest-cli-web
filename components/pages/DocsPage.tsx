@@ -83,12 +83,12 @@ export const DocsPage: React.FC<DocsPageProps> = ({ onBack }) => {
           </section>
 
           <section id="both-models" className="scroll-mt-32">
-            <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-8 border-b-2 border-slate-100 pb-4">1.1 Using Both Models</h2>
-            <p className="mb-6">If you've purchased both FP16 (Extra Spicy) and Q5 (Lite) models:</p>
+            <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-8 border-b-2 border-slate-100 pb-4">1.1 Using Multiple Models</h2>
+            <p className="mb-6">If you've purchased multiple tiers (Lite, Hot, or Extra Spicy):</p>
             <div className="space-y-6">
               <div className="flex gap-4">
                 <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center shrink-0 font-black text-xs">1</div>
-                <p className="m-0">Install both apps to <code>/Applications</code></p>
+                <p className="m-0">Install the apps to <code>/Applications</code></p>
               </div>
               <div className="flex gap-4">
                 <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center shrink-0 font-black text-xs">2</div>
@@ -102,23 +102,25 @@ export const DocsPage: React.FC<DocsPageProps> = ({ onBack }) => {
                 <div className="m-0">
                   <p className="m-0">Switch between models:</p>
                   <code className="block bg-slate-900 text-yellow-400 p-4 rounded-xl mt-2 font-mono text-sm">
-                    zest --model --fp      # Use FP16 model<br />
-                    zest --model --q5      # Use Q5 model
+                    zest --model --lite           # Use Lite model<br />
+                    zest --model --hot            # Use Hot model<br />
+                    zest --model --extra-spicy    # Use Extra Spicy model
                   </code>
                 </div>
               </div>
             </div>
             <div className="mt-8 bg-blue-50 p-6 rounded-3xl border border-blue-100 text-sm">
-              <p className="m-0"><strong>Note:</strong> If both models are installed, Zest defaults to FP16 (higher quality). You can override this with <code>--model --q5</code>.</p>
+              <p className="m-0"><strong>Note:</strong> If multiple models are installed, Zest defaults to Extra Spicy (highest quality), then Hot, then Lite. You can override this with <code>--model</code> flags.</p>
             </div>
 
             <div className="mt-12 space-y-12">
               <div>
                 <h4 className="text-xl font-black text-slate-900 mb-4">Licensing</h4>
-                <p>Your license allows installation on up to <strong>2 devices per product</strong>. If you bought both FP16 and Q5, you have:</p>
+                <p>Your license allows installation on up to <strong>2 devices per tier</strong>. Each tier (Lite, Hot, Extra Spicy) has independent device slots:</p>
                 <ul className="list-disc pl-6 space-y-1 font-bold text-slate-700">
-                  <li>2 device slots for FP16</li>
-                  <li>2 device slots for Q5</li>
+                  <li>2 device slots for Lite</li>
+                  <li>2 device slots for Hot</li>
+                  <li>2 device slots for Extra Spicy</li>
                 </ul>
               </div>
 
@@ -126,9 +128,10 @@ export const DocsPage: React.FC<DocsPageProps> = ({ onBack }) => {
                 <h4 className="text-xl font-black text-slate-900 mb-4">Logout (Frees device slot)</h4>
                 <p className="mb-4 text-sm">Use <code>--logout</code> to free a device slot while keeping the model on disk. You can re-activate later without re-downloading.</p>
                 <code className="block bg-slate-900 text-yellow-400 p-4 rounded-xl font-mono text-sm">
-                  zest --logout           # Log out from ALL products<br />
-                  zest --logout --fp      # Log out from FP16 only<br />
-                  zest --logout --q5      # Log out from Q5 only
+                  zest --logout                  # Log out from ALL tiers<br />
+                  zest --logout --lite           # Log out from Lite only<br />
+                  zest --logout --hot            # Log out from Hot only<br />
+                  zest --logout --extra-spicy    # Log out from Extra Spicy only
                 </code>
               </div>
 
@@ -136,9 +139,10 @@ export const DocsPage: React.FC<DocsPageProps> = ({ onBack }) => {
                 <h4 className="text-xl font-black text-slate-900 mb-4">Uninstall (Removes everything)</h4>
                 <p className="mb-4 text-sm">Use <code>--uninstall</code> to completely remove the model file, license, and deregister the device. This frees disk space.</p>
                 <code className="block bg-slate-900 text-yellow-400 p-4 rounded-xl font-mono text-sm">
-                  zest --uninstall        # Full uninstall of ALL products<br />
-                  zest --uninstall --fp   # Uninstall FP16 only<br />
-                  zest --uninstall --q5   # Uninstall Q5 only
+                  zest --uninstall                  # Full uninstall of ALL tiers<br />
+                  zest --uninstall --lite           # Uninstall Lite only<br />
+                  zest --uninstall --hot            # Uninstall Hot only<br />
+                  zest --uninstall --extra-spicy    # Uninstall Extra Spicy only
                 </code>
               </div>
 
@@ -162,18 +166,34 @@ export const DocsPage: React.FC<DocsPageProps> = ({ onBack }) => {
                   <li>100% accurate on Docker, Cloud tools, and common commands</li>
                   <li>100% accurate on intermediate tasks (systemctl, package management)</li>
                   <li>87.5% accurate on advanced Kubernetes & system administration workflows</li>
-                  <li>75% accurate on advanced text processing (vs 25% in Lite)</li>
+                  <li>75% accurate on advanced text processing</li>
                   <li>Excels at regex patterns, log analysis, text processing, command pipelines</li>
                 </ul>
                 <p className="text-xs font-black text-slate-400 uppercase tracking-widest bg-white py-2 px-4 rounded-xl border border-slate-200 inline-block">
-                  Model Details: 8GB | Full precision FP16 | Requires Apple Silicon (M1/M2/M3)
+                  Model Details: 11GB | Full precision FP16 | Qwen2.5 Coder 7B | Apple Silicon recommended
+                </p>
+              </Card>
+
+              <Card padding="lg">
+                <h4 className="text-xl font-black text-slate-900 mb-2">Zest Hot (Balanced Performance)</h4>
+                <p className="text-yellow-700 font-black mb-4">94% accuracy on production CLI workflows.</p>
+                <p className="font-bold text-slate-900 mb-2 underline decoration-yellow-200">Strengths:</p>
+                <ul className="list-disc pl-6 space-y-1 mb-4 text-base">
+                  <li>100% accurate on Docker, Cloud tools, and common commands</li>
+                  <li>100% accurate on intermediate tasks (systemctl, package management)</li>
+                  <li>Enhanced accuracy on complex shell operations</li>
+                  <li>Q5_K_M quantization balancing size and performance</li>
+                  <li>Good text processing capabilities</li>
+                </ul>
+                <p className="text-xs font-black text-slate-400 uppercase tracking-widest bg-white py-2 px-4 rounded-xl border border-slate-200 inline-block">
+                  Model Details: 5.1GB | Q5_K_M quantization | Qwen2.5 Coder 7B | Universal compatibility
                 </p>
               </Card>
 
               <Card padding="lg">
                 <h4 className="text-xl font-black text-slate-900 mb-2">Zest Lite (CPU-Optimized)</h4>
-                <p className="text-yellow-600 font-black mb-4">92% accuracy on production CLI workflows.</p>
-                <p className="font-bold text-slate-900 mb-2 underline decoration-yellow-200">Strengths:</p>
+                <p className="text-slate-600 font-black mb-4">92% accuracy on production CLI workflows.</p>
+                <p className="font-bold text-slate-900 mb-2 underline decoration-slate-200">Strengths:</p>
                 <ul className="list-disc pl-6 space-y-1 mb-4 text-base">
                   <li>100% accurate on Docker, Cloud tools, and common commands</li>
                   <li>100% accurate on intermediate tasks (systemctl, package management)</li>
@@ -182,19 +202,18 @@ export const DocsPage: React.FC<DocsPageProps> = ({ onBack }) => {
                 </ul>
                 <p className="font-bold text-slate-900 mb-2 underline decoration-slate-200">Trade-offs:</p>
                 <ul className="list-disc pl-6 space-y-1 mb-6 text-base">
-                  <li>4% lower overall accuracy (92% vs 96%)</li>
-                  <li>Reduced text processing accuracy (25% vs 75%)</li>
-                  <li>3x smaller download (2.6GB vs 8GB)</li>
+                  <li>Smaller model for faster responses</li>
+                  <li>4x smaller download compared to Extra Spicy</li>
                   <li>Runs on any Mac (Intel or Apple Silicon)</li>
                 </ul>
                 <p className="text-xs font-black text-slate-400 uppercase tracking-widest bg-white py-2 px-4 rounded-xl border border-slate-200 inline-block">
-                  Model Details: 2.6GB | Q5_K_M quantization | Universal compatibility
+                  Model Details: 2.7GB | Q5_K_M quantization | Qwen3 4B | Universal compatibility
                 </p>
               </Card>
             </div>
 
             <div className="mt-12">
-              <h3 className="text-slate-900 font-black mb-4">Choosing Your Model</h3>
+              <h3 className="text-slate-900 font-black mb-4">Choosing Your Tier</h3>
               <div className="overflow-x-auto">
                 <table className="w-full text-left border-collapse mt-4">
                   <thead>
@@ -205,20 +224,24 @@ export const DocsPage: React.FC<DocsPageProps> = ({ onBack }) => {
                   </thead>
                   <tbody className="text-base">
                     <tr className="border-b border-slate-100">
-                      <td className="py-2">Maximum accuracy</td>
+                      <td className="py-2">Maximum accuracy & precision</td>
                       <td className="py-2 font-black text-red-500">Extra Spicy</td>
                     </tr>
                     <tr className="border-b border-slate-100">
-                      <td className="py-2">Regex, log analysis, text processing</td>
+                      <td className="py-2">Regex, log analysis, advanced text processing</td>
                       <td className="py-2 font-black text-red-500">Extra Spicy</td>
+                    </tr>
+                    <tr className="border-b border-slate-100">
+                      <td className="py-2">Complex shell operations, balanced performance</td>
+                      <td className="py-2 font-black text-yellow-700">Hot</td>
                     </tr>
                     <tr className="border-b border-slate-100">
                       <td className="py-2">Simple Docker/Git/AWS/Kubernetes commands</td>
-                      <td className="py-2 font-bold">Either</td>
+                      <td className="py-2 font-bold">Any tier</td>
                     </tr>
                     <tr className="border-b border-slate-100">
-                      <td className="py-2">Smaller download, day to day use</td>
-                      <td className="py-2 font-black text-yellow-600">Lite</td>
+                      <td className="py-2">Smallest download, everyday use</td>
+                      <td className="py-2 font-black text-slate-600">Lite</td>
                     </tr>
                   </tbody>
                 </table>

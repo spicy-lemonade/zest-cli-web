@@ -44,10 +44,10 @@ export const FAQPage: React.FC<FAQPageProps> = ({ onBack, onNavigate }) => {
       )
     },
     {
-      q: "Can I try both Zest Lite and Extra Spicy?",
+      q: "Can I try all three tiers?",
       a: (
         <>
-          <p>Yes! Each product has its own independent 5-day trial. You can try Zest Lite on one machine and Zest Extra Spicy on another (or both on the same machine) to see which fits your workflow best.</p>
+          <p>Yes! Each tier (Lite, Hot, Extra Spicy) has its own independent 5-day trial. You can try different tiers on separate machines or all on the same machine to see which fits your workflow best.</p>
         </>
       )
     },
