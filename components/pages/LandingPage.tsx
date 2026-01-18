@@ -26,7 +26,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
           <div className="flex flex-wrap items-center justify-center gap-4 mb-10 animate-in fade-in slide-in-from-bottom-4 duration-700">
             <div className="inline-flex items-center gap-2 bg-yellow-400/10 text-yellow-700 px-4 py-2 rounded-full border border-yellow-400/20 font-bold text-sm">
               <Flame className="w-4 h-4 text-red-500" />
-              New: Zest v1.0 (Qwen3 Engine)
+              New: Zest v1.0 (Qwen Engine)
             </div>
           </div>
           <h1 className="text-6xl md:text-8xl font-black mb-8 tracking-tighter text-slate-900 max-w-5xl leading-[1.05]">

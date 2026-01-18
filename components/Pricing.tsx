@@ -162,14 +162,14 @@ export const Pricing: React.FC = () => {
             originalPrice={59}
             discountPercent={20}
             tagline="CPU Optimized"
-            description="Built on Qwen3 4B with Q5_K_M quantization and fine-tuned on bespoke command-line data. Fast response times with a compact 2.7GB footprint, suitable for everyday CLI tasks and lower resource usage."
+            description="The essential companion for your daily terminal workflow. Fine-tuned for speed and efficiency, it handles standard CLI tasks instantly while maintaining a tiny resource footprint. Perfect for any laptop, anywhere."
             productType="lite"
             features={[
               "100% Offline usage",
               "No tracking of prompts or outputs",
-              "No GPU required",
-              "Lightweight 2.7GB footprint",
+              "No GPU required (CPU Optimized)",
               "Instant 0ms network latency",
+              "Fine-tuned for everyday CLI tasks",
               "One-time purchase. Buy it, own it"
             ]}
           />
@@ -180,14 +180,14 @@ export const Pricing: React.FC = () => {
             originalPrice={69}
             discountPercent={29}
             tagline="Balanced Performance"
-            description="Powered by Qwen2.5 Coder 7B with Q5_K_M quantization, fine-tuned on proprietary CLI datasets. Provides enhanced accuracy for complex shell operations at 5.1GB, balancing performance with resource efficiency."
+            description="Our signature blend of power and precision. Designed for developers who need deeper logic for complex shell pipes and automation, without sacrificing system speed. The professional's choice for a private, local AI."
             productType="hot"
             features={[
               "100% Offline usage",
               "No tracking of prompts or outputs",
-              "Enhanced accuracy for complex operations",
-              "Balanced 5.1GB footprint",
+              "No GPU required (Balanced Power)",
               "Instant 0ms network latency",
+              "Enhanced accuracy for complex logic",
               "One-time purchase. Buy it, own it"
             ]}
           />
@@ -199,14 +199,14 @@ export const Pricing: React.FC = () => {
             originalPrice={89}
             discountPercent={34}
             tagline="Maximum Precision"
-            description="Uses the full Qwen2.5 Coder 7B model in FP16 format with no quantization, preserving complete model precision. Fine-tuned on bespoke CLI command data for maximum accuracy in command generation and understanding of complex multi-step operations. 11GB download size."
+            description="The purest, uncompromised model for mission-critical operations. Preserves full precision for the highest possible accuracy in multi-step scripts and complex command generation. Built for modern, high-performance systems."
             productType="extra_spicy"
             features={[
               "100% Offline usage",
               "No tracking of prompts or outputs",
-              "Full precision FP16 model (11GB)",
-              "Maximum accuracy for complex scripts",
-              "Optimized for 16GB+ RAM machines",
+              "No GPU required (High-Precision)",
+              "Instant 0ms network latency",
+              "Maximum logic for multi-step scripts",
               "One-time purchase. Buy it, own it"
             ]}
           />
@@ -302,33 +302,33 @@ export const Pricing: React.FC = () => {
             <SpecItem
               icon={<SquareAsterisk className="w-5 h-5" />}
               label="Memory (RAM)"
-              value="16GB RAM recommended"
+              value="32GB+ RAM recommended"
               iconColor="text-red-600"
             />
 
             <SpecItem
               icon={<HardDrive className="w-5 h-5" />}
               label="Storage"
-              value="2.7GB of available space"
+              value="2.9GB DMG (3GB available space)"
               iconColor="text-slate-900"
             />
             <SpecItem
               icon={<HardDrive className="w-5 h-5" />}
               label="Storage"
-              value="5.1GB of available space"
+              value="5.4GB DMG (6GB available space)"
               iconColor="text-yellow-700"
             />
             <SpecItem
               icon={<HardDrive className="w-5 h-5" />}
               label="Storage"
-              value="11GB of available space"
+              value="11.9GB DMG (16GB available space)"
               iconColor="text-red-600"
             />
 
             <SpecItem
               icon={<Zap className="w-5 h-5" />}
               label="Graphics"
-              value="No dedicated GPU required; runs on CPU"
+              value="CPU Optimized; no dedicated GPU required"
               iconColor="text-slate-900"
             />
             <SpecItem
@@ -340,7 +340,7 @@ export const Pricing: React.FC = () => {
             <SpecItem
               icon={<Zap className="w-5 h-5" />}
               label="Graphics"
-              value="Uses Unified Memory for 0ms local latency"
+              value="Unified Memory for 0ms local latency"
               iconColor="text-red-600"
             />
 
