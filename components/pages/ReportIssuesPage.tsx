@@ -111,7 +111,7 @@ ${modelVersion}
             <textarea
               value={expectedOutput}
               onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setExpectedOutput(e.target.value)}
-              placeholder="the expected command"
+              placeholder="The expected command..."
               className="w-full p-6 bg-white border-2 border-slate-100 rounded-3xl focus:border-red-500 focus:outline-none transition-all font-mono text-sm min-h-[100px]"
             />
           </div>
