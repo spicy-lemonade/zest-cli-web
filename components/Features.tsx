@@ -6,7 +6,11 @@ const features = [
   {
     icon: <CheckCircle2 className="w-6 h-6 text-red-500" />,
     title: "96%+ Accuracy",
-    description: "Powered by Qwen3. Achieves 96%+ accuracy on internal benchmarks on real-world CLI commands ranging from daily shell operations to complex Docker and Kubernetes orchestration."
+    description: (
+      <>
+        Powered by Qwen3. Achieves 96%+ accuracy* on internal benchmarks on real-world CLI commands ranging from daily shell operations to complex Docker and Kubernetes orchestration. <span className="text-xs text-slate-400">Zest Extra Spicy</span>
+      </>
+    )
   },
   {
     icon: <Shield className="w-6 h-6 text-yellow-600" />,

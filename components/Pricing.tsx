@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from "react";
-import { Check, Download, Flame, Zap, ShieldCheck, Laptop, MonitorSmartphone, Cpu, HardDrive, SquareAsterisk } from "lucide-react";
+import { Check, Download, Flame, Zap, ShieldCheck, Laptop, Rocket, Cpu, HardDrive, SquareAsterisk } from "lucide-react";
 
 const DOWNLOAD_URLS = {
   lite: "https://storage.googleapis.com/nlcli-models/Zest-Lite-1.0.0.dmg",
@@ -248,7 +248,7 @@ export const Pricing: React.FC = () => {
 
             <div className="flex items-center gap-4 pb-6 border-b border-slate-200 mb-4">
               <div className="w-14 h-14 zest-gradient-bg rounded-2xl flex items-center justify-center shadow-xl shadow-red-500/20">
-                <MonitorSmartphone className="w-7 h-7 text-white" />
+                <Rocket className="w-7 h-7 text-white" />
               </div>
               <div>
                 <h4 className="text-xl font-black text-slate-900">Zest Extra Spicy</h4>
@@ -264,7 +264,7 @@ export const Pricing: React.FC = () => {
               MacBook Pro with 12GB+ RAM — Balanced performance for developers.
             </p>
             <p className="text-slate-600 font-bold text-sm leading-relaxed border-l-4 border-red-500 pl-4 lg:min-h-[64px] flex items-center mb-4">
-              MacBook Pro or Mac Studio with 16GB+ RAM — Maximum precision.
+              MacBook Pro or Mac Studio with 32GB+ RAM — Maximum precision.
             </p>
 
             {/* Spec Rows */}
