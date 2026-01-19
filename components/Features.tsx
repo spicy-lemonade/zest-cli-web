@@ -8,7 +8,7 @@ const features = [
     title: "96%+ Accuracy",
     description: (
       <>
-        Powered by Qwen3. Achieves 96%+ accuracy* on internal benchmarks on real-world CLI commands ranging from daily shell operations to complex Docker and Kubernetes orchestration. <span className="text-xs text-slate-400">Zest Extra Spicy</span>
+        Powered by Qwen. Achieves 96%+ accuracy* on internal benchmarks on real-world CLI commands ranging from daily shell operations to complex Docker and Kubernetes orchestration. <span className="text-xs text-slate-400">Zest Extra Spicy</span>
       </>
     )
   },
