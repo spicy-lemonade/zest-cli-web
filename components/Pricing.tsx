@@ -290,7 +290,7 @@ export const Pricing: React.FC = () => {
             <SpecItem
               icon={<SquareAsterisk className="w-5 h-5" />}
               label="Memory (RAM)"
-              value="8GB RAM minimum"
+              value="8GB RAM recommended"
               iconColor="text-slate-900"
             />
             <SpecItem
