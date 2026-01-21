@@ -2,13 +2,14 @@
  * Cloudflare Worker for handling Zest CLI feedback form submissions
  * Features:
  * - Email delivery via Resend API
- * - Rate limiting (5 requests per minute per IP)
+ * - Rate limiting (1 request per 60 seconds per IP)
+ * - Honeypot spam protection
  * - CORS handling for zestcli.com
  */
 
-const RATE_LIMIT = 5; // Max submissions per minute
+const RATE_LIMIT = 1; // Max submissions per 60-second window
 const RATE_LIMIT_WINDOW = 60; // Window in seconds
-const BLOCK_DURATION = 30; // Block duration in seconds after hitting limit
+const BLOCK_DURATION = 60; // Block duration in seconds after hitting limit
 
 export default {
   async fetch(request, env, ctx) {
@@ -53,12 +54,26 @@ export default {
 
       // Parse request body
       const body = await request.json();
-      const { prompt, output } = body;
+      const { prompt, failedOutput, expectedOutput, modelVersion, website } = body;
+
+      // Honeypot check - if filled, it's a bot (silently reject)
+      if (website) {
+        return new Response(
+          JSON.stringify({ success: true, message: "Feedback submitted successfully" }),
+          {
+            status: 200,
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+            },
+          }
+        );
+      }
 
       // Validate input
-      if (!prompt || !output) {
+      if (!prompt || !failedOutput) {
         return new Response(
-          JSON.stringify({ error: "Missing required fields: prompt and output" }),
+          JSON.stringify({ error: "Missing required fields: prompt and failedOutput" }),
           {
             status: 400,
             headers: {
@@ -70,7 +85,7 @@ export default {
       }
 
       // Send email via Resend
-      const emailResult = await sendEmail(prompt, output, clientIP, env);
+      const emailResult = await sendEmail(prompt, failedOutput, expectedOutput, modelVersion, clientIP, env);
 
       if (!emailResult.success) {
         throw new Error(emailResult.error);
@@ -189,7 +204,7 @@ async function checkRateLimit(ip, env) {
 /**
  * Send email via Resend API
  */
-async function sendEmail(prompt, output, clientIP, env) {
+async function sendEmail(prompt, failedOutput, expectedOutput, modelVersion, clientIP, env) {
   try {
     const response = await fetch("https://api.resend.com/emails", {
       method: "POST",
@@ -204,13 +219,19 @@ async function sendEmail(prompt, output, clientIP, env) {
         html: `
           <h2>New Feedback Report</h2>
           <p><strong>Submitted from IP:</strong> ${clientIP}</p>
+          <p><strong>Model Version:</strong> ${escapeHtml(modelVersion || "Not specified")}</p>
           <hr />
 
           <h3>Natural Language Prompt:</h3>
           <pre style="background: #f5f5f5; padding: 15px; border-radius: 5px; overflow-x: auto;">${escapeHtml(prompt)}</pre>
 
           <h3>Failed Model Output:</h3>
-          <pre style="background: #f5f5f5; padding: 15px; border-radius: 5px; overflow-x: auto;">${escapeHtml(output)}</pre>
+          <pre style="background: #f5f5f5; padding: 15px; border-radius: 5px; overflow-x: auto;">${escapeHtml(failedOutput)}</pre>
+
+          ${expectedOutput ? `
+          <h3>Expected Model Output:</h3>
+          <pre style="background: #f5f5f5; padding: 15px; border-radius: 5px; overflow-x: auto;">${escapeHtml(expectedOutput)}</pre>
+          ` : ""}
 
           <hr />
           <p style="color: #666; font-size: 12px;">Submitted at: ${new Date().toISOString()}</p>

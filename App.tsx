@@ -27,7 +27,7 @@ const App: React.FC = () => {
       case "tos":
         return <TermsOfServicePage onBack={() => handleNav("landing")} />;
       case "docs":
-        return <DocsPage onBack={() => handleNav("landing")} />;
+        return <DocsPage onBack={() => handleNav("landing")} onNavigate={handleNav} />;
       case "report":
         return <ReportIssuesPage onBack={() => handleNav("landing")} />;
       case "faq":

@@ -5,9 +5,10 @@ import { Card } from "../shared/Card";
 
 interface DocsPageProps {
   onBack: () => void;
+  onNavigate: (view: string, section?: string) => void;
 }
 
-export const DocsPage: React.FC<DocsPageProps> = ({ onBack }) => {
+export const DocsPage: React.FC<DocsPageProps> = ({ onBack, onNavigate }) => {
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
@@ -63,7 +64,7 @@ export const DocsPage: React.FC<DocsPageProps> = ({ onBack }) => {
               The SLM Mindset
             </h3>
             <p className="mb-0">
-              Zest is powered by a <strong>Small Language Model (SLM)</strong>. Unlike massive cloud LLMs, it is designed for efficiency and specific utility. Our CLI Assistant is built on the industry leading <strong>Qwen 3 model</strong>, one of the most capable small language models, fine-tuned specifically using real world examples.
+              Zest is powered by <strong>Small Language Models (SLM)</strong>. Unlike massive cloud LLMs, they are designed for efficiency and specific utility. Our CLI Assistants are built on the industry leading <strong>Qwen models</strong>, some of the most capable small language models, which we fine-tuned specifically using highly curated real world examples.
             </p>
           </div>
 
@@ -126,7 +127,7 @@ export const DocsPage: React.FC<DocsPageProps> = ({ onBack }) => {
 
               <div>
                 <h4 className="text-xl font-black text-slate-900 mb-4">Logout (Frees device slot)</h4>
-                <p className="mb-4 text-sm">Use <code>--logout</code> to free a device slot while keeping the model on disk. You can re-activate later without re-downloading.</p>
+                <p className="mb-4 text-sm">Use <code>--logout</code> to deregister the device and free a device slot while keeping the model on disk for later re-activation.</p>
                 <code className="block bg-slate-900 text-yellow-400 p-4 rounded-xl font-mono text-sm">
                   zest --logout                  # Log out from ALL tiers<br />
                   zest --logout --lite           # Log out from Lite only<br />
@@ -137,7 +138,7 @@ export const DocsPage: React.FC<DocsPageProps> = ({ onBack }) => {
 
               <div>
                 <h4 className="text-xl font-black text-slate-900 mb-4">Uninstall (Removes everything)</h4>
-                <p className="mb-4 text-sm">Use <code>--uninstall</code> to completely remove the model file, license, and deregister the device. This frees disk space.</p>
+                <p className="mb-4 text-sm">Use <code>--uninstall</code> to deregister the device and remove the model file and license. This frees both disk space and a device slot.</p>
                 <code className="block bg-slate-900 text-yellow-400 p-4 rounded-xl font-mono text-sm">
                   zest --uninstall                  # Full uninstall of ALL tiers<br />
                   zest --uninstall --lite           # Uninstall Lite only<br />
@@ -257,7 +258,7 @@ export const DocsPage: React.FC<DocsPageProps> = ({ onBack }) => {
           <section id="benchmark" className="scroll-mt-32">
             <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-8 border-b-2 border-slate-100 pb-4">4. Benchmark</h2>
             <p>
-              We evaluated Zest on the <a href="https://intercode-benchmark.github.io/" target="_blank" rel="noopener noreferrer" className="text-red-500 hover:underline">intercode nl2bash benchmark</a>. Using an LLM judge (Opus 4.5), our local model completed <strong>34% of tasks with zero-shot prompting</strong>. This performance puts Zest in line with <strong>ChatGPT 4 (34% in 2023)</strong> and significantly ahead of older models like <strong>Llama-2-70B-Chat (31.5% in 2023)</strong> and <strong>Vicuna-13B (24.5% in 2023)</strong>.
+              We evaluated Zest on the <a href="https://intercode-benchmark.github.io/" target="_blank" rel="noopener noreferrer" className="text-red-500 hover:underline">intercode nl2bash benchmark</a>. Using an LLM judge (Opus 4.5), our local model resolved <strong>34% of tasks with zero-shot prompting</strong>. This performance puts Zest in line with <strong>ChatGPT 4 (34%)</strong> and significantly ahead of larger models like <strong>Llama-2-70B-Chat (31.5%)</strong> and <strong>Vicuna-13B (24.5%)</strong> on the InterCode leaderboard.
             </p>
             <p>
               Our 96% accuracy rate is based on internal testing against 50 hand-selected, unseen Unix tasks.
@@ -265,7 +266,7 @@ export const DocsPage: React.FC<DocsPageProps> = ({ onBack }) => {
               Zest CLI produced syntactically correct commands that achieved the intended outcome in a zero-shot environment. The remaining 4% typically involved hallucinated flags or selecting a sub-optimal command for the specific shell environment.
             </p>
             <div className="mt-12 bg-slate-50 border border-slate-200 p-4 rounded-xl text-xs italic w-full leading-relaxed">
-              We built this tool to handle most everyday tasks, but it won't get everything right all the time. If something doesn't work as expected, let us know using the contact form. We really don't collect or store your prompts or outputs, so we can't see issues unless you tell us about them. We're always working to improve, and your feedback really helps.
+              We built this tool to handle most everyday tasks, but it won't get everything right all the time. If something doesn't work as expected, let us know using the <button onClick={() => onNavigate("report")} className="text-red-500 hover:underline font-bold">contact form</button>. We really don't collect or store your prompts or outputs, so we can't see issues unless you tell us about them. We're always working to improve, and your feedback really helps.
             </div>
           </section>
 

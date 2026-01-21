@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { MessageSquare, ShieldCheck, Send, CheckCircle2 } from "lucide-react";
+import { MessageSquare, ShieldCheck, Send, CheckCircle2, AlertCircle } from "lucide-react";
 import { PageHeader } from "../shared/PageHeader";
 import { GradientButton } from "../shared/GradientButton";
 
@@ -7,34 +7,42 @@ interface ReportIssuesPageProps {
   onBack: () => void;
 }
 
+const FEEDBACK_API_URL = "https://zestcli.com/api/feedback";
+
 export const ReportIssuesPage: React.FC<ReportIssuesPageProps> = ({ onBack }) => {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [prompt, setPrompt] = useState("");
   const [failedOutput, setFailedOutput] = useState("");
   const [expectedOutput, setExpectedOutput] = useState("");
   const [modelVersion, setModelVersion] = useState("Zest Lite");
+  const [website, setWebsite] = useState(""); // Honeypot field
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
+    setError(null);
 
-    const emailBody = `
-Natural Language Prompt:
-${prompt}
+    try {
+      const response = await fetch(FEEDBACK_API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt, failedOutput, expectedOutput, modelVersion, website }),
+      });
 
-Failed Model Output:
-${failedOutput}
+      const data = await response.json();
 
-Expected Model Output:
-${expectedOutput || "Not provided"}
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to submit feedback");
+      }
 
-Model Version:
-${modelVersion}
-    `.trim();
-
-    const mailtoLink = `mailto:info@zestcli.com?subject=Model Failure Report&body=${encodeURIComponent(emailBody)}`;
-    window.location.href = mailtoLink;
-
-    setSubmitted(true);
+      setSubmitted(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to submit feedback. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (submitted) {
@@ -81,6 +89,18 @@ ${modelVersion}
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-8 mt-12 not-prose">
+          {/* Honeypot field - hidden from users, catches bots */}
+          <input
+            type="text"
+            name="website"
+            value={website}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setWebsite(e.target.value)}
+            tabIndex={-1}
+            autoComplete="off"
+            className="absolute left-[-9999px] w-1 h-1 overflow-hidden"
+            aria-hidden="true"
+          />
+
           <div className="space-y-2">
             <label className="text-xs font-black uppercase tracking-widest text-slate-400 ml-4">Natural Language Prompt</label>
             <p className="text-xs text-slate-400 ml-4 mt-1">You can use comma-separated values to report multiple issues</p>
@@ -129,9 +149,16 @@ ${modelVersion}
             </select>
           </div>
 
-          <GradientButton type="submit" size="lg" fullWidth className="flex items-center justify-center gap-3">
+          {error && (
+            <div className="bg-red-50 border border-red-200 rounded-2xl p-4 flex items-start gap-3">
+              <AlertCircle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
+              <p className="text-sm text-red-700 font-medium">{error}</p>
+            </div>
+          )}
+
+          <GradientButton type="submit" size="lg" fullWidth disabled={loading} className="flex items-center justify-center gap-3">
             <Send className="w-5 h-5" />
-            Send Feedback
+            {loading ? "Sending..." : "Send Feedback"}
           </GradientButton>
         </form>
       </div>

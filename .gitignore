@@ -37,3 +37,6 @@ Thumbs.db
 # Vite
 .vite
 *.local
+
+# Wrangler
+.wrangler/
