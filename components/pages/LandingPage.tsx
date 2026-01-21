@@ -59,7 +59,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
               <div className="absolute top-6 right-6 opacity-10 group-hover:opacity-20 transition-opacity">
                 <Layers className="w-12 h-12 text-slate-900" />
               </div>
-              <h3 className="text-3xl font-black text-slate-900 mb-4 relative z-10">Powered by Qwen3</h3>
+              <h3 className="text-3xl font-black text-slate-900 mb-4 relative z-10">Powered by Qwen</h3>
               <p className="text-slate-600 font-medium mb-6 leading-relaxed relative z-10 flex-grow">
                 Built on fully open-source, commercial-friendly foundations. Fine-tuned specifically on millions of real-world CLI examples.
               </p>
