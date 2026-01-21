@@ -52,7 +52,7 @@ export const ReportIssuesPage: React.FC<ReportIssuesPageProps> = ({ onBack }) =>
         <div className="bg-slate-50 p-12 rounded-[3rem] border border-slate-100 text-center">
           <h3 className="text-2xl font-black text-slate-900 mb-4">We've got it!</h3>
           <p className="text-slate-600 font-medium mb-8 max-w-lg mx-auto leading-relaxed">
-            Thank you for helping us improve Zest. We'll use your report to refine our Small Language Model in future releases.
+            Thank you for helping us improve Zest. We'll use your report to refine our Small Language Models in future releases.
           </p>
           <button
             onClick={onBack}

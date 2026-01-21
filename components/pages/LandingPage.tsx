@@ -59,9 +59,9 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
               <div className="absolute top-6 right-6 opacity-10 group-hover:opacity-20 transition-opacity">
                 <Layers className="w-12 h-12 text-slate-900" />
               </div>
-              <h3 className="text-3xl font-black text-slate-900 mb-4 relative z-10">Powered by Qwen</h3>
+              <h3 className="text-3xl font-black text-slate-900 mb-4 relative z-10">Expertly Tuned</h3>
               <p className="text-slate-600 font-medium mb-6 leading-relaxed relative z-10 flex-grow">
-                Built on fully open-source, commercial-friendly foundations. Fine-tuned specifically on millions of real-world CLI examples.
+                Built on Qwen foundations and perfected with a curated dataset of real-world CLI logic. Rigorous LLM-cleansing, human validation, and precise tuning ensure optimized models for dependable, offline terminal assistance.
               </p>
               <div className="flex flex-wrap gap-4 relative z-10">
                 <span className="px-4 py-2 rounded-xl bg-white border border-slate-200 text-slate-700 font-bold text-xs uppercase tracking-wider">Local Inference</span>
@@ -75,7 +75,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
               </div>
               <h3 className="text-3xl font-black text-slate-900 mb-4 relative z-10">96%+ Accuracy</h3>
               <p className="text-slate-600 font-medium mb-6 leading-relaxed relative z-10 flex-grow">
-                Verified performance on internal benchmarks covering real-world workloads. Designed for reliable command translation across a wide range of technical use cases. <span className="text-[8px] text-slate-400 font-black inline tracking-widest uppercase ml-1 opacity-80">(Zest Extra Spicy)</span>
+                Verified performance on internal benchmarks covering complex, real-world terminal workloads. Designed to deliver reliable command translation and syntax precision across a wide range of technical use cases. <span className="text-[8px] text-slate-400 font-black inline tracking-widest uppercase ml-1 opacity-80">(Zest Extra Spicy)</span>
               </p>
               <div className="flex flex-wrap gap-4 relative z-10">
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-slate-200 text-slate-700 font-bold text-xs uppercase tracking-wider">
