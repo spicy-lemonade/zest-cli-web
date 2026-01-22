@@ -57,7 +57,7 @@ export const Pricing: React.FC = () => {
           : 'border-slate-100 shadow-xl shadow-slate-200/50 grayscale-[0.2] hover:grayscale-0 hover:border-yellow-400'
       }`}>
         {highlight && (
-          <div className="absolute top-[32px] right-[-50px] w-56 bg-yellow-400 text-slate-900 text-[10px] font-black py-2.5 rotate-45 uppercase tracking-[0.2em] text-center shadow-lg z-20 pointer-events-none border-b border-yellow-500/40">
+          <div className="absolute top-[44px] right-[-50px] w-56 bg-yellow-400 text-slate-900 text-[10px] font-black py-2.5 rotate-45 uppercase tracking-[0.2em] text-center shadow-lg z-20 pointer-events-none border-b border-yellow-500/40">
             Most Accurate
           </div>
         )}
