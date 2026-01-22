@@ -53,10 +53,6 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
               <div className="absolute top-6 right-6 opacity-10 group-hover:opacity-20 transition-opacity">
                 <Layers className="w-12 h-12 text-slate-900" />
               </div>
-              <div className="inline-flex items-center gap-2 bg-yellow-400/10 text-yellow-700 px-3 py-1.5 rounded-full border border-yellow-400/20 font-bold text-xs mb-4 w-fit relative z-10">
-                <Flame className="w-4 h-4 text-red-500" />
-                New: Zest v1.0 (Qwen Engine)
-              </div>
               <h3 className="text-3xl font-black text-slate-900 mb-4 relative z-10">Expertly Tuned</h3>
               <p className="text-slate-600 font-medium mb-6 leading-relaxed relative z-10 flex-grow">
                 Built on Qwen foundations and perfected with curated with CLI data from the real world. Rigorous LLM-cleansing, synthetic data, human validation, and precise tuning deliver optimized models for dependable offline CLI support.
@@ -64,6 +60,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
               <div className="flex flex-wrap gap-4 relative z-10">
                 <span className="px-4 py-2 rounded-xl bg-white border border-slate-200 text-slate-700 font-bold text-xs uppercase tracking-wider">Local Inference</span>
                 <span className="px-4 py-2 rounded-xl bg-white border border-slate-200 text-slate-700 font-bold text-xs uppercase tracking-wider">Zero Tracking</span>
+                <span className="px-4 py-2 rounded-xl bg-white border border-slate-200 text-slate-700 font-bold text-xs uppercase tracking-wider">Qwen Engine</span>
               </div>
             </Card>
 
