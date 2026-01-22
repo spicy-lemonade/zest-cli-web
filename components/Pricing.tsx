@@ -122,7 +122,7 @@ export const Pricing: React.FC = () => {
         </button>
 
         <p className="text-center mt-4 text-xs text-slate-500 font-medium leading-relaxed px-4">
-          5-day free trial. {symbol}{price} after.
+          5-day trial. {symbol}{price} one-time payment after.
         </p>
         <p className="text-center mt-2 text-[10px] text-slate-400 font-medium">
           Already paid? Activate in the app.
