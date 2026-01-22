@@ -19,7 +19,7 @@ const App: React.FC = () => {
   const renderView = () => {
     switch (currentView) {
       case "about":
-        return <AboutPage onBack={() => handleNav("landing")} />;
+        return <AboutPage onBack={() => handleNav("landing")} onNavigate={handleNav} />;
       case "changelog":
         return <ChangelogPage onBack={() => handleNav("landing")} />;
       case "privacy":

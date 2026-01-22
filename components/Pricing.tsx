@@ -331,19 +331,19 @@ export const Pricing: React.FC = () => {
             <SpecItem
               icon={<Zap className="w-5 h-5" />}
               label="Graphics"
-              value="CPU Optimized; no dedicated GPU required"
+              value="Metal GPU (CPU fallback)"
               iconColor="text-slate-900"
             />
             <SpecItem
               icon={<Zap className="w-5 h-5" />}
               label="Graphics"
-              value="Unified Memory for optimized performance"
+              value="Metal GPU (CPU fallback)"
               iconColor="text-yellow-700"
             />
             <SpecItem
               icon={<Zap className="w-5 h-5" />}
               label="Graphics"
-              value="Unified Memory for 0ms local latency"
+              value="Metal GPU (CPU fallback)"
               iconColor="text-red-600"
             />
 

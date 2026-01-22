@@ -23,12 +23,6 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
         <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-yellow-100/50 blur-[120px] rounded-full -z-10" />
         <div className="absolute bottom-[20%] right-[-10%] w-[40%] h-[40%] bg-red-50/50 blur-[100px] rounded-full -z-10" />
         <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
-          <div className="flex flex-wrap items-center justify-center gap-4 mb-10 animate-in fade-in slide-in-from-bottom-4 duration-700">
-            <div className="inline-flex items-center gap-2 bg-yellow-400/10 text-yellow-700 px-4 py-2 rounded-full border border-yellow-400/20 font-bold text-sm">
-              <Flame className="w-4 h-4 text-red-500" />
-              New: Zest v1.0 (Qwen Engine)
-            </div>
-          </div>
           <h1 className="text-6xl md:text-8xl font-black mb-8 tracking-tighter text-slate-900 max-w-5xl leading-[1.05]">
             Give your shell a <br />
             <span className="zest-gradient-text">spicy upgrade.</span>
@@ -59,9 +53,13 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
               <div className="absolute top-6 right-6 opacity-10 group-hover:opacity-20 transition-opacity">
                 <Layers className="w-12 h-12 text-slate-900" />
               </div>
+              <div className="inline-flex items-center gap-2 bg-yellow-400/10 text-yellow-700 px-3 py-1.5 rounded-full border border-yellow-400/20 font-bold text-xs mb-4 w-fit relative z-10">
+                <Flame className="w-4 h-4 text-red-500" />
+                New: Zest v1.0 (Qwen Engine)
+              </div>
               <h3 className="text-3xl font-black text-slate-900 mb-4 relative z-10">Expertly Tuned</h3>
               <p className="text-slate-600 font-medium mb-6 leading-relaxed relative z-10 flex-grow">
-                Built on Qwen foundations and perfected with a curated dataset of real-world CLI logic. Rigorous LLM-cleansing, human validation, and precise tuning ensure optimized models for dependable, offline terminal assistance.
+                Built on Qwen foundations and perfected with curated with CLI data from the real world. Rigorous LLM-cleansing, synthetic data, human validation, and precise tuning deliver optimized models for dependable offline CLI support.
               </p>
               <div className="flex flex-wrap gap-4 relative z-10">
                 <span className="px-4 py-2 rounded-xl bg-white border border-slate-200 text-slate-700 font-bold text-xs uppercase tracking-wider">Local Inference</span>
