@@ -184,7 +184,7 @@ export const Pricing: React.FC = () => {
             description="Our signature blend of power and precision. Designed for developers who need deeper logic for complex shell pipes and automation, without sacrificing system speed. The professional's choice for a private, local AI."
             productType="hot"
             features={[
-              "Zest 7B Coder (Qwen2.5-Q5KM)",
+              "Zest 7B Coder (Qwen2.5-Q5)",
               "100% Offline usage",
               "No tracking of prompts or outputs",
               "No GPU required (Balanced Power)",
