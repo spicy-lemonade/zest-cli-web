@@ -165,7 +165,7 @@ export const Pricing: React.FC = () => {
             description="The essential companion for your daily terminal workflow. Fine-tuned for speed and efficiency, it handles standard CLI tasks instantly while maintaining a tiny resource footprint. Perfect for any laptop, anywhere."
             productType="lite"
             features={[
-              "Zest 4B (Tuned Qwen3)",
+              "Zest 4B (Qwen3)",
               "100% Offline usage",
               "No tracking of prompts or outputs",
               "No GPU required (CPU Optimized)",
@@ -184,7 +184,7 @@ export const Pricing: React.FC = () => {
             description="Our signature blend of power and precision. Designed for developers who need deeper logic for complex shell pipes and automation, without sacrificing system speed. The professional's choice for a private, local AI."
             productType="hot"
             features={[
-              "Zest 7B (Tuned Qwen2.5-Coder-Q5KM)",
+              "Zest 7B Coder (Qwen2.5-Q5KM)",
               "100% Offline usage",
               "No tracking of prompts or outputs",
               "No GPU required (Balanced Power)",
@@ -201,10 +201,10 @@ export const Pricing: React.FC = () => {
             originalPrice={89}
             discountPercent={34}
             tagline="Maximum Precision"
-            description="The purest, uncompromised model for mission-critical operations. Preserves full precision for the highest possible accuracy in multi-step scripts and complex command generation. Built for modern, high-performance systems."
+            description="The purest, uncompromised model for mission-critical operations. Preserves full precision for the highest possible accuracy in complex command generation. Built for modern, high-performance systems."
             productType="extra_spicy"
             features={[
-              "Zest 7B (Tuned Qwen2.5-Coder-FP16)",
+              "Zest 7B Coder (Qwen2.5-FP16)",
               "100% Offline usage",
               "No tracking of prompts or outputs",
               "No GPU required (High-Precision)",
