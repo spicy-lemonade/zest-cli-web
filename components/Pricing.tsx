@@ -216,6 +216,9 @@ export const Pricing: React.FC = () => {
         </div>
 
         <div className="mb-20 text-center">
+          <p className="text-slate-400 text-sm font-medium leading-relaxed max-w-3xl mx-auto mb-6">
+            This is a small language model that will make mistakes due to its size. While we make every effort to train it to be accurate, please treat your purchase with this in mind. The model is an assistant, not a tool to replace your workflow. If you find model mistakes, please use the "report an issue" page.
+          </p>
           <p className="text-slate-400 text-xs font-bold uppercase tracking-widest">
             Securely processed with Stripe — We never see your card details.
           </p>
