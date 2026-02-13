@@ -38,6 +38,19 @@ export const FAQPage: React.FC<FAQPageProps> = ({ onBack, onNavigate }) => {
       )
     },
     {
+      q: "I'm having installation issues. macOS says the app is blocked or can't be opened. What should I do?",
+      a: (
+        <div className="space-y-4">
+          <p>This is a common macOS security feature when installing apps distributed outside of the App Store. Here's how to resolve it:</p>
+          <ol className="list-decimal pl-5 space-y-3">
+            <li><strong>Right-Click Method:</strong> Navigate to your Applications folder, right-click on Zest, and select "Open". You'll see a security prompt with an "Open" button.</li>
+            <li><strong>System Settings Method:</strong> If the right-click method doesn't work, go to <strong>System Settings &gt; Privacy & Security</strong>, scroll down, and you'll see a message about Zest being blocked. Click "Open Anyway".</li>
+          </ol>
+          <p className="mt-4">This happens because Zest is not currently notarized by Apple. Notarization is Apple's process for scanning apps for malicious software, and it's required for apps distributed outside the App Store to open without warnings. We're actively working on getting Zest notarized to provide a smoother installation experience!</p>
+        </div>
+      )
+    },
+    {
       q: "The command generated isn't working as expected. What should I do?",
       a: (
         <>
@@ -66,19 +79,6 @@ export const FAQPage: React.FC<FAQPageProps> = ({ onBack, onNavigate }) => {
           </ul>
           <p className="mt-4">Any of these methods will free up one of your 2 available device slots per product. Run <code>zest --help</code> for more information on available commands.</p>
         </>
-      )
-    },
-    {
-      q: "I'm having installation issues. macOS says the app is blocked or can't be opened. What should I do?",
-      a: (
-        <div className="space-y-4">
-          <p>This is a common macOS security feature when installing apps distributed outside of the App Store. Here's how to resolve it:</p>
-          <ol className="list-decimal pl-5 space-y-3">
-            <li><strong>Right-Click Method:</strong> Navigate to your Applications folder, right-click on Zest, and select "Open". You'll see a security prompt with an "Open" button.</li>
-            <li><strong>System Settings Method:</strong> If the right-click method doesn't work, go to <strong>System Settings &gt; Privacy & Security</strong>, scroll down, and you'll see a message about Zest being blocked. Click "Open Anyway".</li>
-          </ol>
-          <p className="mt-4">This happens because Zest is not currently notarized by Apple. Notarization is Apple's process for scanning apps for malicious software, and it's required for apps distributed outside the App Store to open without warnings. We're actively working on getting Zest notarized to provide a smoother installation experience!</p>
-        </div>
       )
     },
     {
