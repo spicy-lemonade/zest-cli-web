@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { HelpCircle, Download, X } from "lucide-react";
+import { HelpCircle } from "lucide-react";
 import { PageHeader } from "../shared/PageHeader";
 import { FAQItem } from "../shared/FAQItem";
-import { GradientButton } from "../shared/GradientButton";
 import type { View } from "../../hooks/useNavigation";
 
 interface FAQPageProps {
@@ -12,19 +11,6 @@ interface FAQPageProps {
 
 export const FAQPage: React.FC<FAQPageProps> = ({ onBack, onNavigate }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const [showDmgModal, setShowDmgModal] = useState(false);
-  const [email, setEmail] = useState("");
-  const [sent, setSent] = useState(false);
-
-  const handleRequestLink = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSent(true);
-    setTimeout(() => {
-      setShowDmgModal(false);
-      setSent(false);
-      setEmail("");
-    }, 3000);
-  };
 
   const faqs = [
     {
@@ -37,9 +23,9 @@ export const FAQPage: React.FC<FAQPageProps> = ({ onBack, onNavigate }) => {
             <li><strong>Install:</strong> Open the DMG and drag Zest to your Applications folder.</li>
             <li><strong>Activate:</strong> Run <code>zest</code> in Terminal and choose "Start free trial".</li>
             <li><strong>Verify:</strong> Enter your email and the 6-digit code sent to you.</li>
-            <li><strong>Use:</strong> You have 5 days to try all features on any device.</li>
+            <li><strong>Use:</strong> You have 5 days to try Zest on any device.</li>
           </ol>
-          <p className="mt-4">After the trial expires, you'll be prompted to purchase. Your email is already saved, so checkout is seamless.</p>
+          <p className="mt-4">After the trial expires, you'll be prompted to purchase. Payments are processed securely with Stripe and we never see your card details.</p>
         </>
       )
     },
@@ -63,14 +49,7 @@ export const FAQPage: React.FC<FAQPageProps> = ({ onBack, onNavigate }) => {
       q: "I lost my download file (DMG). How can I reinstall Zest on another device?",
       a: (
         <div className="space-y-4">
-          <p>If you've accidentally deleted your DMG and need a fresh link to install the model on another device, we've got you covered. Provide the email used for your purchase below, and if it matches our database, you'll receive a new download link instantly.</p>
-          <button
-            onClick={() => setShowDmgModal(true)}
-            className="px-6 py-3 bg-slate-900 text-white font-black rounded-2xl hover:bg-slate-800 transition-all text-sm flex items-center gap-2"
-          >
-            <Download className="w-4 h-4" />
-            Recover Download Link
-          </button>
+          <p>No problem! You can download Zest again from the home page. After reinstalling, simply run <code>zest</code> in Terminal and re-enter your subscription email during setup. If you have an active subscription, your account will be automatically reactivated on the new device.</p>
         </div>
       )
     },
@@ -78,14 +57,59 @@ export const FAQPage: React.FC<FAQPageProps> = ({ onBack, onNavigate }) => {
       q: "How do I remove Zest and free up a license slot?",
       a: (
         <>
-          <p className="mb-4">You have three main ways to manage your device slots:</p>
+          <p className="mb-4">You have several ways to manage your device slots:</p>
           <ul className="list-disc pl-5 space-y-2">
             <li><strong>zest --logout:</strong> Deregisters your machine while keeping the model files on disk. Perfect for temporary transfers.</li>
+            <li><strong>zest --logout --remote:</strong> Remotely logout from any device without needing physical access to it. This is useful if you no longer have access to a device but need to free up a license slot.</li>
             <li><strong>zest --uninstall:</strong> Fully removes the model files and deregisters the device to free up disk space.</li>
             <li><strong>Drag and Drop:</strong> Dragging the Zest app to the Trash from your Applications folder is functionally identical to running <code>zest --uninstall</code>; it will automatically deregister your slot.</li>
           </ul>
-          <p className="mt-4">Any of these methods will free up one of your 2 available device slots per product.</p>
+          <p className="mt-4">Any of these methods will free up one of your 2 available device slots per product. Run <code>zest --help</code> for more information on available commands.</p>
         </>
+      )
+    },
+    {
+      q: "I'm having installation issues. macOS says the app is blocked or can't be opened. What should I do?",
+      a: (
+        <div className="space-y-4">
+          <p>This is a common macOS security feature when installing apps distributed outside of the App Store. Here's how to resolve it:</p>
+          <ol className="list-decimal pl-5 space-y-3">
+            <li><strong>Right-Click Method:</strong> Navigate to your Applications folder, right-click on Zest, and select "Open". You'll see a security prompt with an "Open" button.</li>
+            <li><strong>System Settings Method:</strong> If the right-click method doesn't work, go to <strong>System Settings &gt; Privacy & Security</strong>, scroll down, and you'll see a message about Zest being blocked. Click "Open Anyway".</li>
+          </ol>
+          <p className="mt-4">This happens because Zest is not currently notarized by Apple. Notarization is Apple's process for scanning apps for malicious software, and it's required for apps distributed outside the App Store to open without warnings. We're actively working on getting Zest notarized to provide a smoother installation experience!</p>
+        </div>
+      )
+    },
+    {
+      q: "Why did you choose Qwen for Zest?",
+      a: (
+        <div className="space-y-4">
+          <p className="mb-4">We selected Alibaba Cloud's Qwen model series for their exceptional balance of performance, size, and specialized capabilities:</p>
+
+          <div className="mb-4">
+            <h4 className="font-bold text-slate-900 mb-2">The Models We Use:</h4>
+            <ul className="list-disc pl-5 space-y-2">
+              <li><strong>Qwen3-4b:</strong> An incredibly efficient 4-billion parameter model that provides fast, accurate responses for general CLI tasks while using minimal system resources.</li>
+              <li><strong>Qwen-2.5-coder-7b:</strong> An advanced open-source coding model specifically optimized for code generation, code reasoning, and bug fixing. Despite being only 7 billion parameters, it rivals much larger models in coding performance.</li>
+            </ul>
+          </div>
+
+          <div className="mb-4">
+            <h4 className="font-bold text-slate-900 mb-2">Key Benefits:</h4>
+            <ul className="list-disc pl-5 space-y-2">
+              <li><strong>Small Size:</strong> Both models are compact enough to run efficiently on local machines without requiring powerful hardware or consuming excessive disk space.</li>
+              <li><strong>Speed:</strong> Smaller model size means faster inference times, giving you near-instant command suggestions.</li>
+              <li><strong>Privacy:</strong> Running locally means your commands and data never leave your machine.</li>
+              <li><strong>Specialized Performance:</strong> Qwen-2.5-coder is specifically trained on code-related tasks, making it exceptionally good at understanding programming context and generating accurate shell commands.</li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-bold text-slate-900 mb-2">Our Data Preparation & Training Process:</h4>
+            <p>We've fine-tuned these models using a rigorous human-in-the-loop approach. We combine sourced and synthetic datasets tailored for CLI commands, which are ranked by reasoning LLMs and manually validated by humans. The data is carefully balanced to ensure both rare and common tools are well-represented, then filtered to remove high-risk commands. Throughout the process, LLM-assisted improvements are paired with human review to ensure quality, accuracy, and safety.</p>
+          </div>
+        </div>
       )
     },
     {
@@ -119,42 +143,6 @@ export const FAQPage: React.FC<FAQPageProps> = ({ onBack, onNavigate }) => {
           />
         ))}
       </div>
-
-      {showDmgModal && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center px-6">
-          <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onClick={() => setShowDmgModal(false)} />
-          <div className="bg-white p-10 rounded-[3rem] shadow-2xl relative z-10 max-w-md w-full animate-in zoom-in-95 duration-200">
-            <button
-              onClick={() => setShowDmgModal(false)}
-              className="absolute top-6 right-6 p-2 hover:bg-slate-100 rounded-full transition-colors"
-            >
-              <X className="w-5 h-5 text-slate-400" />
-            </button>
-            <h3 className="text-2xl font-black text-slate-900 mb-2">Recover DMG</h3>
-            <p className="text-slate-500 font-medium mb-8">Enter the email associated with your purchase.</p>
-
-            {sent ? (
-              <div className="bg-green-50 text-green-700 p-6 rounded-3xl border border-green-100 font-bold text-center">
-                Email found! A new download link has been sent to your inbox.
-              </div>
-            ) : (
-              <form onSubmit={handleRequestLink} className="space-y-4">
-                <input
-                  type="email"
-                  required
-                  placeholder="name@company.com"
-                  className="w-full p-5 bg-slate-50 border-2 border-slate-100 rounded-2xl focus:border-red-500 focus:outline-none transition-all font-bold"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-                <GradientButton type="submit" size="lg" fullWidth>
-                  Request Download Link
-                </GradientButton>
-              </form>
-            )}
-          </div>
-        </div>
-      )}
     </section>
   );
 };
