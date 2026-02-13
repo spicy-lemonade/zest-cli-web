@@ -23,7 +23,7 @@ export const FAQItem: React.FC<FAQItemProps> = ({ q, a, isOpen, onToggle }) => (
       </div>
     </button>
     <div
-      className={`transition-all duration-300 ease-in-out ${isOpen ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0 overflow-hidden"}`}
+      className={`transition-all duration-300 ease-in-out ${isOpen ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0 overflow-hidden"}`}
     >
       <div className="px-10 pb-10">
         <div className="text-slate-600 font-medium leading-relaxed pl-10 border-l-2 border-slate-200">
