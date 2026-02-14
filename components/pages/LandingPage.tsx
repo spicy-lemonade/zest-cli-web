@@ -75,7 +75,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
               <div className="flex flex-wrap gap-4 relative z-10">
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-slate-200 text-slate-700 font-bold text-xs uppercase tracking-wider">
                   <CheckCircle2 className="w-4 h-4 text-slate-500" />
-                  <span>Enterprise-Grade Reliability</span>
+                  <span>Verified Reliability</span>
                 </div>
               </div>
             </Card>
