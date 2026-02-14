@@ -165,7 +165,7 @@ export const Pricing: React.FC = () => {
             description="The essential companion for your daily terminal workflow. Fine-tuned for speed and efficiency, it handles standard CLI tasks instantly while maintaining a tiny resource footprint. Perfect for any laptop, anywhere."
             productType="lite"
             features={[
-              "Zest 4B (Qwen3)",
+              "Zest 4B (Qwen3-Q5)",
               "100% Offline usage",
               "No tracking of prompts or outputs",
               "No GPU required (CPU Optimized)",
