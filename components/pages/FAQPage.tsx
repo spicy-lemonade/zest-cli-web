@@ -113,11 +113,46 @@ export const FAQPage: React.FC<FAQPageProps> = ({ onBack, onNavigate }) => {
       )
     },
     {
+      q: "I'm trying to run a zest command but get an error like \"command not found\" or \"no such file or directory\".",
+      a: (
+        <div className="space-y-4">
+          <p>This means the zest command-line shortcut was removed or never created. The Zest app may still be in your Applications folder, but the Terminal command is missing.</p>
+          <p>To restore it, open the app from Applications (first time: right-click &gt; "Open"). The zest command will be recreated automatically on first launch.</p>
+          <p>Or manually recreate it:</p>
+          <div className="bg-slate-900 rounded-2xl p-6 text-yellow-400 font-mono text-sm">
+            <div>sudo ln -sf "/Applications/Zest-Lite.app/Contents/MacOS/zest-launcher" /usr/local/bin/zest</div>
+          </div>
+          <p>(Replace Zest-Lite with Zest-Hot or Zest-Extra-Spicy as appropriate.)</p>
+        </div>
+      )
+    },
+    {
       q: "How do I completely remove Zest from my computer?",
       a: (
         <div className="space-y-4">
           <p>Running <code>zest --uninstall</code> removes your license, model files, and the app from Applications, but keeps the CLI installed so you can check status or reinstall later.</p>
           <p>To completely remove all Zest files from your system, run the following commands in Terminal after uninstalling:</p>
+          <div className="bg-slate-900 rounded-2xl p-6 text-yellow-400 font-mono text-sm space-y-1">
+            <div>rm -rf ~/.zest</div>
+            <div>rm -rf ~/Library/Application\ Support/Zest</div>
+            <div>sudo rm /usr/local/bin/zest</div>
+          </div>
+        </div>
+      )
+    },
+    {
+      q: "I see \"Cleanup script not found\" when running zest --uninstall. What do I do?",
+      a: (
+        <div className="space-y-4">
+          <p>This means an internal file needed for uninstallation is missing. This can happen if Zest was installed from an older version of the DMG.</p>
+          <p>To fix this, copy the file from your app bundle and retry:</p>
+          <div className="bg-slate-900 rounded-2xl p-6 text-yellow-400 font-mono text-sm space-y-1">
+            <div>cp /Applications/Zest-Lite.app/Contents/Resources/cleanup.sh ~/.zest/cleanup.sh</div>
+            <div>chmod +x ~/.zest/cleanup.sh</div>
+            <div>zest --uninstall</div>
+          </div>
+          <p>Replace Zest-Lite.app with Zest-Hot.app or Zest-Extra-Spicy.app if you installed a different tier.</p>
+          <p>If the app is no longer in Applications, download and reinstall from the DMG first. Alternatively, you can remove all Zest files manually:</p>
           <div className="bg-slate-900 rounded-2xl p-6 text-yellow-400 font-mono text-sm space-y-1">
             <div>rm -rf ~/.zest</div>
             <div>rm -rf ~/Library/Application\ Support/Zest</div>
