@@ -1,9 +1,18 @@
 import { useState } from "react";
 
-export type View = "landing" | "about" | "tos" | "changelog" | "privacy" | "docs" | "report" | "faq";
+export type View = "landing" | "about" | "tos" | "changelog" | "privacy" | "docs" | "report" | "faq" | "checkout-success";
+
+const getInitialView = (): View => {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get("checkout") === "success") {
+    window.history.replaceState({}, "", window.location.pathname);
+    return "checkout-success";
+  }
+  return "landing";
+};
 
 export const useNavigation = () => {
-  const [currentView, setCurrentView] = useState<View>("landing");
+  const [currentView, setCurrentView] = useState<View>(getInitialView);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleNav = (view: View, sectionId?: string) => {

@@ -11,6 +11,7 @@ import {
   PrivacyPolicyPage,
   TermsOfServicePage,
   LandingPage,
+  CheckoutSuccessPage,
 } from "./components/pages";
 
 const App: React.FC = () => {
@@ -32,6 +33,8 @@ const App: React.FC = () => {
         return <ReportIssuesPage onBack={() => handleNav("landing")} />;
       case "faq":
         return <FAQPage onBack={() => handleNav("landing")} onNavigate={handleNav} />;
+      case "checkout-success":
+        return <CheckoutSuccessPage onDone={() => handleNav("landing")} />;
       default:
         return <LandingPage onNavigate={handleNav} />;
     }

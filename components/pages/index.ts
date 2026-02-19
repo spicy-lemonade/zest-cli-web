@@ -6,3 +6,4 @@ export { ChangelogPage } from "./ChangelogPage";
 export { PrivacyPolicyPage } from "./PrivacyPolicyPage";
 export { TermsOfServicePage } from "./TermsOfServicePage";
 export { LandingPage } from "./LandingPage";
+export { CheckoutSuccessPage } from "./CheckoutSuccessPage";
