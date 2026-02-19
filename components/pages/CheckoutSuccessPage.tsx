@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { CheckCircle, Citrus } from "lucide-react";
 import { GradientButton } from "../shared/GradientButton";
 
-const REDIRECT_DELAY_SECONDS = 6;
+const REDIRECT_DELAY_SECONDS = 10;
 
 interface CheckoutSuccessPageProps {
   onDone: () => void;
