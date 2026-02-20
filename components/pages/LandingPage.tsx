@@ -8,13 +8,8 @@ import { Features } from "../Features";
 import { Pricing } from "../Pricing";
 import { GradientButton } from "../shared/GradientButton";
 import { Card } from "../shared/Card";
-import type { View } from "../../hooks/useNavigation";
 
-interface LandingPageProps {
-  onNavigate: (view: View, sectionId?: string) => void;
-}
-
-export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
+export const LandingPage: React.FC = () => {
   const [isStackExpanded, setIsStackExpanded] = useState(false);
 
   return (
@@ -32,14 +27,18 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             100% private. 100% offline.
           </p>
           <div className="flex flex-col items-center justify-center mb-24 w-full">
-            <GradientButton
-              onClick={() => onNavigate("landing", "pricing")}
-              size="lg"
-              className="w-full sm:w-auto flex items-center justify-center gap-3 hover:scale-105"
+            <a
+              href="#pricing"
+              className="w-full sm:w-auto"
             >
-              <Download className="w-6 h-6" />
-              Get Zest CLI (macOS)
-            </GradientButton>
+              <GradientButton
+                size="lg"
+                className="w-full sm:w-auto flex items-center justify-center gap-3 hover:scale-105"
+              >
+                <Download className="w-6 h-6" />
+                Get Zest CLI (macOS)
+              </GradientButton>
+            </a>
             <p className="mt-4 text-slate-400 font-bold text-sm">Coming soon for Windows</p>
           </div>
 

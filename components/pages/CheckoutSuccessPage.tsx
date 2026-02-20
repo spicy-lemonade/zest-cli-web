@@ -1,24 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { CheckCircle, Citrus } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { GradientButton } from "../shared/GradientButton";
 
 const REDIRECT_DELAY_SECONDS = 10;
 
-interface CheckoutSuccessPageProps {
-  onDone: () => void;
-}
-
-export const CheckoutSuccessPage: React.FC<CheckoutSuccessPageProps> = ({ onDone }) => {
+export const CheckoutSuccessPage: React.FC = () => {
+  const navigate = useNavigate();
   const [secondsLeft, setSecondsLeft] = useState(REDIRECT_DELAY_SECONDS);
 
   useEffect(() => {
     if (secondsLeft <= 0) {
-      onDone();
+      navigate("/");
       return;
     }
     const timer = setTimeout(() => setSecondsLeft((s) => s - 1), 1000);
     return () => clearTimeout(timer);
-  }, [secondsLeft, onDone]);
+  }, [secondsLeft, navigate]);
 
   const progress = ((REDIRECT_DELAY_SECONDS - secondsLeft) / REDIRECT_DELAY_SECONDS) * 100;
 
@@ -46,7 +44,7 @@ export const CheckoutSuccessPage: React.FC<CheckoutSuccessPageProps> = ({ onDone
           Check your inbox for your license details and download link.
         </p>
 
-        <GradientButton size="lg" onClick={onDone}>
+        <GradientButton size="lg" onClick={() => navigate("/")}>
           Back to homepage
         </GradientButton>
 

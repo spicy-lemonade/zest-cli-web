@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import { MessageSquare, ShieldCheck, Send, CheckCircle2, AlertCircle } from "lucide-react";
+import { Link } from "react-router-dom";
 import { PageHeader } from "../shared/PageHeader";
 import { GradientButton } from "../shared/GradientButton";
 
-interface ReportIssuesPageProps {
-  onBack: () => void;
-}
-
 const FEEDBACK_API_URL = "https://zestcli.com/api/feedback";
 
-export const ReportIssuesPage: React.FC<ReportIssuesPageProps> = ({ onBack }) => {
+export const ReportIssuesPage: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -48,18 +45,18 @@ export const ReportIssuesPage: React.FC<ReportIssuesPageProps> = ({ onBack }) =>
   if (submitted) {
     return (
       <section className="pt-32 pb-24 px-6 max-w-4xl mx-auto animate-in fade-in duration-500">
-        <PageHeader onBack={onBack} title="Thank You" subtitle="Feedback Received" icon={<CheckCircle2 className="w-10 h-10 text-white" />} />
+        <PageHeader title="Thank You" subtitle="Feedback Received" icon={<CheckCircle2 className="w-10 h-10 text-white" />} />
         <div className="bg-slate-50 p-12 rounded-[3rem] border border-slate-100 text-center">
           <h3 className="text-2xl font-black text-slate-900 mb-4">We've got it!</h3>
           <p className="text-slate-600 font-medium mb-8 max-w-lg mx-auto leading-relaxed">
             Thank you for helping us improve Zest. We'll use your report to refine our Small Language Models in future releases.
           </p>
-          <button
-            onClick={onBack}
-            className="px-8 py-4 bg-slate-900 text-white font-black rounded-2xl hover:bg-slate-800 transition-all"
+          <Link
+            to="/"
+            className="inline-block px-8 py-4 bg-slate-900 text-white font-black rounded-2xl hover:bg-slate-800 transition-all"
           >
             Return to Landing
-          </button>
+          </Link>
         </div>
       </section>
     );
@@ -67,7 +64,7 @@ export const ReportIssuesPage: React.FC<ReportIssuesPageProps> = ({ onBack }) =>
 
   return (
     <section className="pt-32 pb-24 px-6 max-w-4xl mx-auto animate-in fade-in duration-500">
-      <PageHeader onBack={onBack} title="Report Issues" subtitle="Help us refine the engine" icon={<MessageSquare className="w-10 h-10 text-white" />} />
+      <PageHeader title="Report Issues" subtitle="Help us refine the engine" icon={<MessageSquare className="w-10 h-10 text-white" />} />
 
       <div className="prose prose-slate lg:prose-xl font-medium text-slate-600 space-y-10">
         <div className="bg-slate-50 border-l-4 border-slate-900 p-8 rounded-r-[2rem]">

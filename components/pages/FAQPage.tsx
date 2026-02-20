@@ -1,15 +1,10 @@
 import React, { useState } from "react";
 import { HelpCircle } from "lucide-react";
+import { Link } from "react-router-dom";
 import { PageHeader } from "../shared/PageHeader";
 import { FAQItem } from "../shared/FAQItem";
-import type { View } from "../../hooks/useNavigation";
 
-interface FAQPageProps {
-  onBack: () => void;
-  onNavigate: (view: View) => void;
-}
-
-export const FAQPage: React.FC<FAQPageProps> = ({ onBack, onNavigate }) => {
+export const FAQPage: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const faqs = [
@@ -54,7 +49,7 @@ export const FAQPage: React.FC<FAQPageProps> = ({ onBack, onNavigate }) => {
       q: "The command generated isn't working as expected. What should I do?",
       a: (
         <>
-          Zest is currently in its early version, and we truly appreciate your confidence in being an early adopter. While we strive for accuracy, edge cases occur. Please head over to our <button onClick={() => onNavigate("report")} className="text-red-500 underline font-bold hover:text-red-600">Report Issues</button> page to share the details. We are constantly improving the engine based on research and your valuable feedback helps us prioritize the most common failures. Thank you for helping us grow.
+          Zest is currently in its early version, and we truly appreciate your confidence in being an early adopter. While we strive for accuracy, edge cases occur. Please head over to our <Link to="/report_issues" className="text-red-500 underline font-bold hover:text-red-600">Report Issues</Link> page to share the details. We are constantly improving the engine based on research and your valuable feedback helps us prioritize the most common failures. Thank you for helping us grow.
         </>
       )
     },
@@ -165,7 +160,7 @@ export const FAQPage: React.FC<FAQPageProps> = ({ onBack, onNavigate }) => {
 
   return (
     <section className="pt-32 pb-24 px-6 max-w-4xl mx-auto animate-in fade-in duration-500">
-      <PageHeader onBack={onBack} title="FAQ" subtitle="Common Questions & Answers" icon={<HelpCircle className="w-10 h-10 text-white" />} />
+      <PageHeader title="FAQ" subtitle="Common Questions & Answers" icon={<HelpCircle className="w-10 h-10 text-white" />} />
 
       <div className="space-y-6">
         {faqs.map((faq, i) => (

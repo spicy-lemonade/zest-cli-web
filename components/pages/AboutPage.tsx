@@ -1,15 +1,11 @@
 import React from "react";
 import { Citrus, Users, BookOpen, Mail, MessageSquare } from "lucide-react";
+import { Link } from "react-router-dom";
 import { PageHeader } from "../shared/PageHeader";
 
-interface AboutPageProps {
-  onBack: () => void;
-  onNavigate: (view: string) => void;
-}
-
-export const AboutPage: React.FC<AboutPageProps> = ({ onBack, onNavigate }) => (
+export const AboutPage: React.FC = () => (
   <section className="pt-32 pb-24 px-6 max-w-4xl mx-auto animate-in fade-in duration-500">
-    <PageHeader onBack={onBack} title="Spicy Lemonade" subtitle="Independent Research Lab" icon={<Citrus className="w-12 h-12 text-white" />} />
+    <PageHeader title="Spicy Lemonade" subtitle="Independent Research Lab" icon={<Citrus className="w-12 h-12 text-white" />} />
     <div className="prose prose-slate lg:prose-xl">
       <p className="text-2xl md:text-3xl text-slate-600 font-medium leading-relaxed mb-16">
         We believe the future of intelligence belongs to you.
@@ -50,12 +46,12 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack, onNavigate }) => (
             <MessageSquare className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" />
             <p className="text-slate-600 leading-relaxed font-medium">
               To help us improve the model, please report any issues or feedback through our{" "}
-              <button
-                onClick={() => onNavigate("report")}
-                className="text-yellow-600 hover:text-yellow-700 font-bold underline cursor-pointer"
+              <Link
+                to="/report_issues"
+                className="text-yellow-600 hover:text-yellow-700 font-bold underline"
               >
                 Report Issues
-              </button> page.
+              </Link> page.
             </p>
           </div>
         </div>

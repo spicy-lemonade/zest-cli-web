@@ -1,22 +1,22 @@
 import React from "react";
 import { ArrowLeft } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface PageHeaderProps {
-  onBack: () => void;
   title: string;
   subtitle?: string;
   icon: React.ReactNode;
 }
 
-export const PageHeader: React.FC<PageHeaderProps> = ({ onBack, title, subtitle, icon }) => (
+export const PageHeader: React.FC<PageHeaderProps> = ({ title, subtitle, icon }) => (
   <div className="mb-16">
-    <button
-      onClick={onBack}
+    <Link
+      to="/"
       className="group flex items-center gap-2 text-slate-500 hover:text-red-500 font-bold mb-16 transition-colors"
     >
       <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
       Back to Zest
-    </button>
+    </Link>
 
     <div className="flex items-start gap-6">
       <div className="w-20 h-20 zest-gradient-bg rounded-[2rem] flex items-center justify-center shadow-xl shadow-yellow-500/20 shrink-0 mt-1">

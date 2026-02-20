@@ -1,14 +1,10 @@
 import React from "react";
 import { Info, Lightbulb, AlertTriangle } from "lucide-react";
+import { Link } from "react-router-dom";
 import { PageHeader } from "../shared/PageHeader";
 import { Card } from "../shared/Card";
 
-interface DocsPageProps {
-  onBack: () => void;
-  onNavigate: (view: string, section?: string) => void;
-}
-
-export const DocsPage: React.FC<DocsPageProps> = ({ onBack, onNavigate }) => {
+export const DocsPage: React.FC = () => {
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
@@ -36,7 +32,7 @@ export const DocsPage: React.FC<DocsPageProps> = ({ onBack, onNavigate }) => {
 
   return (
     <section className="pt-32 pb-24 px-6 max-w-7xl mx-auto animate-in fade-in duration-500">
-      <PageHeader onBack={onBack} title="Getting Started" subtitle="User Guide & Best Practices" icon={<Info className="w-10 h-10 text-white" />} />
+      <PageHeader title="Getting Started" subtitle="User Guide & Best Practices" icon={<Info className="w-10 h-10 text-white" />} />
 
       <div className="flex flex-col lg:flex-row gap-16">
         {/* Sidebar */}
@@ -266,7 +262,7 @@ export const DocsPage: React.FC<DocsPageProps> = ({ onBack, onNavigate }) => {
               Zest CLI produced syntactically correct commands that achieved the intended outcome in a zero-shot environment. The remaining 4% typically involved hallucinated flags or selecting a sub-optimal command for the specific shell environment.
             </p>
             <div className="mt-12 bg-slate-50 border border-slate-200 p-4 rounded-xl text-xs italic w-full leading-relaxed">
-              We built this tool to handle most everyday tasks, but it won't get everything right all the time. If something doesn't work as expected, let us know using the <button onClick={() => onNavigate("report")} className="text-red-500 hover:underline font-bold">contact form</button>. We really don't collect or store your prompts or outputs, so we can't see issues unless you tell us about them. We're always working to improve, and your feedback really helps.
+              We built this tool to handle most everyday tasks, but it won't get everything right all the time. If something doesn't work as expected, let us know using the <Link to="/report_issues" className="text-red-500 hover:underline font-bold">contact form</Link>. We really don't collect or store your prompts or outputs, so we can't see issues unless you tell us about them. We're always working to improve, and your feedback really helps.
             </div>
           </section>
 
