@@ -85,8 +85,8 @@ export const FAQPage: React.FC = () => {
           <div className="mb-4">
             <h4 className="font-bold text-slate-900 mb-2">The Models We Use:</h4>
             <ul className="list-disc pl-5 space-y-2">
-              <li><strong>Qwen3-4b:</strong> An incredibly efficient 4-billion parameter model that provides fast, accurate responses for general CLI tasks while using minimal system resources.</li>
-              <li><strong>Qwen-2.5-coder-7b:</strong> An advanced open-source coding model specifically optimized for code generation, code reasoning, and bug fixing. Despite being only 7 billion parameters, it rivals much larger models in coding performance.</li>
+              <li><strong>Qwen-2.5-coder-7b:</strong> An advanced open-source coding model specifically optimized for code generation, code reasoning, and bug fixing. Powers both Lite (Q5 quantized) and Hot (full FP16 precision) tiers, offering a range of performance-to-resource trade-offs from the same proven architecture.</li>
+              <li><strong>Qwen-2.5-coder-14b:</strong> Our Extra Spicy model with 14 billion parameters — twice the reasoning depth of the 7B. Despite a smaller download than Hot (thanks to efficient Q5 quantisation), the doubled parameter count drives significantly deeper logic for complex, multi-step command generation.</li>
             </ul>
           </div>
 

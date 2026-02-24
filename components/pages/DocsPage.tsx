@@ -156,7 +156,7 @@ export const DocsPage: React.FC = () => {
 
             <div className="space-y-12">
               <Card padding="lg">
-                <h4 className="text-xl font-black text-slate-900 mb-2">Zest Extra Spicy (Full Precision)</h4>
+                <h4 className="text-xl font-black text-slate-900 mb-2">Zest Extra Spicy (14B Intelligence)</h4>
                 <p className="text-red-500 font-black mb-4">96% accuracy on production CLI workflows.</p>
                 <p className="font-bold text-slate-900 mb-2 underline decoration-red-200">Strengths:</p>
                 <ul className="list-disc pl-6 space-y-1 mb-6 text-base">
@@ -164,26 +164,26 @@ export const DocsPage: React.FC = () => {
                   <li>100% accurate on intermediate tasks (systemctl, package management)</li>
                   <li>87.5% accurate on advanced Kubernetes & system administration workflows</li>
                   <li>75% accurate on advanced text processing</li>
-                  <li>Excels at regex patterns, log analysis, text processing, command pipelines</li>
+                  <li>14 billion parameters — 2x the reasoning depth of the 7B model</li>
                 </ul>
                 <p className="text-xs font-black text-slate-400 uppercase tracking-widest bg-white py-2 px-4 rounded-xl border border-slate-200 inline-block">
-                  Model Details: 11GB | Full precision FP16 | Qwen2.5 Coder 7B | Apple Silicon recommended
+                  Model Details: 9.8GB | Q5_K_M quantization | Qwen2.5 Coder 14B | 2x parameters vs Hot
                 </p>
               </Card>
 
               <Card padding="lg">
-                <h4 className="text-xl font-black text-slate-900 mb-2">Zest Hot (Balanced Performance)</h4>
+                <h4 className="text-xl font-black text-slate-900 mb-2">Zest Hot (Full Precision)</h4>
                 <p className="text-yellow-700 font-black mb-4">94% accuracy on production CLI workflows.</p>
                 <p className="font-bold text-slate-900 mb-2 underline decoration-yellow-200">Strengths:</p>
                 <ul className="list-disc pl-6 space-y-1 mb-4 text-base">
                   <li>100% accurate on Docker, Cloud tools, and common commands</li>
                   <li>100% accurate on intermediate tasks (systemctl, package management)</li>
                   <li>Enhanced accuracy on complex shell operations</li>
-                  <li>Q5_K_M quantization balancing size and performance</li>
-                  <li>Good text processing capabilities</li>
+                  <li>Full FP16 precision — no quantization loss</li>
+                  <li>Best experience on Apple Silicon hardware</li>
                 </ul>
                 <p className="text-xs font-black text-slate-400 uppercase tracking-widest bg-white py-2 px-4 rounded-xl border border-slate-200 inline-block">
-                  Model Details: 5.1GB | Q5_K_M quantization | Qwen2.5 Coder 7B | Universal compatibility
+                  Model Details: 15GB | Full precision FP16 | Qwen2.5 Coder 7B | Apple Silicon recommended
                 </p>
               </Card>
 
@@ -199,12 +199,12 @@ export const DocsPage: React.FC = () => {
                 </ul>
                 <p className="font-bold text-slate-900 mb-2 underline decoration-slate-200">Trade-offs:</p>
                 <ul className="list-disc pl-6 space-y-1 mb-6 text-base">
-                  <li>Smaller model for faster responses</li>
-                  <li>4x smaller download compared to Extra Spicy</li>
+                  <li>Q5 quantization for efficient CPU performance</li>
+                  <li>Compact 5.1GB download — fits any machine</li>
                   <li>Runs on any Mac (Intel or Apple Silicon)</li>
                 </ul>
                 <p className="text-xs font-black text-slate-400 uppercase tracking-widest bg-white py-2 px-4 rounded-xl border border-slate-200 inline-block">
-                  Model Details: 2.7GB | Q5_K_M quantization | Qwen3 4B | Universal compatibility
+                  Model Details: 5.1GB | Q5_K_M quantization | Qwen2.5 Coder 7B | Universal compatibility
                 </p>
               </Card>
             </div>

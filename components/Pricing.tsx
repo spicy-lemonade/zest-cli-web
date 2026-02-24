@@ -162,10 +162,10 @@ export const Pricing: React.FC = () => {
             originalPrice={59}
             discountPercent={20}
             tagline="CPU Optimized"
-            description="The essential companion for your daily terminal workflow. Fine-tuned for speed and efficiency, it handles standard CLI tasks instantly while maintaining a tiny resource footprint. Perfect for any laptop, anywhere."
+            description="The essential companion for your daily terminal workflow. A 7B coder model fine-tuned for speed and efficiency, it handles standard CLI tasks instantly while keeping a modest footprint. Perfect for any laptop, anywhere."
             productType="lite"
             features={[
-              "Zest 4B (Qwen3-Q5)",
+              "Zest 7B Coder (Qwen2.5-Q5)",
               "100% Offline usage",
               "No tracking of prompts or outputs",
               "No GPU required (CPU Optimized)",
@@ -184,10 +184,10 @@ export const Pricing: React.FC = () => {
             description="Our signature blend of power and precision. Designed for developers who need deeper logic for complex shell pipes and automation, without sacrificing system speed. The professional's choice for a private, local AI."
             productType="hot"
             features={[
-              "Zest 7B Coder (Qwen2.5-Q5)",
+              "Zest 7B Coder (Qwen2.5-FP16)",
               "100% Offline usage",
               "No tracking of prompts or outputs",
-              "No GPU required (Balanced Power)",
+              "No GPU required (CPU Optimized)",
               "Instant 0ms network latency",
               "Enhanced accuracy for complex logic",
               "Buy once, keep forever"
@@ -201,15 +201,15 @@ export const Pricing: React.FC = () => {
             originalPrice={89}
             discountPercent={34}
             tagline="Maximum Precision"
-            description="The purest, uncompromised model for mission-critical operations. Preserves full precision for the highest possible accuracy in complex command generation. Built for modern, high-performance systems."
+            description="Our most intelligent model with 14 billion parameters — twice the reasoning power of the 7B. Efficient Q5 quantisation means a smaller download than Hot, but double the parameter count drives deeper logic for mission-critical operations."
             productType="extra_spicy"
             features={[
-              "Zest 7B Coder (Qwen2.5-FP16)",
+              "Zest 14B Coder (Qwen2.5-Q5)",
               "100% Offline usage",
               "No tracking of prompts or outputs",
-              "No GPU required (High-Precision)",
+              "No GPU required (CPU Optimized)",
               "Instant 0ms network latency",
-              "Maximum logic for multi-step scripts",
+              "2x the parameters, 2x the reasoning power",
               "Buy once, keep forever"
             ]}
           />
@@ -264,13 +264,13 @@ export const Pricing: React.FC = () => {
 
             {/* Recommendation Blurbs */}
             <p className="text-slate-600 font-bold text-sm leading-relaxed border-l-4 border-slate-400 pl-4 lg:min-h-[64px] flex items-center mb-4">
-              MacBook Air, Mac Mini, or greater — Optimized for everyday hardware.
+              MacBook Pro with 12GB+ RAM
             </p>
             <p className="text-slate-600 font-bold text-sm leading-relaxed border-l-4 border-yellow-500 pl-4 lg:min-h-[64px] flex items-center mb-4">
-              MacBook Pro with 12GB+ RAM — Balanced performance for developers.
+              MacBook Pro or Mac Studio with 32GB+ RAM — Full precision demands it.
             </p>
             <p className="text-slate-600 font-bold text-sm leading-relaxed border-l-4 border-red-500 pl-4 lg:min-h-[64px] flex items-center mb-4">
-              MacBook Pro or Mac Studio with 32GB+ RAM — Maximum precision.
+              MacBook Pro with 16GB+ RAM — 14B intelligence, efficient download.
             </p>
 
             {/* Spec Rows */}
@@ -283,51 +283,51 @@ export const Pricing: React.FC = () => {
             <SpecItem
               icon={<Cpu className="w-5 h-5" />}
               label="Processor"
-              value="Apple Silicon or Intel (M-series recommended)"
+              value="Apple Silicon optimized for best experience"
               iconColor="text-yellow-700"
             />
             <SpecItem
               icon={<Cpu className="w-5 h-5" />}
               label="Processor"
-              value="Apple Silicon optimized for best experience"
+              value="Apple Silicon or Intel (M-series recommended)"
               iconColor="text-red-600"
             />
 
             <SpecItem
               icon={<SquareAsterisk className="w-5 h-5" />}
               label="Memory (RAM)"
-              value="8GB RAM recommended"
-              iconColor="text-slate-900"
-            />
-            <SpecItem
-              icon={<SquareAsterisk className="w-5 h-5" />}
-              label="Memory (RAM)"
               value="12GB RAM recommended"
-              iconColor="text-yellow-700"
+              iconColor="text-slate-900"
             />
             <SpecItem
               icon={<SquareAsterisk className="w-5 h-5" />}
               label="Memory (RAM)"
               value="32GB+ RAM recommended"
+              iconColor="text-yellow-700"
+            />
+            <SpecItem
+              icon={<SquareAsterisk className="w-5 h-5" />}
+              label="Memory (RAM)"
+              value="16GB RAM recommended"
               iconColor="text-red-600"
             />
 
             <SpecItem
               icon={<HardDrive className="w-5 h-5" />}
               label="Storage"
-              value="2.9GB DMG (3GB available space)"
+              value="5.4GB DMG (6GB available space)"
               iconColor="text-slate-900"
             />
             <SpecItem
               icon={<HardDrive className="w-5 h-5" />}
               label="Storage"
-              value="5.4GB DMG (6GB available space)"
+              value="15GB DMG (18GB available space)"
               iconColor="text-yellow-700"
             />
             <SpecItem
               icon={<HardDrive className="w-5 h-5" />}
               label="Storage"
-              value="11.9GB DMG (16GB available space)"
+              value="9.8GB DMG (12GB available space)"
               iconColor="text-red-600"
             />
 
