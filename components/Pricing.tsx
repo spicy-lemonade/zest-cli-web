@@ -165,7 +165,7 @@ export const Pricing: React.FC = () => {
             description="The essential companion for your daily terminal workflow. A 7B coder model fine-tuned for speed and efficiency, it handles standard CLI tasks instantly while keeping a modest footprint. Perfect for any laptop, anywhere."
             productType="lite"
             features={[
-              "Zest 7B Coder (Qwen2.5-Q5)",
+              "Zest 7B Coder (Qwen2.5-Coder-7B-Instruct-Q5)",
               "100% Offline usage",
               "No tracking of prompts or outputs",
               "No GPU required (CPU Optimized)",
@@ -184,7 +184,7 @@ export const Pricing: React.FC = () => {
             description="Our signature blend of power and precision. Designed for developers who need deeper logic for complex shell pipes and automation, without sacrificing system speed. The professional's choice for a private, local AI."
             productType="hot"
             features={[
-              "Zest 7B Coder (Qwen2.5-FP16)",
+              "Zest 7B Coder (Qwen2.5-Coder-7B-Instruct-FP16)",
               "100% Offline usage",
               "No tracking of prompts or outputs",
               "No GPU required (CPU Optimized)",
@@ -204,7 +204,7 @@ export const Pricing: React.FC = () => {
             description="Our most intelligent model with 14 billion parameters — twice the reasoning power of the 7B. Efficient Q5 quantisation means a smaller download than Hot, but double the parameter count drives deeper logic for mission-critical operations."
             productType="extra_spicy"
             features={[
-              "Zest 14B Coder (Qwen2.5-Q5)",
+              "Zest 14B Coder (Qwen2.5-Coder-14B-Instruct-Q5)",
               "100% Offline usage",
               "No tracking of prompts or outputs",
               "No GPU required (CPU Optimized)",
