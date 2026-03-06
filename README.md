@@ -1,6 +1,6 @@
 # 🌶️ Zest CLI from Spicy Lemonade 🍋
 
-*This is the frontend repo for our website. You probably want to check out the [core repo](https://github.com/spicy-lemonade/zest-cli).*
+*This is the frontend repo for our website. You probably want the [core repo](https://github.com/spicy-lemonade/zest-cli).*
 
 #### Small language models. Runs offline. Runs on CPU. No cloud. No API keys. Privacy first. No tracking.
 
