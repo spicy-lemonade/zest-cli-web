@@ -1,14 +1,39 @@
-# Zest CLI - Website
+# 🌶️ Zest CLI from Spicy Lemonade 🍋
 
-#### Web frontend for a privacy-first natural language CLI tool. Using locally-trained small language models. No cloud. No API keys. Runs offline. Runs on CPU.
+*This is the frontend repo for our website. You probably want to check out the [core repo](https://github.com/spicy-lemonade/zest-cli).*
 
-![spicy](https://github.com/user-attachments/assets/9c3d925d-5c7b-44ed-a2c8-b73e5a897895)
+#### Small language models. Runs offline. Runs on CPU. No cloud. No API keys. Privacy first. No tracking.
 
-## 🎯 What is This?
+Zest CLI translates natural language into shell commands using local small language models. macOS only. Learn more at [zestcli.com](https://zestcli.com). 
 
-This is the **website** for Zest CLI - a command-line tool that converts natural language into shell commands using locally-trained small language models. The site showcases the product's features, pricing, and download options. The actual CLI tool runs **100% offline** with no tracking, no API keys, and complete privacy. This website explains why engineers should use it.
+![preview_zest](https://github.com/user-attachments/assets/d4891d15-6d1b-4464-9122-b6843c941764)
+
+## 🚀 Beyond the Basics
+While the GIF shows simple file management, Zest is designed for a variety of domains:
+
+- Networking: "Show all active listening TCP ports"
+- Docker: "Show the logs for the Docker container `my-app`"
+- Git: "Show the most recent commit that modified the file components/pages/AboutPage.tsx"
+- System: "Check my disk usage and sort the top 5 largest directories in my home folder"
+
+*Note: Zest works best with single requests. i.e. `show the top 5 XXX` is better than `show the top 5 XXX or YYY`*
+
+### Why Zest CLI?
+
+- **Small language models** — purpose-trained SLMs optimised for CLI command translation
+- **Runs offline** — runs entirely on your machine with no network calls at inference time
+- **Runs on CPU** — no GPU needed, works on any modern Mac
+- **No cloud** — no cloud dependencies at inference time
+- **No API keys** — no accounts, tokens, or subscriptions required
+- **Privacy first** — your commands and queries never leave your device
+- **No tracking** — zero telemetry, user data, or usage data collection
 
 ---
+
+## 🎯 What is This Repo?
+
+This is the **website** for Zest CLI - a command-line tool that converts natural language into shell commands using locally-trained small language models. The site showcases the product's features, pricing, and download options. The actual CLI tool runs **100% offline** with no tracking, no API keys, and complete privacy. 
+
 
 ## 🛠 Tech Stack
 
@@ -68,21 +93,9 @@ This is the **website** for Zest CLI - a command-line tool that converts natural
 
 ---
 
-## 🎨 Design System
-
-The site uses a **"Spicy Lemonade" brand identity** with:
-
-* **Color Palette:** Yellow-to-red gradient (`#facc15` → `#ef4444`)
-* **Typography:** Plus Jakarta Sans (headings/body), JetBrains Mono (code)
-* **Style:** Bold, modern, high-contrast design with smooth animations
-* **Components:** All styled using Tailwind utility classes with custom gradient utilities
-
----
-
 ## 🔗 Related Repositories
 
-* **[natural-language-cli-infra](https://github.com/spicy-lemonade/natural-language-cli-infra):** Terraform infrastructure for ML training pipeline (GCS buckets, IAM, billing).
-* **[natural-language-cli-eng](https://github.com/spicy-lemonade/natural-language-cli-eng):** Core CLI tool and model training code.
+* **[natural-language-cli-infra](https://github.com/spicy-lemonade/zest-cli):** Core app and infrastructure for the Zest small language model.
 
 ---
 
@@ -94,3 +107,7 @@ This site follows the same principles as the product itself:
 * **Simple:** No unnecessary dependencies or complexity.
 * **Privacy-focused:** No analytics, no tracking scripts, no third-party services.
 * **Offline-first:** The *product* runs offline; the site explains why that matters.
+
+New developers must be onboarded with IAM permissions and API keys before working with this infrastructure. See [docs/setup.md](docs/setup.md) for setup, deployment, IAM, and secrets configuration.
+
+![spicy](https://github.com/user-attachments/assets/9c3d925d-5c7b-44ed-a2c8-b73e5a897895)
