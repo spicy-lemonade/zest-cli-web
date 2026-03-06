@@ -93,12 +93,6 @@ This is the **website** for Zest CLI - a command-line tool that converts natural
 
 ---
 
-## 🔗 Related Repositories
-
-* **[natural-language-cli-infra](https://github.com/spicy-lemonade/zest-cli):** Core app and infrastructure for the Zest small language model.
-
----
-
 ## 💡 Philosophy
 
 This site follows the same principles as the product itself:
@@ -109,5 +103,13 @@ This site follows the same principles as the product itself:
 * **Offline-first:** The *product* runs offline; the site explains why that matters.
 
 New developers must be onboarded with IAM permissions and API keys before working with this infrastructure. See [docs/setup.md](docs/setup.md) for setup, deployment, IAM, and secrets configuration.
+
+---
+
+## 🔗 Related Repositories
+
+* **[natural-language-cli-infra](https://github.com/spicy-lemonade/zest-cli):** Core app and infrastructure for the Zest small language model.
+
+---
 
 ![spicy](https://github.com/user-attachments/assets/9c3d925d-5c7b-44ed-a2c8-b73e5a897895)
