@@ -315,19 +315,19 @@ export const Pricing: React.FC = () => {
             <SpecItem
               icon={<HardDrive className="w-5 h-5" />}
               label="Storage"
-              value="5.4GB DMG (6GB available space)"
+              value="~50MB DMG + 5.4GB model download (6GB available space)"
               iconColor="text-slate-900"
             />
             <SpecItem
               icon={<HardDrive className="w-5 h-5" />}
               label="Storage"
-              value="15GB DMG (18GB available space)"
+              value="~50MB DMG + 14.4GB model download (18GB available space)"
               iconColor="text-yellow-700"
             />
             <SpecItem
               icon={<HardDrive className="w-5 h-5" />}
               label="Storage"
-              value="9.8GB DMG (12GB available space)"
+              value="~50MB DMG + 9.8GB model download (12GB available space)"
               iconColor="text-red-600"
             />
 
