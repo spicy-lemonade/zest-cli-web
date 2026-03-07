@@ -3,9 +3,9 @@ import React, { useState, useEffect } from "react";
 import { Check, Download, Flame, Zap, ShieldCheck, Laptop, Rocket, Cpu, HardDrive, SquareAsterisk } from "lucide-react";
 
 const DOWNLOAD_URLS = {
-  lite: "https://storage.googleapis.com/nlcli-models/Zest-Lite-1.0.0.dmg",
-  hot: "https://storage.googleapis.com/nlcli-models/Zest-Hot-1.0.0.dmg",
-  extra_spicy: "https://storage.googleapis.com/nlcli-models/Zest-Extra-Spicy-1.0.0.dmg"
+  lite: "https://storage.googleapis.com/nlcli-downloads/Zest-Lite-1.0.0.dmg",
+  hot: "https://storage.googleapis.com/nlcli-downloads/Zest-Hot-1.0.0.dmg",
+  extra_spicy: "https://storage.googleapis.com/nlcli-downloads/Zest-Extra-Spicy-1.0.0.dmg"
 };
 
 export const Pricing: React.FC = () => {
