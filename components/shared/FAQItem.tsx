@@ -14,10 +14,10 @@ export const FAQItem: React.FC<FAQItemProps> = ({ q, a, isOpen, onToggle }) => (
       onClick={onToggle}
       className="w-full p-10 flex items-center justify-between text-left hover:bg-slate-100/50 transition-colors"
     >
-      <h3 className="text-xl font-black text-slate-900 flex items-start gap-4">
+      <h2 className="text-xl font-black text-slate-900 flex items-start gap-4">
         <span className="text-red-500 shrink-0">Q.</span>
         {q}
-      </h3>
+      </h2>
       <div className={`shrink-0 ml-4 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}>
         <ChevronDown className="w-6 h-6 text-slate-400" />
       </div>

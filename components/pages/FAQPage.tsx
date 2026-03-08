@@ -3,9 +3,15 @@ import { HelpCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import { PageHeader } from "../shared/PageHeader";
 import { FAQItem } from "../shared/FAQItem";
+import { usePageMeta } from "../shared/usePageMeta";
 
 export const FAQPage: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  usePageMeta({
+    title: "FAQ",
+    description: "Frequently asked questions about Zest CLI — free trial, pricing, privacy, system requirements, and more.",
+  });
 
   const faqs = [
     {

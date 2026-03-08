@@ -77,17 +77,19 @@ const App: React.FC = () => {
         </div>
       )}
 
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/docs" element={<DocsPage />} />
-        <Route path="/changelog" element={<ChangelogPage />} />
-        <Route path="/privacy" element={<PrivacyPolicyPage />} />
-        <Route path="/tos" element={<TermsOfServicePage />} />
-        <Route path="/faq" element={<FAQPage />} />
-        <Route path="/report_issues" element={<ReportIssuesPage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/checkout-success" element={<CheckoutSuccessPage />} />
-      </Routes>
+      <main>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/docs" element={<DocsPage />} />
+          <Route path="/changelog" element={<ChangelogPage />} />
+          <Route path="/privacy" element={<PrivacyPolicyPage />} />
+          <Route path="/tos" element={<TermsOfServicePage />} />
+          <Route path="/faq" element={<FAQPage />} />
+          <Route path="/report_issues" element={<ReportIssuesPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/checkout-success" element={<CheckoutSuccessPage />} />
+        </Routes>
+      </main>
 
       {/* Footer */}
       <footer className="bg-slate-50 py-16 px-6 border-t border-slate-100">

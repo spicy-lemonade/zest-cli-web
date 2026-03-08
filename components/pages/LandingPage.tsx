@@ -8,9 +8,15 @@ import { Features } from "../Features";
 import { Pricing } from "../Pricing";
 import { GradientButton } from "../shared/GradientButton";
 import { Card } from "../shared/Card";
+import { usePageMeta } from "../shared/usePageMeta";
 
 export const LandingPage: React.FC = () => {
   const [isStackExpanded, setIsStackExpanded] = useState(false);
+
+  usePageMeta({
+    title: "Local AI CLI Tool",
+    description: "Zest CLI translates natural language to shell commands. 100% offline, 100% private. No cloud, no subscription. macOS only.",
+  });
 
   return (
     <>
@@ -52,7 +58,7 @@ export const LandingPage: React.FC = () => {
               <div className="absolute top-6 right-6 opacity-10 group-hover:opacity-20 transition-opacity">
                 <Layers className="w-12 h-12 text-slate-900" />
               </div>
-              <h3 className="text-3xl font-black text-slate-900 mb-4 relative z-10">Expertly Tuned</h3>
+              <h2 className="text-3xl font-black text-slate-900 mb-4 relative z-10">Expertly Tuned</h2>
               <p className="text-slate-600 font-medium mb-6 leading-relaxed relative z-10 flex-grow">
                 Built on Qwen foundations and perfected with curated with CLI data from the real world. Rigorous LLM-cleansing, synthetic data, human validation, and precise tuning deliver optimized models for dependable offline CLI support.
               </p>
@@ -67,7 +73,7 @@ export const LandingPage: React.FC = () => {
               <div className="absolute top-6 right-6 opacity-10 group-hover:opacity-20 transition-opacity">
                 <CheckCircle2 className="w-12 h-12 text-red-500" />
               </div>
-              <h3 className="text-3xl font-black text-slate-900 mb-4 relative z-10">96%+ Accuracy</h3>
+              <h2 className="text-3xl font-black text-slate-900 mb-4 relative z-10">96%+ Accuracy</h2>
               <p className="text-slate-600 font-medium mb-6 leading-relaxed relative z-10 flex-grow">
                 Verified performance on internal benchmarks covering complex, real-world terminal workloads. Designed to deliver reliable command translation and syntax precision across a wide range of technical use cases. <span className="text-[8px] text-slate-400 font-black inline tracking-widest uppercase ml-1 opacity-80">(Zest Extra Spicy)</span>
               </p>
@@ -81,7 +87,7 @@ export const LandingPage: React.FC = () => {
 
             <div className="md:col-span-2 p-12 rounded-[3rem] zest-gradient-bg relative overflow-hidden text-white shadow-2xl shadow-yellow-500/20">
               <div className="relative z-10">
-                <h3 className="text-4xl font-black mb-6">Built for the modern stack.</h3>
+                <h2 className="text-4xl font-black mb-6">Built for the modern stack.</h2>
                 <p className="text-xl font-bold mb-10 opacity-90 max-w-2xl">
                   Supports <strong>Docker, Kubernetes, Git, AWS, Bash</strong> and 100+ standard Unix tools out of the box.
                 </p>
@@ -138,21 +144,21 @@ export const LandingPage: React.FC = () => {
               <div className="w-16 h-16 bg-yellow-50 rounded-3xl flex items-center justify-center mb-4 border border-yellow-100 shadow-sm">
                 <Zap className="w-8 h-8 text-yellow-600" />
               </div>
-              <h4 className="text-3xl font-black text-slate-900 mb-1 text-center">100% offline</h4>
+              <h3 className="text-3xl font-black text-slate-900 mb-1 text-center">100% offline</h3>
               <p className="text-slate-500 font-bold uppercase tracking-widest text-xs text-center">0ms Network latency</p>
             </div>
             <div className="flex flex-col items-center">
               <div className="w-16 h-16 bg-red-50 rounded-3xl flex items-center justify-center mb-4 border border-red-100 shadow-sm">
                 <ShieldCheck className="w-8 h-8 text-red-500" />
               </div>
-              <h4 className="text-3xl font-black text-slate-900 mb-1 text-center">100% Private</h4>
+              <h3 className="text-3xl font-black text-slate-900 mb-1 text-center">100% Private</h3>
               <p className="text-slate-500 font-bold uppercase tracking-widest text-xs text-center">local data only</p>
             </div>
             <div className="flex flex-col items-center">
               <div className="w-16 h-16 bg-slate-50 rounded-3xl flex items-center justify-center mb-4 border border-slate-100 shadow-sm">
                 <Cpu className="w-8 h-8 text-slate-600" />
               </div>
-              <h4 className="text-3xl font-black text-slate-900 mb-1 text-center">Low Impact</h4>
+              <h3 className="text-3xl font-black text-slate-900 mb-1 text-center">Low Impact</h3>
               <p className="text-slate-500 font-bold uppercase tracking-widest text-xs text-center">optimised for CPU</p>
             </div>
           </div>

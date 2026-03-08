@@ -4,3 +4,4 @@ export { GradientButton } from "./GradientButton";
 export { Card } from "./Card";
 export { ScrollToTop } from "./ScrollToTop";
 export { CheckoutRedirect } from "./CheckoutRedirect";
+export { usePageMeta } from "./usePageMeta";

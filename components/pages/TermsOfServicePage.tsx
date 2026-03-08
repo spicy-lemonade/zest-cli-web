@@ -1,15 +1,23 @@
 import React from "react";
 import { FileText } from "lucide-react";
 import { PageHeader } from "../shared/PageHeader";
+import { usePageMeta } from "../shared/usePageMeta";
 
-export const TermsOfServicePage: React.FC = () => (
+export const TermsOfServicePage: React.FC = () => {
+  usePageMeta({
+    title: "Terms of Service",
+    description: "Zest CLI terms of service — licensing, usage terms, and conditions for Spicy Lemonade products.",
+  });
+
+  return (
   <section className="pt-32 pb-24 px-6 max-w-4xl mx-auto animate-in fade-in duration-500">
     <PageHeader title="Terms of Service" icon={<FileText className="w-10 h-10 text-white" />} />
     <div className="prose prose-slate lg:prose-xl font-medium text-slate-600 space-y-8">
       <div>
-        <h3 className="text-slate-900 font-black">1. License</h3>
+        <h2 className="text-slate-900 font-black">1. License</h2>
         <p>A purchase of Zest CLI grants you a non-exclusive, perpetual license for individual use on up to 2 personal devices owned by you.</p>
       </div>
     </div>
   </section>
-);
+  );
+};

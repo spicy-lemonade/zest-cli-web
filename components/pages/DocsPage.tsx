@@ -3,8 +3,13 @@ import { Info, Lightbulb, AlertTriangle } from "lucide-react";
 import { Link } from "react-router-dom";
 import { PageHeader } from "../shared/PageHeader";
 import { Card } from "../shared/Card";
+import { usePageMeta } from "../shared/usePageMeta";
 
 export const DocsPage: React.FC = () => {
+  usePageMeta({
+    title: "Documentation",
+    description: "Learn how to use Zest CLI — basic usage, model selection, performance tuning, licensing, and prompting tips.",
+  });
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
@@ -55,10 +60,10 @@ export const DocsPage: React.FC = () => {
         <div className="flex-grow prose prose-slate lg:prose-xl font-medium text-slate-600 space-y-24 max-w-4xl">
 
           <div className="bg-yellow-50 border-l-4 border-yellow-400 p-8 rounded-r-[2rem] !mt-0">
-            <h3 className="text-slate-900 font-black flex items-center gap-3 mt-0">
+            <h2 className="text-slate-900 font-black flex items-center gap-3 mt-0">
               <Lightbulb className="w-6 h-6 text-yellow-600" />
               The SLM Mindset
-            </h3>
+            </h2>
             <p className="mb-0">
               Zest is powered by <strong>Small Language Models (SLM)</strong>. Unlike massive cloud LLMs, they are designed for efficiency and specific utility. Our CLI Assistants are built on the industry leading <strong>Qwen models</strong>, some of the most capable small language models, which we fine-tuned specifically using highly curated real world examples.
             </p>
@@ -112,7 +117,7 @@ export const DocsPage: React.FC = () => {
 
             <div className="mt-12 space-y-12">
               <div>
-                <h4 className="text-xl font-black text-slate-900 mb-4">Licensing</h4>
+                <h3 className="text-xl font-black text-slate-900 mb-4">Licensing</h3>
                 <p>Your license allows installation on up to <strong>2 devices per tier</strong>. Each tier (Lite, Hot, Extra Spicy) has independent device slots:</p>
                 <ul className="list-disc pl-6 space-y-1 font-bold text-slate-700">
                   <li>2 device slots for Lite</li>
@@ -122,7 +127,7 @@ export const DocsPage: React.FC = () => {
               </div>
 
               <div>
-                <h4 className="text-xl font-black text-slate-900 mb-4">Logout (Frees device slot)</h4>
+                <h3 className="text-xl font-black text-slate-900 mb-4">Logout (Frees device slot)</h3>
                 <p className="mb-4 text-sm">Use <code>--logout</code> to deregister the device and free a device slot while keeping the model on disk for later re-activation.</p>
                 <code className="block bg-slate-900 text-yellow-400 p-4 rounded-xl font-mono text-sm">
                   zest --logout                  # Log out from ALL tiers<br />
@@ -133,7 +138,7 @@ export const DocsPage: React.FC = () => {
               </div>
 
               <div>
-                <h4 className="text-xl font-black text-slate-900 mb-4">Uninstall (Removes everything)</h4>
+                <h3 className="text-xl font-black text-slate-900 mb-4">Uninstall (Removes everything)</h3>
                 <p className="mb-4 text-sm">Use <code>--uninstall</code> to deregister the device and remove the model file and license. This frees both disk space and a device slot.</p>
                 <code className="block bg-slate-900 text-yellow-400 p-4 rounded-xl font-mono text-sm">
                   zest --uninstall                  # Full uninstall of ALL tiers<br />
@@ -144,7 +149,7 @@ export const DocsPage: React.FC = () => {
               </div>
 
               <div>
-                <h4 className="text-xl font-black text-slate-900 mb-4">Reinstalling & Updates</h4>
+                <h3 className="text-xl font-black text-slate-900 mb-4">Reinstalling & Updates</h3>
                 <p className="mb-4">If you try to install a model that's already on your device, you'll be prompted to either continue (re-activate license) or cancel.</p>
                 <p>Zest checks for updates automatically and notifies you in your terminal when a new version is available.</p>
               </div>
@@ -156,7 +161,7 @@ export const DocsPage: React.FC = () => {
 
             <div className="space-y-12">
               <Card padding="lg">
-                <h4 className="text-xl font-black text-slate-900 mb-2">Zest Extra Spicy (14B Intelligence)</h4>
+                <h3 className="text-xl font-black text-slate-900 mb-2">Zest Extra Spicy (14B Intelligence)</h3>
                 <p className="text-red-500 font-black mb-4">96% accuracy on production CLI workflows.</p>
                 <p className="font-bold text-slate-900 mb-2 underline decoration-red-200">Strengths:</p>
                 <ul className="list-disc pl-6 space-y-1 mb-6 text-base">
@@ -172,7 +177,7 @@ export const DocsPage: React.FC = () => {
               </Card>
 
               <Card padding="lg">
-                <h4 className="text-xl font-black text-slate-900 mb-2">Zest Hot (Full Precision)</h4>
+                <h3 className="text-xl font-black text-slate-900 mb-2">Zest Hot (Full Precision)</h3>
                 <p className="text-yellow-700 font-black mb-4">94% accuracy on production CLI workflows.</p>
                 <p className="font-bold text-slate-900 mb-2 underline decoration-yellow-200">Strengths:</p>
                 <ul className="list-disc pl-6 space-y-1 mb-4 text-base">
@@ -188,7 +193,7 @@ export const DocsPage: React.FC = () => {
               </Card>
 
               <Card padding="lg">
-                <h4 className="text-xl font-black text-slate-900 mb-2">Zest Lite (CPU-Optimized)</h4>
+                <h3 className="text-xl font-black text-slate-900 mb-2">Zest Lite (CPU-Optimized)</h3>
                 <p className="text-slate-600 font-black mb-4">92% accuracy on production CLI workflows.</p>
                 <p className="font-bold text-slate-900 mb-2 underline decoration-slate-200">Strengths:</p>
                 <ul className="list-disc pl-6 space-y-1 mb-4 text-base">
@@ -267,10 +272,10 @@ export const DocsPage: React.FC = () => {
           </section>
 
           <section id="prompting-tips" className="bg-slate-50 p-10 rounded-[2.5rem] border border-slate-100 scroll-mt-32">
-            <h3 className="text-slate-900 font-black flex items-center gap-3 mt-0">
+            <h2 className="text-slate-900 font-black flex items-center gap-3 mt-0">
               <AlertTriangle className="w-6 h-6 text-yellow-500" />
               Prompting Tips
-            </h3>
+            </h2>
             <p className="text-sm uppercase tracking-widest font-black text-slate-400 mb-6">Maximize Zest's Accuracy</p>
             <div className="space-y-6">
               <div className="flex gap-4">

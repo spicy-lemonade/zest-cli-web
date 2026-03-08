@@ -3,6 +3,7 @@ import { MessageSquare, ShieldCheck, Send, CheckCircle2, AlertCircle } from "luc
 import { Link } from "react-router-dom";
 import { PageHeader } from "../shared/PageHeader";
 import { GradientButton } from "../shared/GradientButton";
+import { usePageMeta } from "../shared/usePageMeta";
 
 const FEEDBACK_API_URL = "https://zestcli.com/api/feedback";
 
@@ -13,6 +14,11 @@ export const ReportIssuesPage: React.FC = () => {
   const [prompt, setPrompt] = useState("");
   const [failedOutput, setFailedOutput] = useState("");
   const [expectedOutput, setExpectedOutput] = useState("");
+
+  usePageMeta({
+    title: "Report Issues",
+    description: "Report issues or submit feedback to help improve Zest CLI's command accuracy.",
+  });
   const [modelVersion, setModelVersion] = useState("Zest Lite");
   const [website, setWebsite] = useState(""); // Honeypot field
 
@@ -47,7 +53,7 @@ export const ReportIssuesPage: React.FC = () => {
       <section className="pt-32 pb-24 px-6 max-w-4xl mx-auto animate-in fade-in duration-500">
         <PageHeader title="Thank You" subtitle="Feedback Received" icon={<CheckCircle2 className="w-10 h-10 text-white" />} />
         <div className="bg-slate-50 p-12 rounded-[3rem] border border-slate-100 text-center">
-          <h3 className="text-2xl font-black text-slate-900 mb-4">We've got it!</h3>
+          <h2 className="text-2xl font-black text-slate-900 mb-4">We've got it!</h2>
           <p className="text-slate-600 font-medium mb-8 max-w-lg mx-auto leading-relaxed">
             Thank you for helping us improve Zest. We'll use your report to refine our Small Language Models in future releases.
           </p>
@@ -68,10 +74,10 @@ export const ReportIssuesPage: React.FC = () => {
 
       <div className="prose prose-slate lg:prose-xl font-medium text-slate-600 space-y-10">
         <div className="bg-slate-50 border-l-4 border-slate-900 p-8 rounded-r-[2rem]">
-          <h3 className="text-slate-900 font-black flex items-center gap-3 mt-0">
+          <h2 className="text-slate-900 font-black flex items-center gap-3 mt-0">
             <ShieldCheck className="w-6 h-6 text-slate-900" />
             Privacy First
-          </h3>
+          </h2>
           <p className="mb-0">
             Zest is built on a foundation of absolute privacy. Because we <strong>never</strong> collect or track your prompts or outputs, we rely entirely on your manual feedback to identify and fix <strong>your</strong> edge cases.
           </p>
