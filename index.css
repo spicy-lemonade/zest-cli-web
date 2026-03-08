@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  background-color: #ffffff;
+  color: #0f172a;
+}
+
+.mono {
+  font-family: "JetBrains Mono", monospace;
+}
+
+.zest-gradient-text {
+  background: linear-gradient(135deg, #facc15 0%, #ef4444 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.zest-gradient-bg {
+  background: linear-gradient(135deg, #facc15 0%, #ef4444 100%);
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.cursor {
+  display: inline-block;
+  width: 10px;
+  height: 1.2em;
+  background-color: #ef4444;
+  animation: blink 1s step-end infinite;
+  vertical-align: middle;
+  margin-left: 4px;
+}
