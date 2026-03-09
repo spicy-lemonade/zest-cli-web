@@ -220,7 +220,7 @@ export const Pricing: React.FC = () => {
             This is a small language model that will make mistakes due to its size. While we make every effort to train it to be accurate, please treat your purchase with this in mind. The model is an assistant, not a tool to replace your workflow. If you find model mistakes, please use the "report issues" page.
           </p>
           <p className="text-slate-400 text-xs font-bold uppercase tracking-widest">
-            Securely processed with Stripe — We never see your card details.
+            Securely processed by Polar.sh via Stripe — We never see your card details.
           </p>
         </div>
 
@@ -315,19 +315,19 @@ export const Pricing: React.FC = () => {
             <SpecItem
               icon={<HardDrive className="w-5 h-5" />}
               label="Storage"
-              value="~50MB DMG + 5.4GB model download (6GB available space)"
+              value="~50MB DMG + 5.4GB model download (6GB recommended)"
               iconColor="text-slate-900"
             />
             <SpecItem
               icon={<HardDrive className="w-5 h-5" />}
               label="Storage"
-              value="~50MB DMG + 14.4GB model download (18GB available space)"
+              value="~50MB DMG + 14.4GB model download (18GB recommended)"
               iconColor="text-yellow-700"
             />
             <SpecItem
               icon={<HardDrive className="w-5 h-5" />}
               label="Storage"
-              value="~50MB DMG + 9.8GB model download (12GB available space)"
+              value="~50MB DMG + 9.8GB model download (12GB recommended)"
               iconColor="text-red-600"
             />
 
