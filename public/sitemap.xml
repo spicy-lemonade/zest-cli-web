@@ -4,32 +4,4 @@
     <loc>https://zestcli.com/</loc>
     <priority>1.0</priority>
   </url>
-  <url>
-    <loc>https://zestcli.com/docs</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://zestcli.com/faq</loc>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zestcli.com/changelog</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://zestcli.com/about</loc>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://zestcli.com/report_issues</loc>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://zestcli.com/privacy</loc>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://zestcli.com/tos</loc>
-    <priority>0.3</priority>
-  </url>
 </urlset>
