@@ -1,5 +1,8 @@
 User-agent: *
 Allow: /
 Disallow: /checkout-success
+Disallow: /docs
+Disallow: /about
+Disallow: /faq
 
 Sitemap: https://zestcli.com/sitemap.xml
