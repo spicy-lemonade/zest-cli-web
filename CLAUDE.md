@@ -1,15 +1,15 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code when working with code in this repository.
-
 ## Important Rules
 
-- *Never* run git commands without asking for user permission, even if 'auto-accept' is selected during a Claude Command session
+- *Never* run git commands without asking for user permission, even if 'auto-accept' is selected during a Claude Command session.
 - *Never* make assumptions. Ask for more information and wait for the user response.
-- Do *not* use numerical prefixes when writing comments
-- Use double quotation marks instead of single quotation marks when possible
-- Favor modular, reusable code
-- Keep components simple and focused
+- Do *not* use numerical prefixes when writing comments.
+- Use double quotation marks instead of single quotation marks when possible.
+- Favor modular, reusable code.
+- Keep components simple and focused.
+- Read existing files before writing any output.
+- Do not re-read files unless they have been changed.
 
 ## Project Overview
 
