@@ -1,36 +1,20 @@
 
-import React, { useState, useEffect } from "react";
-import { Check, Download, Flame, Zap, ShieldCheck, Laptop, Rocket, Cpu, HardDrive, SquareAsterisk } from "lucide-react";
+import React from "react";
+import { Check, Download, Flame, Zap, ShieldCheck, Rocket, Cpu, HardDrive, SquareAsterisk } from "lucide-react";
 
 const DOWNLOAD_URLS = {
-  lite: "https://storage.googleapis.com/nlcli-downloads/Zest-Lite-1.0.0.dmg",
   hot: "https://storage.googleapis.com/nlcli-downloads/Zest-Hot-1.0.0.dmg",
   extra_spicy: "https://storage.googleapis.com/nlcli-downloads/Zest-Extra-Spicy-1.0.0.dmg"
 };
 
 export const Pricing: React.FC = () => {
-  const [symbol, setSymbol] = useState("$");
-
-  useEffect(() => {
-    try {
-      const locale = navigator.language;
-      const euroLocales = ["de", "fr", "it", "es", "nl", "be", "at", "pt", "fi", "ie", "gr", "sk", "si", "ee", "lv", "lt", "mt", "cy"];
-      const isEuroZone = euroLocales.some(lang => locale.startsWith(lang));
-      setSymbol(isEuroZone ? "€" : "$");
-    } catch {
-      setSymbol("$");
-    }
-  }, []);
-
-  const handleDownload = (productType: "lite" | "hot" | "extra_spicy") => {
+  const handleDownload = (productType: "hot" | "extra_spicy") => {
     window.location.href = DOWNLOAD_URLS[productType];
   };
 
   const PricingCard = ({
     name,
     price,
-    originalPrice,
-    discountPercent,
     description,
     tagline,
     features,
@@ -40,12 +24,10 @@ export const Pricing: React.FC = () => {
   }: {
     name: string;
     price: number;
-    originalPrice: number;
-    discountPercent: number;
     description: string;
     tagline: string;
     features: string[];
-    productType: "lite" | "hot" | "extra_spicy";
+    productType: "hot" | "extra_spicy";
     highlight?: boolean;
     disabled?: boolean;
   }) => {
@@ -71,21 +53,8 @@ export const Pricing: React.FC = () => {
             {name}
           </h3>
           
-          <div className="flex flex-col gap-1 mb-6">
-            <div className="flex items-baseline gap-3">
-              <span className="text-4xl font-bold text-slate-300 line-through decoration-red-400 decoration-2">{symbol}{originalPrice}</span>
-              <span className="text-7xl font-black text-slate-900 tracking-tighter">{symbol}{price}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className={`px-2 py-0.5 rounded-md text-[10px] font-black uppercase tracking-wider ${
-                highlight ? 'bg-yellow-100 text-yellow-700' : 'bg-slate-100 text-slate-500'
-              }`}>
-                Early adopter price
-              </span>
-              <span className="px-2 py-0.5 rounded-md text-[10px] font-black uppercase tracking-wider bg-red-100 text-red-600">
-                {discountPercent}% OFF
-              </span>
-            </div>
+          <div className="mb-6">
+            <span className="text-7xl font-black text-slate-900 tracking-tighter">${price}</span>
           </div>
           
           <p className="text-slate-500 font-medium text-sm leading-relaxed min-h-[80px]">{description}</p>
@@ -122,7 +91,7 @@ export const Pricing: React.FC = () => {
         </button>
 
         <p className="text-center mt-4 text-xs text-slate-500 font-medium leading-relaxed px-4">
-          5-day trial. {symbol}{price} one-time payment after.
+          5-day trial. ${price} one-time payment after.
         </p>
         <p className="text-center mt-2 text-[10px] text-slate-400 font-medium">
           Already paid? Activate in the app.
@@ -155,31 +124,10 @@ export const Pricing: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch max-w-7xl mx-auto mb-16">
-          <PricingCard
-            name="Zest Lite"
-            price={39}
-            originalPrice={59}
-            discountPercent={20}
-            tagline="CPU Optimized"
-            description="The essential companion for your daily terminal workflow. A 7B coder model fine-tuned for speed and efficiency, it handles standard CLI tasks instantly while keeping a modest footprint. Perfect for any laptop, anywhere."
-            productType="lite"
-            features={[
-              "Zest 7B Coder (Qwen2.5-Coder-7B-Instruct-Q5)",
-              "100% Offline usage",
-              "No tracking of prompts or outputs",
-              "No GPU required (CPU Optimized)",
-              "Instant 0ms network latency",
-              "Fine-tuned for everyday CLI tasks",
-              "Buy once, keep forever"
-            ]}
-          />
-
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch max-w-4xl mx-auto mb-16">
           <PricingCard
             name="Zest Hot"
-            price={49}
-            originalPrice={69}
-            discountPercent={29}
+            price={2}
             tagline="Balanced Performance"
             description="Our signature blend of power and precision. Designed for developers who need deeper logic for complex shell pipes and automation, without sacrificing system speed. The professional's choice for a private, local AI."
             productType="hot"
@@ -197,9 +145,7 @@ export const Pricing: React.FC = () => {
           <PricingCard
             highlight
             name="Zest Extra Spicy"
-            price={59}
-            originalPrice={89}
-            discountPercent={34}
+            price={5}
             tagline="Maximum Precision"
             description="Our most intelligent model with 14 billion parameters — twice the reasoning power of the 7B. Efficient Q5 quantisation means a smaller download than Hot, but double the parameter count drives deeper logic for mission-critical operations."
             productType="extra_spicy"
@@ -226,22 +172,8 @@ export const Pricing: React.FC = () => {
 
         {/* Detailed Technical Requirements */}
         <div className="max-w-6xl mx-auto bg-slate-50 rounded-[4rem] p-10 md:p-20 border border-slate-100 relative">
-          <div className="text-center mb-16">
-            <h3 className="text-2xl md:text-3xl font-black text-slate-900 uppercase tracking-tight mx-auto inline-block">Technical Requirements</h3>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-12 gap-y-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-4">
             {/* Column Headers */}
-            <div className="flex items-center gap-4 pb-6 border-b border-slate-200 mb-4">
-              <div className="w-14 h-14 bg-slate-900 rounded-2xl flex items-center justify-center shadow-xl">
-                <Laptop className="w-7 h-7 text-white" />
-              </div>
-              <div>
-                <h4 className="text-xl font-black text-slate-900">Zest Lite</h4>
-                <p className="text-slate-500 font-bold text-[10px] uppercase tracking-widest">Fast & Light</p>
-              </div>
-            </div>
-
             <div className="flex items-center gap-4 pb-6 border-b border-slate-200 mb-4">
               <div className="w-14 h-14 bg-yellow-500 rounded-2xl flex items-center justify-center shadow-xl">
                 <Flame className="w-7 h-7 text-white" />
@@ -263,9 +195,6 @@ export const Pricing: React.FC = () => {
             </div>
 
             {/* Recommendation Blurbs */}
-            <p className="text-slate-600 font-bold text-sm leading-relaxed border-l-4 border-slate-400 pl-4 lg:min-h-[64px] flex items-center mb-4">
-              MacBook Pro with 12GB+ RAM
-            </p>
             <p className="text-slate-600 font-bold text-sm leading-relaxed border-l-4 border-yellow-500 pl-4 lg:min-h-[64px] flex items-center mb-4">
               MacBook Pro or Mac Studio with 32GB+ RAM — Full precision demands it.
             </p>
@@ -274,12 +203,6 @@ export const Pricing: React.FC = () => {
             </p>
 
             {/* Spec Rows */}
-            <SpecItem
-              icon={<Cpu className="w-5 h-5" />}
-              label="Processor"
-              value="All modern Apple Silicon and Intel Macs"
-              iconColor="text-slate-900"
-            />
             <SpecItem
               icon={<Cpu className="w-5 h-5" />}
               label="Processor"
@@ -296,12 +219,6 @@ export const Pricing: React.FC = () => {
             <SpecItem
               icon={<SquareAsterisk className="w-5 h-5" />}
               label="Memory (RAM)"
-              value="12GB RAM recommended"
-              iconColor="text-slate-900"
-            />
-            <SpecItem
-              icon={<SquareAsterisk className="w-5 h-5" />}
-              label="Memory (RAM)"
               value="32GB+ RAM recommended"
               iconColor="text-yellow-700"
             />
@@ -312,12 +229,6 @@ export const Pricing: React.FC = () => {
               iconColor="text-red-600"
             />
 
-            <SpecItem
-              icon={<HardDrive className="w-5 h-5" />}
-              label="Storage"
-              value="~50MB DMG + 5.4GB model download (6GB recommended)"
-              iconColor="text-slate-900"
-            />
             <SpecItem
               icon={<HardDrive className="w-5 h-5" />}
               label="Storage"
@@ -335,12 +246,6 @@ export const Pricing: React.FC = () => {
               icon={<Zap className="w-5 h-5" />}
               label="Graphics"
               value="Metal GPU (CPU fallback)"
-              iconColor="text-slate-900"
-            />
-            <SpecItem
-              icon={<Zap className="w-5 h-5" />}
-              label="Graphics"
-              value="Metal GPU (CPU fallback)"
               iconColor="text-yellow-700"
             />
             <SpecItem
@@ -350,12 +255,6 @@ export const Pricing: React.FC = () => {
               iconColor="text-red-600"
             />
 
-            <SpecItem
-              icon={<ShieldCheck className="w-5 h-5" />}
-              label="OS Version"
-              value="macOS 12.0 (Monterey) or later"
-              iconColor="text-slate-900"
-            />
             <SpecItem
               icon={<ShieldCheck className="w-5 h-5" />}
               label="OS Version"

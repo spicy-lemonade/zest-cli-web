@@ -19,7 +19,7 @@ export const ReportIssuesPage: React.FC = () => {
     title: "Report Issues",
     description: "Report issues or submit feedback to help improve Zest CLI's command accuracy.",
   });
-  const [modelVersion, setModelVersion] = useState("Zest Lite");
+  const [modelVersion, setModelVersion] = useState("Zest Hot");
   const [website, setWebsite] = useState(""); // Honeypot field
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -146,7 +146,6 @@ export const ReportIssuesPage: React.FC = () => {
               onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setModelVersion(e.target.value)}
               className="w-full p-6 bg-white border-2 border-slate-100 rounded-3xl focus:border-red-500 focus:outline-none transition-all font-mono text-sm"
             >
-              <option value="Zest Lite">Zest Lite</option>
               <option value="Zest Hot">Zest Hot</option>
               <option value="Zest Extra Spicy">Zest Extra Spicy</option>
             </select>

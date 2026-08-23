@@ -31,10 +31,10 @@ export const FAQPage: React.FC = () => {
       )
     },
     {
-      q: "Can I try all three tiers?",
+      q: "Can I try both tiers?",
       a: (
         <>
-          <p>Yes! Each tier (Lite, Hot, Extra Spicy) has its own independent 5-day trial. You can try different tiers on separate machines or all on the same machine to see which fits your workflow best.</p>
+          <p>Yes! Each tier (Hot, Extra Spicy) has its own independent 5-day trial. You can try both tiers on separate machines or on the same machine to see which fits your workflow best.</p>
         </>
       )
     },
@@ -91,7 +91,7 @@ export const FAQPage: React.FC = () => {
           <div className="mb-4">
             <h4 className="font-bold text-slate-900 mb-2">The Models We Use:</h4>
             <ul className="list-disc pl-5 space-y-2">
-              <li><strong>Qwen-2.5-coder-7b:</strong> An advanced open-source coding model specifically optimized for code generation, code reasoning, and bug fixing. Powers both Lite (Q5 quantized) and Hot (full FP16 precision) tiers, offering a range of performance-to-resource trade-offs from the same proven architecture.</li>
+              <li><strong>Qwen-2.5-coder-7b:</strong> An advanced open-source coding model specifically optimized for code generation, code reasoning, and bug fixing. Powers our Hot tier at full FP16 precision, delivering accurate command generation with no quantization loss.</li>
               <li><strong>Qwen-2.5-coder-14b:</strong> Our Extra Spicy model with 14 billion parameters — twice the reasoning depth of the 7B. Despite a smaller download than Hot (thanks to efficient Q5 quantisation), the doubled parameter count drives significantly deeper logic for complex, multi-step command generation.</li>
             </ul>
           </div>
@@ -121,9 +121,9 @@ export const FAQPage: React.FC = () => {
           <p>To restore it, open the app from Applications (first time: right-click &gt; "Open"). The zest command will be recreated automatically on first launch.</p>
           <p>Or manually recreate it:</p>
           <div className="bg-slate-900 rounded-2xl p-6 text-yellow-400 font-mono text-sm">
-            <div>sudo ln -sf "/Applications/Zest-Lite.app/Contents/MacOS/zest-launcher" /usr/local/bin/zest</div>
+            <div>sudo ln -sf "/Applications/Zest-Hot.app/Contents/MacOS/zest-launcher" /usr/local/bin/zest</div>
           </div>
-          <p>(Replace Zest-Lite with Zest-Hot or Zest-Extra-Spicy as appropriate.)</p>
+          <p>(Replace Zest-Hot with Zest-Extra-Spicy if you installed that tier.)</p>
         </div>
       )
     },
@@ -148,11 +148,11 @@ export const FAQPage: React.FC = () => {
           <p>This means an internal file needed for uninstallation is missing. This can happen if Zest was installed from an older version of the DMG.</p>
           <p>To fix this, copy the file from your app bundle and retry:</p>
           <div className="bg-slate-900 rounded-2xl p-6 text-yellow-400 font-mono text-sm space-y-1">
-            <div>cp /Applications/Zest-Lite.app/Contents/Resources/cleanup.sh ~/.zest/cleanup.sh</div>
+            <div>cp /Applications/Zest-Hot.app/Contents/Resources/cleanup.sh ~/.zest/cleanup.sh</div>
             <div>chmod +x ~/.zest/cleanup.sh</div>
             <div>zest --uninstall</div>
           </div>
-          <p>Replace Zest-Lite.app with Zest-Hot.app or Zest-Extra-Spicy.app if you installed a different tier.</p>
+          <p>Replace Zest-Hot.app with Zest-Extra-Spicy.app if you installed that tier.</p>
           <p>If the app is no longer in Applications, download and reinstall from the DMG first. Alternatively, you can remove all Zest files manually:</p>
           <div className="bg-slate-900 rounded-2xl p-6 text-yellow-400 font-mono text-sm space-y-1">
             <div>rm -rf ~/.zest</div>

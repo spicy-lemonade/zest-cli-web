@@ -86,7 +86,7 @@ export const DocsPage: React.FC = () => {
 
           <section id="both-models" className="scroll-mt-32">
             <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-8 border-b-2 border-slate-100 pb-4">1.1 Using Multiple Models</h2>
-            <p className="mb-6">If you've purchased multiple tiers (Lite, Hot, or Extra Spicy):</p>
+            <p className="mb-6">If you've purchased both tiers (Hot and Extra Spicy):</p>
             <div className="space-y-6">
               <div className="flex gap-4">
                 <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center shrink-0 font-black text-xs">1</div>
@@ -104,7 +104,6 @@ export const DocsPage: React.FC = () => {
                 <div className="m-0">
                   <p className="m-0">Switch between models:</p>
                   <code className="block bg-slate-900 text-yellow-400 p-4 rounded-xl mt-2 font-mono text-sm">
-                    zest --model --lite           # Use Lite model<br />
                     zest --model --hot            # Use Hot model<br />
                     zest --model --extra-spicy    # Use Extra Spicy model
                   </code>
@@ -112,15 +111,14 @@ export const DocsPage: React.FC = () => {
               </div>
             </div>
             <div className="mt-8 bg-blue-50 p-6 rounded-3xl border border-blue-100 text-sm">
-              <p className="m-0"><strong>Note:</strong> If multiple models are installed, Zest defaults to Extra Spicy (highest quality), then Hot, then Lite. You can override this with <code>--model</code> flags.</p>
+              <p className="m-0"><strong>Note:</strong> If both models are installed, Zest defaults to Extra Spicy (highest quality), then Hot. You can override this with <code>--model</code> flags.</p>
             </div>
 
             <div className="mt-12 space-y-12">
               <div>
                 <h3 className="text-xl font-black text-slate-900 mb-4">Licensing</h3>
-                <p>Your license allows installation on up to <strong>2 devices per tier</strong>. Each tier (Lite, Hot, Extra Spicy) has independent device slots:</p>
+                <p>Your license allows installation on up to <strong>2 devices per tier</strong>. Each tier (Hot, Extra Spicy) has independent device slots:</p>
                 <ul className="list-disc pl-6 space-y-1 font-bold text-slate-700">
-                  <li>2 device slots for Lite</li>
                   <li>2 device slots for Hot</li>
                   <li>2 device slots for Extra Spicy</li>
                 </ul>
@@ -131,7 +129,6 @@ export const DocsPage: React.FC = () => {
                 <p className="mb-4 text-sm">Use <code>--logout</code> to deregister the device and free a device slot while keeping the model on disk for later re-activation.</p>
                 <code className="block bg-slate-900 text-yellow-400 p-4 rounded-xl font-mono text-sm">
                   zest --logout                  # Log out from ALL tiers<br />
-                  zest --logout --lite           # Log out from Lite only<br />
                   zest --logout --hot            # Log out from Hot only<br />
                   zest --logout --extra-spicy    # Log out from Extra Spicy only
                 </code>
@@ -142,7 +139,6 @@ export const DocsPage: React.FC = () => {
                 <p className="mb-4 text-sm">Use <code>--uninstall</code> to deregister the device and remove the model file and license. This frees both disk space and a device slot.</p>
                 <code className="block bg-slate-900 text-yellow-400 p-4 rounded-xl font-mono text-sm">
                   zest --uninstall                  # Full uninstall of ALL tiers<br />
-                  zest --uninstall --lite           # Uninstall Lite only<br />
                   zest --uninstall --hot            # Uninstall Hot only<br />
                   zest --uninstall --extra-spicy    # Uninstall Extra Spicy only
                 </code>
@@ -191,27 +187,6 @@ export const DocsPage: React.FC = () => {
                   Model Details: 15GB | Full precision FP16 | Qwen2.5 Coder 7B | Apple Silicon recommended
                 </p>
               </Card>
-
-              <Card padding="lg">
-                <h3 className="text-xl font-black text-slate-900 mb-2">Zest Lite (CPU-Optimized)</h3>
-                <p className="text-slate-600 font-black mb-4">92% accuracy on production CLI workflows.</p>
-                <p className="font-bold text-slate-900 mb-2 underline decoration-slate-200">Strengths:</p>
-                <ul className="list-disc pl-6 space-y-1 mb-4 text-base">
-                  <li>100% accurate on Docker, Cloud tools, and common commands</li>
-                  <li>100% accurate on intermediate tasks (systemctl, package management)</li>
-                  <li>87.5% accurate on Kubernetes & system administration</li>
-                  <li>Optimized Q5_K_M quantization for fast CPU results</li>
-                </ul>
-                <p className="font-bold text-slate-900 mb-2 underline decoration-slate-200">Trade-offs:</p>
-                <ul className="list-disc pl-6 space-y-1 mb-6 text-base">
-                  <li>Q5 quantization for efficient CPU performance</li>
-                  <li>Compact 5.1GB download — fits any machine</li>
-                  <li>Runs on any Mac (Intel or Apple Silicon)</li>
-                </ul>
-                <p className="text-xs font-black text-slate-400 uppercase tracking-widest bg-white py-2 px-4 rounded-xl border border-slate-200 inline-block">
-                  Model Details: 5.1GB | Q5_K_M quantization | Qwen2.5 Coder 7B | Universal compatibility
-                </p>
-              </Card>
             </div>
 
             <div className="mt-12">
@@ -239,11 +214,11 @@ export const DocsPage: React.FC = () => {
                     </tr>
                     <tr className="border-b border-slate-100">
                       <td className="py-2">Simple Docker/Git/AWS/Kubernetes commands</td>
-                      <td className="py-2 font-bold">Any tier</td>
+                      <td className="py-2 font-bold">Either tier</td>
                     </tr>
                     <tr className="border-b border-slate-100">
-                      <td className="py-2">Smallest download, everyday use</td>
-                      <td className="py-2 font-black text-slate-600">Lite</td>
+                      <td className="py-2">Everyday CLI tasks, entry point</td>
+                      <td className="py-2 font-black text-yellow-700">Hot</td>
                     </tr>
                   </tbody>
                 </table>
