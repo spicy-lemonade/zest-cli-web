@@ -45,7 +45,6 @@ export const LandingPage: React.FC = () => {
                 Get Zest CLI (macOS)
               </GradientButton>
             </a>
-            <p className="mt-4 text-slate-400 font-bold text-sm">Coming soon for Windows</p>
           </div>
 
           <div id="playground" className="w-full scroll-mt-32">
