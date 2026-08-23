@@ -127,7 +127,7 @@ export const Pricing: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch max-w-4xl mx-auto mb-16">
           <PricingCard
             name="Zest Hot"
-            price={2}
+            price={5}
             tagline="Balanced Performance"
             description="Our signature blend of power and precision. Designed for developers who need deeper logic for complex shell pipes and automation, without sacrificing system speed. The professional's choice for a private, local AI."
             productType="hot"
@@ -145,7 +145,7 @@ export const Pricing: React.FC = () => {
           <PricingCard
             highlight
             name="Zest Extra Spicy"
-            price={5}
+            price={8}
             tagline="Maximum Precision"
             description="Our most intelligent model with 14 billion parameters — twice the reasoning power of the 7B. Efficient Q5 quantisation means a smaller download than Hot, but double the parameter count drives deeper logic for mission-critical operations."
             productType="extra_spicy"
@@ -159,6 +159,12 @@ export const Pricing: React.FC = () => {
               "Buy once, keep forever"
             ]}
           />
+        </div>
+
+        <div className="max-w-2xl mx-auto mb-16 text-center">
+          <p className="text-slate-500 font-medium leading-relaxed">
+            There is no service to keep running and nothing to bill you for again. The price just helps cover hosting and bandwidth for the multi-gigabyte model downloads.
+          </p>
         </div>
 
         <div className="mb-20 text-center">
