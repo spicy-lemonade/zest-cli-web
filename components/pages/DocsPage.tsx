@@ -65,7 +65,7 @@ export const DocsPage: React.FC = () => {
               The SLM Mindset
             </h2>
             <p className="mb-0">
-              Zest is powered by <strong>Small Language Models (SLM)</strong>. Unlike massive cloud LLMs, they are designed for efficiency and specific utility. Our CLI Assistants are built on the industry leading <strong>Qwen models</strong>, some of the most capable small language models, which we fine-tuned specifically using highly curated real world examples.
+              Zest is powered by <strong>Small Language Models (SLM)</strong>. Unlike massive cloud LLMs, they are designed for efficiency and specific utility. Our CLI assistant is built on the industry leading <strong>Qwen models</strong>, some of the most capable small language models, which we fine-tuned specifically using highly curated real world examples.
             </p>
           </div>
 
@@ -122,7 +122,7 @@ export const DocsPage: React.FC = () => {
 
             <Card padding="lg">
               <h3 className="text-xl font-black text-slate-900 mb-2">Zest CLI</h3>
-              <p className="font-bold text-slate-900 mb-2 underline decoration-red-200">Strengths:</p>
+              <p className="font-bold text-slate-900 mb-2">Strengths:</p>
               <ul className="list-disc pl-6 space-y-1 mb-6 text-base">
                 <li>Strong accuracy on Docker, Cloud tools, Git, and common shell commands</li>
                 <li>Fine-tuned with supervised fine-tuning (SFT) and Direct Preference Optimization (DPO)</li>
@@ -143,7 +143,7 @@ export const DocsPage: React.FC = () => {
           <section id="benchmark" className="scroll-mt-32">
             <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-8 border-b-2 border-slate-100 pb-4">4. Benchmark</h2>
             <p>
-              We're running Zest CLI's new model through our internal and external benchmarks, including the <a href="https://intercode-benchmark.github.io/" target="_blank" rel="noopener noreferrer" className="text-red-500 hover:underline">intercode nl2bash benchmark</a>. Results will be published here once evaluation is complete.
+              We're running Zest CLI's new model through our internal and external benchmarks, including the <a href="https://intercode-benchmark.github.io/" target="_blank" rel="noopener noreferrer" className="text-red-500 hover:underline">intercode nl2bash benchmark</a>, where it scored ~68% functionally correct with a single attempt per task, using Opus 5.5 as the LLM judge.
             </p>
             <div className="mt-12 bg-slate-50 border border-slate-200 p-4 rounded-xl text-xs italic w-full leading-relaxed">
               We built this tool to handle most everyday tasks, but it won't get everything right all the time. If something doesn't work as expected, let us know using the <Link to="/report_issues" className="text-red-500 hover:underline font-bold">contact form</Link>. We really don't collect or store your prompts or outputs, so we can't see issues unless you tell us about them. We're always working to improve, and your feedback really helps.
