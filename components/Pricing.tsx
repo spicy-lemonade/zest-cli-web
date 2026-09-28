@@ -35,16 +35,13 @@ export const Pricing: React.FC = () => {
 
         <div className="max-w-md mx-auto mb-16">
           <div className="flex flex-col p-10 rounded-[3rem] border-2 border-yellow-400 shadow-2xl shadow-yellow-500/20 bg-white relative overflow-hidden h-full">
-            <div className="mb-6 relative text-center">
-              <div className="flex items-center justify-center gap-2 font-black mb-2 text-red-500">
-                <Flame className="w-5 h-5" />
-                <span className="uppercase tracking-[0.2em] text-[10px]">Zest CLI</span>
+            <div className="mb-4 relative text-center">
+              <div className="flex items-center justify-center gap-2 font-black mb-4 text-red-500">
+                <Flame className="w-8 h-8" />
+                <span className="uppercase tracking-[0.2em] text-xl">Zest CLI</span>
               </div>
-              <h3 className="text-3xl font-black mb-4 text-slate-900 leading-tight">
-                Zest CLI
-              </h3>
 
-              <div className="mb-6">
+              <div className="mb-4">
                 <span className="text-7xl font-black text-slate-900 tracking-tighter">$8</span>
               </div>
 
