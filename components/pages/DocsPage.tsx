@@ -65,7 +65,7 @@ export const DocsPage: React.FC = () => {
               The SLM Mindset
             </h2>
             <p className="mb-0">
-              Zest is powered by <strong>Small Language Models (SLM)</strong>. Unlike massive cloud LLMs, they are designed for efficiency and specific utility. Our CLI assistant is built on the industry leading <strong>Qwen models</strong>, some of the most capable small language models, which we fine-tuned specifically using highly curated real world examples.
+              Zest is powered by <strong>Small Language Models (SLM)</strong>. Unlike massive cloud LLMs, they are designed for efficiency and specific utility. Our CLI assistant is built on <strong>Qwen3.5</strong>, one of the most capable open small language models, which was fine-tuned using highly curated real world examples.
             </p>
           </div>
 
