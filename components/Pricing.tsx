@@ -87,7 +87,7 @@ export const Pricing: React.FC = () => {
 
         <div className="max-w-2xl mx-auto mb-16 text-center">
           <p className="text-slate-500 font-medium leading-relaxed">
-            There is a small one-time fee. This helps cover bandwidth for the multi-gigabyte model.
+            There is a small one-time fee. The price helps cover hosting and bandwidth for the multi-gigabyte model download.
           </p>
         </div>
 
