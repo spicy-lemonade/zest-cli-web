@@ -43,7 +43,7 @@ const App: React.FC = () => {
 
           <div className="hidden md:flex items-center gap-10">
             <Link to="/#features" className="text-slate-500 hover:text-red-500 transition-colors text-sm font-bold uppercase tracking-wider">Features</Link>
-            <Link to="/#pricing" className="text-slate-500 hover:text-red-500 transition-colors text-sm font-bold uppercase tracking-wider">Pricing</Link>
+            <Link to="/#pricing" className="text-slate-500 hover:text-red-500 transition-colors text-sm font-bold uppercase tracking-wider">Price</Link>
             <Link to="/docs" className="text-slate-500 hover:text-red-500 transition-colors text-sm font-bold uppercase tracking-wider">Docs</Link>
             <Link
               to="/#pricing"
@@ -64,7 +64,7 @@ const App: React.FC = () => {
         <div className="fixed inset-0 z-40 bg-white pt-24 px-6 md:hidden animate-in slide-in-from-top duration-300">
           <div className="flex flex-col gap-8 text-2xl font-black">
             <Link to="/#features" className="text-left" onClick={closeMenu}>Features</Link>
-            <Link to="/#pricing" className="text-left" onClick={closeMenu}>Pricing</Link>
+            <Link to="/#pricing" className="text-left" onClick={closeMenu}>Price</Link>
             <Link to="/docs" className="text-left" onClick={closeMenu}>Docs</Link>
             <Link
               to="/#pricing"
