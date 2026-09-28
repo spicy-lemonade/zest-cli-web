@@ -147,7 +147,7 @@ export const Pricing: React.FC = () => {
             name="Zest Extra Spicy"
             price={8}
             tagline="Maximum Precision"
-            description="Our most intelligent model with 14 billion parameters — twice the reasoning power of the 7B. Efficient Q5 quantisation means a smaller download than Hot, but double the parameter count drives deeper logic for mission-critical operations."
+            description="Our most intelligent model with 14 billion parameters, twice the reasoning power of the 7B. Efficient Q5 quantisation means a smaller download than Hot, but double the parameter count drives deeper logic for mission-critical operations."
             productType="extra_spicy"
             features={[
               "Zest 14B Coder (Qwen2.5-Coder-14B-Instruct-Q5)",
@@ -250,13 +250,13 @@ export const Pricing: React.FC = () => {
 
             <SpecItem
               icon={<Zap className="w-5 h-5" />}
-              label="Graphics"
+              label="GPU"
               value="Metal GPU (CPU fallback)"
               iconColor="text-yellow-700"
             />
             <SpecItem
               icon={<Zap className="w-5 h-5" />}
-              label="Graphics"
+              label="GPU"
               value="Metal GPU (CPU fallback)"
               iconColor="text-red-600"
             />
