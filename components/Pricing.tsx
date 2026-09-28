@@ -20,7 +20,7 @@ export const Pricing: React.FC = () => {
   );
 
   return (
-    <section className="pt-32 pb-12 px-6 relative bg-white scroll-mt-24" id="pricing">
+    <section className="pt-16 pb-12 px-6 relative bg-white scroll-mt-24" id="pricing">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-20">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-yellow-100 text-yellow-700 text-xs font-bold uppercase tracking-widest mb-4">
@@ -85,7 +85,7 @@ export const Pricing: React.FC = () => {
           </div>
         </div>
 
-        <div className="max-w-2xl mx-auto mb-16 text-center">
+        <div className="max-w-4xl mx-auto mb-16 text-center">
           <p className="text-slate-500 font-medium leading-relaxed">
             There is a small one-time fee. This helps cover hosting and delivering the model download.
           </p>
