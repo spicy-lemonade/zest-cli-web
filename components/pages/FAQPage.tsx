@@ -20,21 +20,13 @@ export const FAQPage: React.FC = () => {
         <>
           <p className="mb-4">Our 5-day free trial lets you experience Zest with full functionality before purchasing:</p>
           <ol className="list-decimal pl-5 space-y-2">
-            <li><strong>Download:</strong> Click "Download Free Trial" on any product above.</li>
+            <li><strong>Download:</strong> Click "Download Free Trial" above.</li>
             <li><strong>Install:</strong> Open the DMG and drag Zest to your Applications folder.</li>
             <li><strong>Activate:</strong> Run <code>zest</code> in Terminal and choose "Start free trial".</li>
             <li><strong>Verify:</strong> Enter your email and the 6-digit code sent to you.</li>
             <li><strong>Use:</strong> You have 5 days to try Zest on any device.</li>
           </ol>
           <p className="mt-4">After the trial expires, you'll be prompted to purchase. Payments are processed securely with Stripe and we never see your card details.</p>
-        </>
-      )
-    },
-    {
-      q: "Can I try both tiers?",
-      a: (
-        <>
-          <p>Yes! Each tier (Hot, Extra Spicy) has its own independent 5-day trial. You can try both tiers on separate machines or on the same machine to see which fits your workflow best.</p>
         </>
       )
     },
@@ -78,7 +70,7 @@ export const FAQPage: React.FC = () => {
             <li><strong>zest --uninstall:</strong> Fully removes the model files and deregisters the device to free up disk space.</li>
             <li><strong>Drag and Drop:</strong> Dragging the Zest app to the Trash from your Applications folder is functionally identical to running <code>zest --uninstall</code>; it will automatically deregister your slot.</li>
           </ul>
-          <p className="mt-4">Any of these methods will free up one of your 2 available device slots per product. Run <code>zest --help</code> for more information on available commands.</p>
+          <p className="mt-4">Any of these methods will free up one of your 2 available device slots. Run <code>zest --help</code> for more information on available commands.</p>
         </>
       )
     },
@@ -89,26 +81,25 @@ export const FAQPage: React.FC = () => {
           <p className="mb-4">We selected Alibaba Cloud's Qwen model series for their exceptional balance of performance, size, and specialized capabilities:</p>
 
           <div className="mb-4">
-            <h4 className="font-bold text-slate-900 mb-2">The Models We Use:</h4>
+            <h4 className="font-bold text-slate-900 mb-2">The Model We Use:</h4>
             <ul className="list-disc pl-5 space-y-2">
-              <li><strong>Qwen-2.5-coder-7b:</strong> An advanced open-source coding model specifically optimized for code generation, code reasoning, and bug fixing. Powers our Hot tier at full FP16 precision, delivering accurate command generation with no quantization loss.</li>
-              <li><strong>Qwen-2.5-coder-14b:</strong> Our Extra Spicy model with 14 billion parameters — twice the reasoning depth of the 7B. Despite a smaller download than Hot (thanks to efficient Q5 quantisation), the doubled parameter count drives significantly deeper logic for complex, multi-step command generation.</li>
+              <li><strong>Qwen3.5-9B:</strong> Fine-tuned with supervised fine-tuning (SFT) and Direct Preference Optimization (DPO) specifically for translating natural language into CLI commands, then quantized to Q5_K_M for efficient local inference.</li>
             </ul>
           </div>
 
           <div className="mb-4">
             <h4 className="font-bold text-slate-900 mb-2">Key Benefits:</h4>
             <ul className="list-disc pl-5 space-y-2">
-              <li><strong>Small Size:</strong> Both models are compact enough to run efficiently on local machines without requiring powerful hardware or consuming excessive disk space.</li>
+              <li><strong>Small Size:</strong> Compact enough to run efficiently on local machines without requiring powerful hardware or consuming excessive disk space.</li>
               <li><strong>Speed:</strong> Smaller model size means faster inference times, giving you near-instant command suggestions.</li>
               <li><strong>Privacy:</strong> Running locally means your commands and data never leave your machine.</li>
-              <li><strong>Specialized Performance:</strong> Qwen-2.5-coder is specifically trained on code-related tasks, making it exceptionally good at understanding programming context and generating accurate shell commands.</li>
+              <li><strong>Specialized Performance:</strong> Fine-tuned specifically on CLI command generation, making it exceptionally good at understanding shell context and generating accurate commands.</li>
             </ul>
           </div>
 
           <div>
             <h4 className="font-bold text-slate-900 mb-2">Our Data Preparation & Training Process:</h4>
-            <p>We've fine-tuned these models using a rigorous human-in-the-loop approach. We combine sourced and synthetic datasets tailored for CLI commands, which are ranked by reasoning LLMs and manually validated by humans. The data is carefully balanced to ensure both rare and common tools are well-represented, then filtered to remove high-risk commands. Throughout the process, LLM-assisted improvements are paired with human review to ensure quality, accuracy, and safety.</p>
+            <p>We've fine-tuned this model using a rigorous human-in-the-loop approach. We combine sourced and synthetic datasets tailored for CLI commands, which are ranked by reasoning LLMs and manually validated by humans. The data is carefully balanced to ensure both rare and common tools are well-represented, then filtered to remove high-risk commands. Throughout the process, LLM-assisted improvements are paired with human review to ensure quality, accuracy, and safety.</p>
           </div>
         </div>
       )
@@ -121,9 +112,8 @@ export const FAQPage: React.FC = () => {
           <p>To restore it, open the app from Applications (first time: right-click &gt; "Open"). The zest command will be recreated automatically on first launch.</p>
           <p>Or manually recreate it:</p>
           <div className="bg-slate-900 rounded-2xl p-6 text-yellow-400 font-mono text-sm">
-            <div>sudo ln -sf "/Applications/Zest-Hot.app/Contents/MacOS/zest-launcher" /usr/local/bin/zest</div>
+            <div>sudo ln -sf "/Applications/Zest.app/Contents/MacOS/zest-launcher" /usr/local/bin/zest</div>
           </div>
-          <p>(Replace Zest-Hot with Zest-Extra-Spicy if you installed that tier.)</p>
         </div>
       )
     },
@@ -148,11 +138,10 @@ export const FAQPage: React.FC = () => {
           <p>This means an internal file needed for uninstallation is missing. This can happen if Zest was installed from an older version of the DMG.</p>
           <p>To fix this, copy the file from your app bundle and retry:</p>
           <div className="bg-slate-900 rounded-2xl p-6 text-yellow-400 font-mono text-sm space-y-1">
-            <div>cp /Applications/Zest-Hot.app/Contents/Resources/cleanup.sh ~/.zest/cleanup.sh</div>
+            <div>cp /Applications/Zest.app/Contents/Resources/cleanup.sh ~/.zest/cleanup.sh</div>
             <div>chmod +x ~/.zest/cleanup.sh</div>
             <div>zest --uninstall</div>
           </div>
-          <p>Replace Zest-Hot.app with Zest-Extra-Spicy.app if you installed that tier.</p>
           <p>If the app is no longer in Applications, download and reinstall from the DMG first. Alternatively, you can remove all Zest files manually:</p>
           <div className="bg-slate-900 rounded-2xl p-6 text-yellow-400 font-mono text-sm space-y-1">
             <div>rm -rf ~/.zest</div>

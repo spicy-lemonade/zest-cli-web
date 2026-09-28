@@ -28,8 +28,8 @@ export const DocsPage: React.FC = () => {
 
   const navItems = [
     { label: "Basic Usage", id: "basic-usage" },
-    { label: "Using Both Models", id: "both-models" },
-    { label: "Performance & Accuracy", id: "performance" },
+    { label: "Device Management", id: "device-management" },
+    { label: "The Model", id: "performance" },
     { label: "Licensing", id: "licensing" },
     { label: "Benchmark", id: "benchmark" },
     { label: "Prompting Tips", id: "prompting-tips" },
@@ -84,53 +84,20 @@ export const DocsPage: React.FC = () => {
             <p>Zest will suggest a command. Press <kbd className="bg-slate-100 px-2 py-1 rounded border">y</kbd> to execute it or <kbd className="bg-slate-100 px-2 py-1 rounded border">n</kbd> to cancel.</p>
           </section>
 
-          <section id="both-models" className="scroll-mt-32">
-            <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-8 border-b-2 border-slate-100 pb-4">1.1 Using Multiple Models</h2>
-            <p className="mb-6">If you've purchased both tiers (Hot and Extra Spicy):</p>
-            <div className="space-y-6">
-              <div className="flex gap-4">
-                <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center shrink-0 font-black text-xs">1</div>
-                <p className="m-0">Install the apps to <code>/Applications</code></p>
-              </div>
-              <div className="flex gap-4">
-                <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center shrink-0 font-black text-xs">2</div>
-                <div className="m-0">
-                  <p className="m-0">Check your current status:</p>
-                  <code className="block bg-slate-900 text-yellow-400 p-4 rounded-xl mt-2 font-mono text-sm">zest --status</code>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center shrink-0 font-black text-xs">3</div>
-                <div className="m-0">
-                  <p className="m-0">Switch between models:</p>
-                  <code className="block bg-slate-900 text-yellow-400 p-4 rounded-xl mt-2 font-mono text-sm">
-                    zest --model --hot            # Use Hot model<br />
-                    zest --model --extra-spicy    # Use Extra Spicy model
-                  </code>
-                </div>
-              </div>
-            </div>
-            <div className="mt-8 bg-blue-50 p-6 rounded-3xl border border-blue-100 text-sm">
-              <p className="m-0"><strong>Note:</strong> If both models are installed, Zest defaults to Extra Spicy (highest quality), then Hot. You can override this with <code>--model</code> flags.</p>
-            </div>
+          <section id="device-management" className="scroll-mt-32">
+            <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-8 border-b-2 border-slate-100 pb-4">1.1 Device Management</h2>
+            <p className="mb-6">
+              Check your current status at any time:
+            </p>
+            <code className="block bg-slate-900 text-yellow-400 p-4 rounded-xl mt-2 font-mono text-sm mb-8">zest --status</code>
 
-            <div className="mt-12 space-y-12">
-              <div>
-                <h3 className="text-xl font-black text-slate-900 mb-4">Licensing</h3>
-                <p>Your license allows installation on up to <strong>2 devices per tier</strong>. Each tier (Hot, Extra Spicy) has independent device slots:</p>
-                <ul className="list-disc pl-6 space-y-1 font-bold text-slate-700">
-                  <li>2 device slots for Hot</li>
-                  <li>2 device slots for Extra Spicy</li>
-                </ul>
-              </div>
-
+            <div className="space-y-12">
               <div>
                 <h3 className="text-xl font-black text-slate-900 mb-4">Logout (Frees device slot)</h3>
                 <p className="mb-4 text-sm">Use <code>--logout</code> to deregister the device and free a device slot while keeping the model on disk for later re-activation.</p>
                 <code className="block bg-slate-900 text-yellow-400 p-4 rounded-xl font-mono text-sm">
-                  zest --logout                  # Log out from ALL tiers<br />
-                  zest --logout --hot            # Log out from Hot only<br />
-                  zest --logout --extra-spicy    # Log out from Extra Spicy only
+                  zest --logout                  # Log out this device<br />
+                  zest --logout --remote         # Log out any device remotely (requires OTP)
                 </code>
               </div>
 
@@ -138,9 +105,7 @@ export const DocsPage: React.FC = () => {
                 <h3 className="text-xl font-black text-slate-900 mb-4">Uninstall (Removes everything)</h3>
                 <p className="mb-4 text-sm">Use <code>--uninstall</code> to deregister the device and remove the model file and license. This frees both disk space and a device slot.</p>
                 <code className="block bg-slate-900 text-yellow-400 p-4 rounded-xl font-mono text-sm">
-                  zest --uninstall                  # Full uninstall of ALL tiers<br />
-                  zest --uninstall --hot            # Uninstall Hot only<br />
-                  zest --uninstall --extra-spicy    # Uninstall Extra Spicy only
+                  zest --uninstall
                 </code>
               </div>
 
@@ -153,93 +118,32 @@ export const DocsPage: React.FC = () => {
           </section>
 
           <section id="performance" className="scroll-mt-32">
-            <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-8 border-b-2 border-slate-100 pb-4">2. Performance & Accuracy</h2>
+            <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-8 border-b-2 border-slate-100 pb-4">2. The Model</h2>
 
-            <div className="space-y-12">
-              <Card padding="lg">
-                <h3 className="text-xl font-black text-slate-900 mb-2">Zest Extra Spicy (14B Intelligence)</h3>
-                <p className="text-red-500 font-black mb-4">96% accuracy on production CLI workflows.</p>
-                <p className="font-bold text-slate-900 mb-2 underline decoration-red-200">Strengths:</p>
-                <ul className="list-disc pl-6 space-y-1 mb-6 text-base">
-                  <li>100% accurate on Docker, Cloud tools, and common commands</li>
-                  <li>100% accurate on intermediate tasks (systemctl, package management)</li>
-                  <li>87.5% accurate on advanced Kubernetes & system administration workflows</li>
-                  <li>75% accurate on advanced text processing</li>
-                  <li>14 billion parameters — 2x the reasoning depth of the 7B model</li>
-                </ul>
-                <p className="text-xs font-black text-slate-400 uppercase tracking-widest bg-white py-2 px-4 rounded-xl border border-slate-200 inline-block">
-                  Model Details: 9.8GB | Q5_K_M quantization | Qwen2.5 Coder 14B | 2x parameters vs Hot
-                </p>
-              </Card>
-
-              <Card padding="lg">
-                <h3 className="text-xl font-black text-slate-900 mb-2">Zest Hot (Full Precision)</h3>
-                <p className="text-yellow-700 font-black mb-4">94% accuracy on production CLI workflows.</p>
-                <p className="font-bold text-slate-900 mb-2 underline decoration-yellow-200">Strengths:</p>
-                <ul className="list-disc pl-6 space-y-1 mb-4 text-base">
-                  <li>100% accurate on Docker, Cloud tools, and common commands</li>
-                  <li>100% accurate on intermediate tasks (systemctl, package management)</li>
-                  <li>Enhanced accuracy on complex shell operations</li>
-                  <li>Full FP16 precision — no quantization loss</li>
-                  <li>Best experience on Apple Silicon hardware</li>
-                </ul>
-                <p className="text-xs font-black text-slate-400 uppercase tracking-widest bg-white py-2 px-4 rounded-xl border border-slate-200 inline-block">
-                  Model Details: 15GB | Full precision FP16 | Qwen2.5 Coder 7B | Apple Silicon recommended
-                </p>
-              </Card>
-            </div>
-
-            <div className="mt-12">
-              <h3 className="text-slate-900 font-black mb-4">Choosing Your Tier</h3>
-              <div className="overflow-x-auto">
-                <table className="w-full text-left border-collapse mt-4">
-                  <thead>
-                    <tr className="border-b-2 border-slate-200">
-                      <th className="py-2 font-black text-slate-900">Need</th>
-                      <th className="py-2 font-black text-slate-900">Recommendation</th>
-                    </tr>
-                  </thead>
-                  <tbody className="text-base">
-                    <tr className="border-b border-slate-100">
-                      <td className="py-2">Maximum accuracy & precision</td>
-                      <td className="py-2 font-black text-red-500">Extra Spicy</td>
-                    </tr>
-                    <tr className="border-b border-slate-100">
-                      <td className="py-2">Regex, log analysis, advanced text processing</td>
-                      <td className="py-2 font-black text-red-500">Extra Spicy</td>
-                    </tr>
-                    <tr className="border-b border-slate-100">
-                      <td className="py-2">Complex shell operations, balanced performance</td>
-                      <td className="py-2 font-black text-yellow-700">Hot</td>
-                    </tr>
-                    <tr className="border-b border-slate-100">
-                      <td className="py-2">Simple Docker/Git/AWS/Kubernetes commands</td>
-                      <td className="py-2 font-bold">Either tier</td>
-                    </tr>
-                    <tr className="border-b border-slate-100">
-                      <td className="py-2">Everyday CLI tasks, entry point</td>
-                      <td className="py-2 font-black text-yellow-700">Hot</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
+            <Card padding="lg">
+              <h3 className="text-xl font-black text-slate-900 mb-2">Zest CLI</h3>
+              <p className="font-bold text-slate-900 mb-2 underline decoration-red-200">Strengths:</p>
+              <ul className="list-disc pl-6 space-y-1 mb-6 text-base">
+                <li>Strong accuracy on Docker, Cloud tools, Git, and common shell commands</li>
+                <li>Fine-tuned with supervised fine-tuning (SFT) and Direct Preference Optimization (DPO)</li>
+                <li>Trained specifically for single-line, executable CLI command generation</li>
+                <li>Runs entirely offline, CPU-optimized with optional GPU acceleration</li>
+              </ul>
+              <p className="text-xs font-black text-slate-400 uppercase tracking-widest bg-white py-2 px-4 rounded-xl border border-slate-200 inline-block">
+                Model Details: ~6.6GB | Q5_K_M quantization | Qwen3.5-9B
+              </p>
+            </Card>
           </section>
 
           <section id="licensing" className="scroll-mt-32">
             <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-8 border-b-2 border-slate-100 pb-4">3. Licensing (2 Device Limit)</h2>
-            <p>Each Zest license allows for <strong>2 active personal devices per product</strong>. If you reach this limit, use <code>zest --logout</code> (to keep files) or <code>zest --uninstall</code> (to free disk space) on one machine to free a slot for a new one. <strong>Note: Dragging the application to the Trash from your Applications folder is functionally identical to running <code>zest --uninstall</code>; it will automatically deregister your slot.</strong> This registration is the only piece of functional data we capture to protect your privacy while managing seat counts.</p>
+            <p>Each Zest license allows for <strong>2 active personal devices</strong>. If you reach this limit, use <code>zest --logout</code> (to keep files) or <code>zest --uninstall</code> (to free disk space) on one machine to free a slot for a new one. <strong>Note: Dragging the application to the Trash from your Applications folder is functionally identical to running <code>zest --uninstall</code>; it will automatically deregister your slot.</strong> This registration is the only piece of functional data we capture to protect your privacy while managing seat counts.</p>
           </section>
 
           <section id="benchmark" className="scroll-mt-32">
             <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-8 border-b-2 border-slate-100 pb-4">4. Benchmark</h2>
             <p>
-              We evaluated Zest on the <a href="https://intercode-benchmark.github.io/" target="_blank" rel="noopener noreferrer" className="text-red-500 hover:underline">intercode nl2bash benchmark</a>. Using an LLM judge (Opus 4.5), our local model resolved <strong>34% of tasks with zero-shot prompting</strong>. This performance puts Zest in line with <strong>ChatGPT 4 (34%)</strong> and significantly ahead of larger models like <strong>Llama-2-70B-Chat (31.5%)</strong> and <strong>Vicuna-13B (24.5%)</strong> on the InterCode leaderboard.
-            </p>
-            <p>
-              Our 96% accuracy rate is based on internal testing against 50 hand-selected, unseen Unix tasks.
-              <br /><br />
-              Zest CLI produced syntactically correct commands that achieved the intended outcome in a zero-shot environment. The remaining 4% typically involved hallucinated flags or selecting a sub-optimal command for the specific shell environment.
+              We're running Zest CLI's new model through our internal and external benchmarks, including the <a href="https://intercode-benchmark.github.io/" target="_blank" rel="noopener noreferrer" className="text-red-500 hover:underline">intercode nl2bash benchmark</a>. Results will be published here once evaluation is complete.
             </p>
             <div className="mt-12 bg-slate-50 border border-slate-200 p-4 rounded-xl text-xs italic w-full leading-relaxed">
               We built this tool to handle most everyday tasks, but it won't get everything right all the time. If something doesn't work as expected, let us know using the <Link to="/report_issues" className="text-red-500 hover:underline font-bold">contact form</Link>. We really don't collect or store your prompts or outputs, so we can't see issues unless you tell us about them. We're always working to improve, and your feedback really helps.

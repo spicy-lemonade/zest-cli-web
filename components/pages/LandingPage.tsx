@@ -72,9 +72,9 @@ export const LandingPage: React.FC = () => {
               <div className="absolute top-6 right-6 opacity-10 group-hover:opacity-20 transition-opacity">
                 <CheckCircle2 className="w-12 h-12 text-red-500" />
               </div>
-              <h2 className="text-3xl font-black text-slate-900 mb-4 relative z-10">96%+ Accuracy</h2>
+              <h2 className="text-3xl font-black text-slate-900 mb-4 relative z-10">High Accuracy</h2>
               <p className="text-slate-600 font-medium mb-6 leading-relaxed relative z-10 flex-grow">
-                Verified performance on internal benchmarks covering complex, real-world terminal workloads. Designed to deliver reliable command translation and syntax precision across a wide range of technical use cases. <span className="text-[8px] text-slate-400 font-black inline tracking-widest uppercase ml-1 opacity-80">(Zest Extra Spicy)</span>
+                Tuned on real-world terminal workloads. Designed to deliver reliable command translation and syntax precision across a wide range of technical use cases.
               </p>
               <div className="flex flex-wrap gap-4 relative z-10">
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-slate-200 text-slate-700 font-bold text-xs uppercase tracking-wider">
