@@ -91,15 +91,6 @@ export const Pricing: React.FC = () => {
           </p>
         </div>
 
-        <div className="mb-20 text-center">
-          <p className="text-slate-400 text-sm font-medium leading-relaxed max-w-3xl mx-auto mb-6">
-            This is a small language model that will make mistakes due to its size. While we make every effort to train it to be accurate, please treat your purchase with this in mind. The model is an assistant, not a tool to replace your workflow. If you find model mistakes, please use the "report issues" page.
-          </p>
-          <p className="text-slate-400 text-xs font-bold uppercase tracking-widest">
-            Securely processed by Polar.sh via Stripe — We never see your card details.
-          </p>
-        </div>
-
         {/* Technical Requirements */}
         <div className="max-w-2xl mx-auto bg-slate-50 rounded-[4rem] p-10 md:p-16 border border-slate-100 relative">
           <div className="flex items-center gap-4 pb-6 border-b border-slate-200 mb-6">
