@@ -35,8 +35,8 @@ export const Pricing: React.FC = () => {
 
         <div className="max-w-md mx-auto mb-16">
           <div className="flex flex-col p-10 rounded-[3rem] border-2 border-yellow-400 shadow-2xl shadow-yellow-500/20 bg-white relative overflow-hidden h-full">
-            <div className="mb-8 relative">
-              <div className="flex items-center gap-2 font-black mb-2 text-red-500">
+            <div className="mb-8 relative text-center">
+              <div className="flex items-center justify-center gap-2 font-black mb-2 text-red-500">
                 <Flame className="w-5 h-5" />
                 <span className="uppercase tracking-[0.2em] text-[10px]">Zest CLI</span>
               </div>
@@ -49,7 +49,7 @@ export const Pricing: React.FC = () => {
               </div>
 
               <p className="text-slate-500 font-medium text-sm leading-relaxed min-h-[80px]">
-                A single fine-tuned model for natural language to CLI command translation. Buy once, keep forever.
+                A fine-tuned model for natural language to CLI command translation. Buy once, keep forever.
               </p>
             </div>
 
@@ -90,7 +90,7 @@ export const Pricing: React.FC = () => {
 
         <div className="max-w-2xl mx-auto mb-16 text-center">
           <p className="text-slate-500 font-medium leading-relaxed">
-            There is no service to keep running and nothing to bill you for again. The price just helps cover hosting and bandwidth for the multi-gigabyte model download.
+            There is a small one time fee. The price helps cover hosting and bandwidth for the multi-gigabyte model download.
           </p>
         </div>
 
